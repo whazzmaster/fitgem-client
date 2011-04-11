@@ -1,7 +1,26 @@
-<h1>Fitbit Integration for Liftr.co</h1>
-<hr/>
-
 <h3>Current Status</h3>
 <div>
-	We're currently storing <%= @count %> updates from <a href="http://www.fitbit.com">fitbit.com</a>.
+	<% if user_signed_in? %>
+		You are logged in
+		<% if current_user.fitbit_account.verified? %>
+			and you're Liftr account is linked with your Fitbit account.
+			
+			<div style="clear:both;"></div>
+			<div style="padding: 10px 20px;">
+				<div style="float:left;">
+					<%= link_to "View your user info", url_for(:controller => :fitbit_oauth, :action => :info) %>&nbsp;or&nbsp;
+				</div>
+				<div style="float:left;">
+					<%= button_to "Disconnect your Fitbit Account", url_for(:controller => :fitbit_oauth, :action => :disconnect)%>
+				</div>
+			</div>
+			
+			<div style="clear:both">&nbsp;</div>
+		<% else %>
+			but you are <strong>not yet</strong> linked with a Fitbit account.
+			<%= link_to "Click here to connect with your Fitbit account.", url_for(:controller => :fitbit_oauth, :action => :index)%>
+		<% end %>
+	<% else %>
+		You are not logged in.
+	<% end %>
 </div>

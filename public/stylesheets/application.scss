@@ -1,18 +1,22 @@
 body {
   background-color: #4B7399;
   font-family: Verdana, Helvetica, Arial;
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 a img {
-  border: none; }
+  border: none;
+}
 
 a {
-  color: #0000FF; }
+  color: #0000FF;
+}
 
 .clear {
   clear: both;
   height: 0;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 #container {
   width: 75%;
@@ -20,22 +24,27 @@ a {
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
-  margin-top: 20px; }
+  margin-top: 20px;
+}
 
 #flash_notice, #flash_error, #flash_alert {
   padding: 5px 8px;
-  margin: 10px 0; }
+  margin: 10px 0;
+}
 
 #flash_notice {
   background-color: #CFC;
-  border: solid 1px #6C6; }
+  border: solid 1px #6C6;
+}
 
 #flash_error, #flash_alert {
   background-color: #FCC;
-  border: solid 1px #C66; }
+  border: solid 1px #C66;
+}
 
 .fieldWithErrors {
-  display: inline; }
+  display: inline;
+}
 
 .error_messages {
   width: 400px;
@@ -44,7 +53,8 @@ a {
   padding-bottom: 12px;
   margin-bottom: 20px;
   background-color: #f0f0f0;
-  font-size: 12px; }
+  font-size: 12px;
+}
 
 .error_messages h2 {
   text-align: left;
@@ -53,23 +63,25 @@ a {
   font-size: 12px;
   margin: 0;
   background-color: #c00;
-  color: #fff; }
+  color: #fff;
+}
 
 .error_messages p {
-  margin: 8px 10px; }
+  margin: 8px 10px;
+}
 
 .error_messages ul {
-  margin: 0; }
+  margin: 0;
+}
 
 div#header {
-  border-bottom: 1px solid #333; }
-  div#header #login-nav {
-    float: right; }
-  div#header h1 a {
-    color: #333;
-    text-decoration: none; }
-  div#header h1 a:hover {
-    color: #333; }
-  div#header h1 a:visited {
-    color: #333;
-    text-decoration: none; }
+	border-bottom: 1px solid #333;
+	#login-nav {
+		float: right;
+	}
+	h1 {
+		a { color: #333; text-decoration: none; }
+		a:hover { color: #333; }
+		a:visited { color: #333; text-decoration: none; }
+	}
+}

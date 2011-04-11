@@ -1,0 +1,10 @@
+<h1>Congratulations! You've now authorized Liftr to work with Fitbit</h1>
+
+<div>
+	We've now hooked up your Liftr account with your Fitbit account.  You should see your Fitbit user id below:
+	
+	<h2><%= @info['fullName'] %> (<%= @info['encodedId'] %>)</h2>
+	
+	<%= link_to "Click here", url_for(:controller => :fitbit_oauth, :action => :info) %> to view your Fitbit information.
+	
+</div>

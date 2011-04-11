@@ -11,11 +11,11 @@ VisualEnvironments.setup do |config|
   # Using the option below configures the alias for both the title tag and the corner banner display;
   # if you would like different strings for each area then see the next section.
   # Example: 'development' -> 'dev' or 'preproduction' -> 'preprod'
-  # config.aliases = { 'development' => 'dev' }
+  # config.aliases = { 'development' => 'D' }
   
   # You may alternatively declare different aliases for the title tag versus the corner banner
   # using the options below.
-  # config.title_aliases = { 'development' => 'dev' }
+  config.title_aliases = { 'development' => 'D' }
   # config.corner_banner_aliases = { 'preproduction' => 'preprod' }
 
   # By default, the visual-environments will be enabled for all environments except production;

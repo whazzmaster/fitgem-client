@@ -1,4 +1,12 @@
 FitbitClient::Application.routes.draw do
+  
+  get "fitbit", :controller => :fitbit_oauth, :action => :index
+  get "fitbit/index", :controller => :fitbit_oauth, :action => :index
+  post "fitbit/start", :controller => :fitbit_oauth, :action => :start
+  get "fitbit/verify", :controller => :fitbit_oauth, :action => :verify
+  get "fitbit/info", :controller => :fitbit_oauth, :action => :info
+  post "fitbit/disconnect", :controller => :fitbit_oauth, :action => :disconnect
+
   devise_for :users
   get "welcome/index"
   resources :notifications
