@@ -1,9 +1,9 @@
-= Fitbit Client Application =
+# Fitbit Client Application #
 
 An example Rails 3 application that uses the <tt>fitbit</tt> gem to query the Fitbit OAuth API, and accepts 
 subscription notifications from Fitbit when a user's data changes.
 
-== Usage ==
+## Usage ##
 
 Goal: Clone the code and you can see the way that the gem is used.
 
