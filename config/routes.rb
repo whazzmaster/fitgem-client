@@ -1,4 +1,5 @@
 FitbitClient::Application.routes.draw do
+  devise_for :users
   get "welcome/index"
   resources :notifications
   root :to => "welcome#index"

@@ -29,7 +29,16 @@ GEM
       activesupport (= 3.0.6)
     activesupport (3.0.6)
     arel (2.0.9)
+    bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    capistrano (2.5.21)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.0.0)
+    capistrano-ext (1.2.1)
+      capistrano (>= 1.0.0)
     cucumber (0.10.2)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
@@ -40,6 +49,10 @@ GEM
       cucumber (>= 0.10.1)
       nokogiri (>= 1.4.4)
       rack-test (>= 0.5.7)
+    devise (1.2.1)
+      bcrypt-ruby (~> 2.1.2)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.0.3)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -53,6 +66,7 @@ GEM
     gherkin (2.3.5)
       json (>= 1.4.6)
     haml (3.0.25)
+    highline (1.6.1)
     i18n (0.5.0)
     json (1.5.1)
     mail (2.2.15)
@@ -62,9 +76,17 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     mysql2 (0.2.7)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.1.4)
+    net-ssh-gateway (1.0.1)
+      net-ssh (>= 1.99.1)
     nifty-generators (0.4.6)
     nokogiri (1.4.4)
     oauth (0.4.4)
+    orm_adapter (0.0.4)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -106,13 +128,18 @@ GEM
     visual-environments (0.3.3)
       activesupport (>= 3.0.5)
       rails (>= 3.0.5)
+    warden (1.0.3)
+      rack (>= 1.0.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  capistrano
+  capistrano-ext
   cucumber
   cucumber-rails
+  devise
   factory_girl_generator
   factory_girl_rails
   fitbit
