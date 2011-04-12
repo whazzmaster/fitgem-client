@@ -85,3 +85,23 @@ div#header {
 		a:visited { color: #333; text-decoration: none; }
 	}
 }
+
+div#fitbit-user-info {
+	background: #e1ffff; /* old browsers */
+	background: -moz-linear-gradient(top, #e1ffff 0%, #e1ffff 7%, #e1ffff 12%, #fdffff 12%, #e6f8fd 30%, #c8eefb 54%, #bee4f8 75%, #b1d8f5 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e1ffff), color-stop(7%,#e1ffff), color-stop(12%,#e1ffff), color-stop(12%,#fdffff), color-stop(30%,#e6f8fd), color-stop(54%,#c8eefb), color-stop(75%,#bee4f8), color-stop(100%,#b1d8f5)); /* webkit */
+	color: #333;
+	width: 350px;
+	height: 175px;
+	border: 1px solid #b1d8f5;
+	.line-title {
+		font-weight: bold;
+		padding: 5px 10px;
+	}
+	.line-item {
+		clear: both;
+		.label { float: left; text-align: right; padding: 2px 5px; width: 120px; }
+		.value { float: left; text-align: left; padding: 2px 5px; }
+	}
+		
+}

@@ -1,3 +1,29 @@
 <h1>Fitbit Information for <%= @info['fullName'] %></h1>
 	
-	<h2>Fitbit User Id: <%= @info['encodedId'] %></h2>
+<div id="fitbit-user-info">
+	<div class="line-title">User Information</div>
+	<div class="line-item">
+		<div class="label">User Id:</div> 
+		<div class="value"><%= @info['encodedId'] %></div>
+	</div>
+	<div class="line-item">
+		<div class="label">Display Name:</div> 
+		<div class="value"><%= @info['displayName'] %></div>
+	</div>
+	<div class="line-item">
+		<div class="label">City:</div> 
+		<div class="value"><%= @info['city'] %></div>
+	</div>
+	<div class="line-item">
+		<div class="label">State:</div> 
+		<div class="value"><%= @info['state'] %></div>
+	</div>
+	<div class="line-item">
+		<div class="label">Gender:</div> 
+		<div class="value"><%= @info['gender'] %></div>
+	</div>
+	<div class="line-item">
+		<div class="label">Date of Birth:</div> 
+		<div class="value"><%= @info['dateOfBirth'] %></div>
+	</div>
+</div>
