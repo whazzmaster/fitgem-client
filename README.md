@@ -16,7 +16,7 @@ The plan is to extend the site and eventually use it as a usable example of how 
 This reference application is intended to illustrate, in real Rails 3 code, how to use the [fitbit gem](http://rubygems.org/gems/fitbit) to connect to
 fitbit.com via their REST API and get/set data.  
 
-The application is deployed at [http://fitbit.liftr.co](http://fitbit.liftr.co), but I have removed all deployment-specific information from the code in this repository. Unfortunately, for now the view code is littered with references to the site where I have deployed it (liftr.co).  I'll work to remove these so that the demo is just a generic version of fitbit integration as opposed to being organized around integration with a specific site.
+The application is deployed at [http://fitbitclient.com](http://fitbitclient.com), but I have removed all deployment-specific information from the code in this repository. Unfortunately, for now the view code is littered with references to the site where I have deployed it (liftr.co).  I'll work to remove these so that the demo is just a generic version of fitbit integration as opposed to being organized around integration with a specific site.
 
 __To run this app locally in a dev environment__ you will need to:
 

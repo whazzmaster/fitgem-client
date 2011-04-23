@@ -1,7 +1,12 @@
+$regular-text-color: #444444;
+$light-text-color: #888888;
+$border-color: #333333;
+
 body {
   background-color: #4B7399;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
+	color: $regular-text-color;
 }
 
 a img {
@@ -75,33 +80,62 @@ a {
 }
 
 div#header {
-	border-bottom: 1px solid #333;
+	border-bottom: 1px solid $border-color;
 	#login-nav {
 		float: right;
 	}
 	h1 {
-		a { color: #333; text-decoration: none; }
-		a:hover { color: #333; }
-		a:visited { color: #333; text-decoration: none; }
+		clear: right;
+		padding-top: 5px;
+		a { color: $regular-text-color; text-decoration: none; }
+		a:hover { color: $regular-text-color; }
+		a:visited { color: $regular-text-color; text-decoration: none; }
 	}
 }
+div#sidebar {
+	float: right;
+	width: 250px;
+	.box {
+		padding: 10px 0;
+		p {
+			margin: 5px 0;
+			font-size: 10pt;
+		}
+		h3 {
+			margin: 5px 0;
+		}
+	}
+}
+div#content {
+	margin-right: 260px;
+}
+div#footer {
+	clear: right;
+	font-size: 9pt;
+	border-top: 1px solid #333;
+	padding: 15px 0 0 0;
+	color: $light-text-color;
+}
 
-div#fitbit-user-info {
-	background: #e1ffff; /* old browsers */
-	background: -moz-linear-gradient(top, #e1ffff 0%, #e1ffff 7%, #e1ffff 12%, #fdffff 12%, #e6f8fd 30%, #c8eefb 54%, #bee4f8 75%, #b1d8f5 100%); /* firefox */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e1ffff), color-stop(7%,#e1ffff), color-stop(12%,#e1ffff), color-stop(12%,#fdffff), color-stop(30%,#e6f8fd), color-stop(54%,#c8eefb), color-stop(75%,#bee4f8), color-stop(100%,#b1d8f5)); /* webkit */
-	color: #333;
-	width: 350px;
-	height: 175px;
-	border: 1px solid #b1d8f5;
-	.line-title {
-		font-weight: bold;
-		padding: 5px 10px;
+div#fitbit-user-info-container {
+	padding: 10px 0;
+	#fitbit-user-info {
+		width: 350px;
+		height: 212px;
+		border: 1px solid $border-color;
+		.line-title {
+			font-weight: bold;
+			padding: 5px 10px;
+		}
+		.line-item {
+			margin: 5px 0;
+			.label { text-align: right; padding: 2px 5px; float: left; width: 110px;  }
+			.value { 
+				background: none repeat scroll 0 0 #EEEEEE;
+				margin: 0 15px 0 119px;
+				padding: 3px 5px;
+				text-align: left;
+			}
+		}
 	}
-	.line-item {
-		clear: both;
-		.label { float: left; text-align: right; padding: 2px 5px; width: 120px; }
-		.value { float: left; text-align: left; padding: 2px 5px; }
-	}
-		
 }

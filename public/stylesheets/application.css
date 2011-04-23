@@ -1,7 +1,8 @@
 body {
   background-color: #4B7399;
   font-family: Verdana, Helvetica, Arial;
-  font-size: 14px; }
+  font-size: 14px;
+  color: #444444; }
 
 a img {
   border: none; }
@@ -62,40 +63,60 @@ a {
   margin: 0; }
 
 div#header {
-  border-bottom: 1px solid #333; }
+  border-bottom: 1px solid #333333; }
   div#header #login-nav {
     float: right; }
-  div#header h1 a {
-    color: #333;
-    text-decoration: none; }
-  div#header h1 a:hover {
-    color: #333; }
-  div#header h1 a:visited {
-    color: #333;
-    text-decoration: none; }
+  div#header h1 {
+    clear: right;
+    padding-top: 5px; }
+    div#header h1 a {
+      color: #444444;
+      text-decoration: none; }
+    div#header h1 a:hover {
+      color: #444444; }
+    div#header h1 a:visited {
+      color: #444444;
+      text-decoration: none; }
 
-div#fitbit-user-info {
-  background: #e1ffff;
-  /* old browsers */
-  background: -moz-linear-gradient(top, #e1ffff 0%, #e1ffff 7%, #e1ffff 12%, #fdffff 12%, #e6f8fd 30%, #c8eefb 54%, #bee4f8 75%, #b1d8f5 100%);
-  /* firefox */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e1ffff), color-stop(7%, #e1ffff), color-stop(12%, #e1ffff), color-stop(12%, #fdffff), color-stop(30%, #e6f8fd), color-stop(54%, #c8eefb), color-stop(75%, #bee4f8), color-stop(100%, #b1d8f5));
-  /* webkit */
-  color: #333;
-  width: 350px;
-  height: 175px;
-  border: 1px solid #b1d8f5; }
-  div#fitbit-user-info .line-title {
-    font-weight: bold;
-    padding: 5px 10px; }
-  div#fitbit-user-info .line-item {
-    clear: both; }
-    div#fitbit-user-info .line-item .label {
-      float: left;
-      text-align: right;
-      padding: 2px 5px;
-      width: 120px; }
-    div#fitbit-user-info .line-item .value {
-      float: left;
-      text-align: left;
-      padding: 2px 5px; }
+div#sidebar {
+  float: right;
+  width: 250px; }
+  div#sidebar .box {
+    padding: 10px 0; }
+    div#sidebar .box p {
+      margin: 5px 0;
+      font-size: 10pt; }
+    div#sidebar .box h3 {
+      margin: 5px 0; }
+
+div#content {
+  margin-right: 260px; }
+
+div#footer {
+  clear: right;
+  font-size: 9pt;
+  border-top: 1px solid #333;
+  padding: 15px 0 0 0;
+  color: #888888; }
+
+div#fitbit-user-info-container {
+  padding: 10px 0; }
+  div#fitbit-user-info-container #fitbit-user-info {
+    width: 350px;
+    height: 212px;
+    border: 1px solid #333333; }
+    div#fitbit-user-info-container #fitbit-user-info .line-title {
+      font-weight: bold;
+      padding: 5px 10px; }
+    div#fitbit-user-info-container #fitbit-user-info .line-item {
+      margin: 5px 0; }
+      div#fitbit-user-info-container #fitbit-user-info .line-item .label {
+        text-align: right;
+        padding: 2px 5px;
+        float: left;
+        width: 110px; }
+      div#fitbit-user-info-container #fitbit-user-info .line-item .value {
+        background: none repeat scroll 0 0 #EEEEEE;
+        margin: 0 15px 0 119px;
+        padding: 3px 5px;
+        text-align: left; }

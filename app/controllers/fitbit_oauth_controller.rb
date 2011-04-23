@@ -32,7 +32,7 @@ class FitbitOauthController < ApplicationController
   
   def info
     unless current_user.fitbit_account.verified?
-      flash[:alert] = "Your Liftr account is not connected to a Fitbit account. "
+      flash[:alert] = "Your test account is not connected to a Fitbit account. "
       redirect_to :action => :index and return
     end
     client = FitbitClientWrapper.new(current_user.fitbit_account)
@@ -41,7 +41,7 @@ class FitbitOauthController < ApplicationController
   
   def disconnect
     current_user.fitbit_account.clear!
-    flash[:notice] = "Your Liftr account has been disconnected from your Fitbit account"
+    flash[:notice] = "Your test account has been disconnected from your Fitbit account"
     redirect_to root_url
   end
 
