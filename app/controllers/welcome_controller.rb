@@ -1,7 +1,12 @@
+require 'fitbit_client_wrapper'
+
 class WelcomeController < ApplicationController
 
   def index
-    @count = Notification.count
+    if user_signed_in? && current_user.fitbit_account.verified?
+      client = FitbitClientWrapper.new(current_user.fitbit_account)
+	    @info = client.user_info['user']
+    end
   end
 
 end

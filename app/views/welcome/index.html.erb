@@ -3,10 +3,6 @@
 	<% if user_signed_in? %>
 		You are logged in
 		<% if current_user.fitbit_account.verified? %>
-			<%
-				client = FitbitClientWrapper.new(current_user.fitbit_account)
-		    @info = client.user_info['user']
-			%>
 			and your <%= link_to 'test account', fitbit_info_path %> is linked with your Fitbit account.
 			
 			<div id="fitbit-user-info-container">
