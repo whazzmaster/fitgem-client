@@ -80,11 +80,12 @@ div#header {
 
 div#sidebar {
   float: right;
-  width: 250px; }
+  width: 220px; }
   div#sidebar .box {
     padding: 10px 0; }
     div#sidebar .box p {
       margin: 5px 0;
+      padding: 5px 0;
       font-size: 10pt; }
     div#sidebar .box h3 {
       margin: 5px 0; }

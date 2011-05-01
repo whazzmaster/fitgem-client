@@ -94,11 +94,12 @@ div#header {
 }
 div#sidebar {
 	float: right;
-	width: 250px;
+	width: 220px;
 	.box {
 		padding: 10px 0;
 		p {
 			margin: 5px 0;
+			padding: 5px 0;
 			font-size: 10pt;
 		}
 		h3 {
