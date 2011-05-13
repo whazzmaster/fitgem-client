@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 module FitgemClient
   class Application < Rails::Application
   
-    config.generators do |g|
+    config.app_generators do |g|
       g.test_framework :rspec, :fixture => true, :views => false
       g.integration_tool :rspec, :fixture => true, :views => true
       g.fixture_replacement :factory_girl
