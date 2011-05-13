@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe FitbitOauthController do
+describe FitgemOauthController do
 
   describe "GET 'start'" do
     it "should be successful" do

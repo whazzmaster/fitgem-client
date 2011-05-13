@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Fitbit Test Client (Rails)" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Fitgem Test Client (Rails)" %></title>
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
@@ -18,13 +18,13 @@
 						<%= link_to "Sign in", new_user_session_path %>
 					<% end %>
 				</div>
-				<h1><%= link_to "Fitbit Test Client (Ruby on Rails)", root_url %></h1>
+				<h1><%= link_to "Fitgem Test Client (Ruby on Rails)", root_url %></h1>
 			</div>
 			
 			<%= render :partial => 'layouts/sidebar' %>
 			
 			<div id="footer">
-				This site is for demonstration purposes only. I am not a member of the fitbit developer team and have no connection to the company other than I like their product and I built the <a href="http://rubygems.org/gems/fitbit">fitbit rubygem</a> to allow ruby clients access to their data.
+				This site is for demonstration purposes only. I am not a member of the Fitbit developer team and have no connection to the company other than I like their product and I built the <a href="http://rubygems.org/gems/fitbit">fitgem rubygem</a> to allow ruby clients access to their data.
 			</div>
     </div>
   </body>
