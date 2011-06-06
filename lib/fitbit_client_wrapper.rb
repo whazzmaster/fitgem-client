@@ -7,7 +7,7 @@ class FitgemClientWrapper
   end
   
   def method_missing(name, *args)
-    @client.send(name, args)
+    @client.send(name, *args)
   end
   
 end
