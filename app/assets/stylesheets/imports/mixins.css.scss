@@ -245,6 +245,9 @@
 	}
 	zoom: 1;
 }
+.clearfix { 
+  @include clearfix(); 
+}
 
 /////// clearfix //////////
 

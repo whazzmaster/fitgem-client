@@ -257,7 +257,7 @@ button.active, input[type=submit].active, input[type=button].active, a.active {
 //////// inputs ////////
 // ---------------------
 
-input[type=text], input[type=password], select, textarea, a.ui-selectmenu {
+input[type=text], input[type=email], input[type=password], select, textarea, a.ui-selectmenu {
 	border: 1px solid $form_field_border;
 	background: $form_field_background_color;
 	@include border_radius(5px);

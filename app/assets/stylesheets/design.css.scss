@@ -78,6 +78,20 @@ article {
   }
 }
 
+#login-container {
+  margin: 10px auto;
+  width: 500px;
+  border: 1px solid $bravo_grey;
+  padding: 20px;
+  @include border-radius(5px);
+  h4 {
+   margin: -19px -19px 15px;
+   padding: 10px 20px;
+   /*background-color: saturate($hotel_color, 10%); */
+   @include charlie_color_gradient;
+  }
+}
+
 .grid-1 { @include grid_12(1); }
 .grid-2 { @include grid_12(2); }
 .grid-3 { @include grid_12(3); }

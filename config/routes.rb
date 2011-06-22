@@ -1,5 +1,6 @@
 FitgemClient::Application.routes.draw do
   
+  # Speciality routing for the OAuth login flow
   get "fitbit", :controller => :fitgem_oauth, :action => :index
   get "fitbit/index", :controller => :fitgem_oauth, :action => :index
   post "fitbit/start", :controller => :fitgem_oauth, :action => :start
@@ -9,6 +10,8 @@ FitgemClient::Application.routes.draw do
 
   devise_for :users
   
+  # Routing for the code examples
+  get "examples", :controller => :examples, :action => :index
   namespace :examples do
     get "user_info", :controller => :user_info, :action => :index
   end
