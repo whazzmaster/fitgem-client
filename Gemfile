@@ -1,11 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.beta1'
+gem 'rails', '3.1.0.rc4'
 gem 'fitgem'
 gem 'devise'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
 gem 'visual-environments'
@@ -24,5 +21,8 @@ group :development, :test do
 	gem "guard"
 	gem "guard-cucumber"
 	gem "guard-rspec"
+	gem "rb-fsevent"
+	gem "growl"
+	gem "webrat"
 end
 
