@@ -24,5 +24,6 @@ group :development, :test do
 	gem "rb-fsevent"
 	gem "growl"
 	gem "webrat"
+	gem "database_cleaner"
 end
 

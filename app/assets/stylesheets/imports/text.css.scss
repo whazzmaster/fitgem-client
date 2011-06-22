@@ -1,0 +1,53 @@
+// Text mixins
+// Find the .font argument @ /imports/mixin_arguments.less
+
+//////// repeated text settings //////////
+// --------------------------------------
+@mixin small {
+  @include font(0.916666em, 1.5em, inherit);
+}
+  
+@mixin extra_small {
+  @include font(0.8333em, 1.5em, inherit);
+}
+
+@mixin medium {
+  @include font(1em, 1.5em, inherit);
+}
+
+@mixin large {
+  @include font(1.25em, 1.5em, inherit);
+}
+
+@mixin extra_large {
+  @include font(1.5em, 1.5em, inherit);
+}
+  
+@mixin xx_large {
+  @include font(2.166666em, 1.5em, inherit);
+}
+
+.small {
+  @include small
+}
+
+.extra_small {
+  @include extra_small
+}
+
+.medium {
+  @include medium
+}
+
+.large {
+  @include large
+}
+
+.extra_large {
+  @include extra_large
+}
+
+.xx_large {
+  @include xx_large
+}
+//////// repeated text settings //////////

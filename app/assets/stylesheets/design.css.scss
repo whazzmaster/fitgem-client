@@ -1,0 +1,77 @@
+body {
+ font-family: 'Droid Serif', arial, serif; 
+ @include hotel_grey;
+}
+
+h1 { @include font(4em, 1.5em, inherit); font-family: 'Droid Sans', arial, serif; }
+h2 { @include font(3em, 1.5em, inherit); font-family: 'Droid Sans', arial, serif; }
+h3 { @include font(2.34em, "", inherit); margin-bottom: 0.5em; font-family: 'Droid Sans', arial, serif; }
+h4 { @include font(2em, "", inherit); margin-bottom: 0.5em; font-family: 'Droid Sans', arial, serif; }
+h5 { @include font(1.5em, "", inherit); margin-bottom: 0.5em; font-family: 'Droid Sans', arial, serif; }
+
+#site-header {
+  margin: 0;
+  padding: 20px 40px;
+  @include fox_color_gradient;
+  #site-logo { float: left; }
+  .haiku {
+   width: 300px;
+   float: right;
+   padding: 20px;
+   @include border-radius(5px);
+   border: 1px solid #000;
+   background-color: $white; 
+  }
+  nav {
+    width: 960px;
+    margin: 0 auto;
+    @include ul_flexbox($width: 50%, $height: auto, $text_align: left); 
+  }
+}
+
+#main {
+ width: 960px;
+ margin: 20px auto; 
+}
+
+#content {
+  @include grid_12(8);
+}
+
+#site-sidebar {
+  @include grid_12(4);
+  section {
+   padding: 5px;
+  }
+}
+
+#site-footer {
+  clear: both;
+  @include echo_color_gradient;
+  height: 75px;
+  padding: 10px 0;
+  .outer {
+    width: 960px;
+    margin: 0 auto;
+    .inner { @include grid_12(12); }
+  }
+}
+
+.post {
+ h3 { border-bottom: 1px solid #000; }
+ p { padding: 5px 0; }
+ aside { padding: 10px 0; }
+}
+
+.grid-1 { @include grid_12(1); }
+.grid-2 { @include grid_12(2); }
+.grid-3 { @include grid_12(3); }
+.grid-4 { @include grid_12(4); }
+.grid-5 { @include grid_12(5); }
+.grid-6 { @include grid_12(6); }
+.grid-7 { @include grid_12(7); }
+.grid-8 { @include grid_12(8); }
+.grid-9 { @include grid_12(9); }
+.grid-10 { @include grid_12(10); }
+.grid-11 { @include grid_12(11); }
+.grid-12 { @include grid_12(12); }

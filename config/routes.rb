@@ -8,6 +8,11 @@ FitgemClient::Application.routes.draw do
   post "fitbit/disconnect", :controller => :fitgem_oauth, :action => :disconnect
 
   devise_for :users
+  
+  namespace :examples do
+    get "user_info", :controller => :user_info, :action => :index
+  end
+  
   get "welcome/index"
   resources :notifications
   root :to => "welcome#index"
