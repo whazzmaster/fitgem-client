@@ -8,5 +8,8 @@ class WelcomeController < ApplicationController
 	    @info = client.user_info['user']
     end
   end
+  
+  def about
+  end
 
 end

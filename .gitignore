@@ -8,4 +8,4 @@ config/deploy.rb
 config/app_config.yml
 .rvmrc
 Capfile
-public/stylesheets/.sass-cache/
+.sass-cache/

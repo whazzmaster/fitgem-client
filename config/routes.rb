@@ -14,7 +14,10 @@ FitgemClient::Application.routes.draw do
   end
   
   get "welcome/index"
+  get "about", :controller => :welcome, :action => :about
+  
   resources :notifications
+  
   root :to => "welcome#index"
 
   # The priority is based upon order of creation:

@@ -2,6 +2,10 @@
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Fitgem Test Client (Rails)" %></title>
+
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold' rel='stylesheet' type='text/css'>
+		
 		<%= stylesheet_link_tag    "application" %>
 	  <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
@@ -9,23 +13,51 @@
   </head>
   <body>
     <div id="container">
-			<div id="header">
-				<div id="login-nav">
-					<% if user_signed_in? %>
-						Signed in as <%= current_user.email %>. Not you?
-						<%= link_to "Sign out", destroy_user_session_path %>
-					<% else %>
-						<%= link_to "Sign in", new_user_session_path %>
+			<header id="site-header">
+				<h1><%= link_to "Fitgem Reference Client", root_url %></h1>
+				<nav>
+					<aside id="login-nav">
+						<% if user_signed_in? %>
+							Signed in as <%= current_user.email %>. Not you?
+							<%= link_to "Sign out", destroy_user_session_path %>
+						<% else %>
+							<%= link_to "Sign in", new_user_session_path %>
+						<% end %>
+					</aside>
+					<ul>
+						<li><a href="">Resources</a></li>
+						<li><a href="">Subscriptions</a></li>
+						<li><%= link_to 'About', about_path %></li>
+					</ul>
+				</nav>
+			</header>
+			
+			<div id="main" role="main">
+				<article id="content">
+					<% if flash[:notice] %>
+						<div class="flash success-box"><%= flash[:notice] %></div>
+					<% elsif flash[:alert] %>
+						<div class="flash error-box"><%= flash[:alert] %></div>
 					<% end %>
+
+				  <%= content_tag :h1, yield(:title) if show_title? %>
+				
+					<%= yield %>
+				</article>
+				
+				<aside id="site-sidebar">
+					<%= yield(:sidebar) %>
+					<%= render :partial => 'layouts/sidebar' %>
+				</aside>
+			</div>
+			
+			<footer id="site-footer">
+				<div class="outer">
+					<div class="inner">
+						Copyright 2011, Zachery Moneypenny. See the <%= link_to 'About', about_path %> page for more information. 
+					</div>
 				</div>
-				<h1><%= link_to "Fitgem Test Client (Ruby on Rails)", root_url %></h1>
-			</div>
-			
-			<%= render :partial => 'layouts/sidebar' %>
-			
-			<div id="footer">
-				This site is for demonstration purposes only. I am not a member of the Fitbit developer team and have no connection to the company other than I like their product and I built the <a href="http://rubygems.org/gems/fitbit">fitgem rubygem</a> to allow ruby clients access to their data.
-			</div>
+			</footer>
     </div>
   </body>
 </html>

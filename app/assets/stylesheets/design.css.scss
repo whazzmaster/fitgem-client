@@ -1,31 +1,33 @@
 body {
  font-family: 'Droid Serif', arial, serif; 
- @include hotel_grey;
 }
 
 h1 { @include font(4em, 1.5em, inherit); font-family: 'Droid Sans', arial, serif; }
 h2 { @include font(3em, 1.5em, inherit); font-family: 'Droid Sans', arial, serif; }
-h3 { @include font(2.34em, "", inherit); margin-bottom: 0.5em; font-family: 'Droid Sans', arial, serif; }
-h4 { @include font(2em, "", inherit); margin-bottom: 0.5em; font-family: 'Droid Sans', arial, serif; }
-h5 { @include font(1.5em, "", inherit); margin-bottom: 0.5em; font-family: 'Droid Sans', arial, serif; }
+h3 { @include font(2.34em, "", inherit); margin: 0.2em 0; font-family: 'Droid Sans', arial, serif; }
+h4 { @include font(2em, "", inherit); margin: 0.2em 0; font-family: 'Droid Sans', arial, serif; }
+h5 { @include font(1.5em, "", inherit); margin: 0.2em 0; font-family: 'Droid Sans', arial, serif; }
 
 #site-header {
-  margin: 0;
-  padding: 20px 40px;
-  @include fox_color_gradient;
-  #site-logo { float: left; }
-  .haiku {
-   width: 300px;
-   float: right;
-   padding: 20px;
-   @include border-radius(5px);
-   border: 1px solid #000;
-   background-color: $white; 
+  width: 960px;
+  margin: 20px auto;
+  h1 {
+    a { text-decoration: none; color: $primary_text; }
+    a:hover { text-decoration: none; color: $primary_text; }
+    a:visited { text-decoration: none; color: $primary_text; }
   }
+  #site-logo { float: left; }
   nav {
     width: 960px;
     margin: 0 auto;
     @include ul_flexbox($width: 50%, $height: auto, $text_align: left); 
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 7px 15px;
+  }
+  #login-nav {
+   float: right;
+   @include small; 
   }
 }
 
@@ -47,7 +49,6 @@ h5 { @include font(1.5em, "", inherit); margin-bottom: 0.5em; font-family: 'Droi
 
 #site-footer {
   clear: both;
-  @include echo_color_gradient;
   height: 75px;
   padding: 10px 0;
   .outer {
@@ -57,10 +58,24 @@ h5 { @include font(1.5em, "", inherit); margin-bottom: 0.5em; font-family: 'Droi
   }
 }
 
-.post {
- h3 { border-bottom: 1px solid #000; }
- p { padding: 5px 0; }
- aside { padding: 10px 0; }
+pre {
+    background: #313131;
+    padding: 20px;
+    @include border_radius (10px);
+    color: orange;
+    @include medium;
+    margin: 20px 0;
+    font-weight: bolder;
+    span {
+    	color: white;
+    }
+}
+
+article {
+  p {
+    padding: 5px 0;
+    line-height: 1.3em;
+  }
 }
 
 .grid-1 { @include grid_12(1); }

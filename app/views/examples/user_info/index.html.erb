@@ -1,3 +1,9 @@
-<h1>User Info Examples</h1>
+<h2>User Info Examples</h2>
 
 <p>The Fitbit API allows you to get specific information about the logged-in user.</p>
+
+<p>Example code:</p>
+<pre>
+<span>client = FitgemClientWrapper.new(current_user.fitbit_account)</span>
+<span>@info = client.user_info['user']</span>
+</pre>

@@ -9,6 +9,9 @@ gem 'visual-environments'
 gem 'nifty-generators'
 gem 'sass'
 
+gem 'sprockets', '= 2.0.0.beta.10'
+gem "jquery-rails"
+
 # Deploy with Capistrano
 gem 'capistrano'
 gem 'capistrano-ext'

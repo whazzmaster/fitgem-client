@@ -268,7 +268,7 @@
 @mixin warning_box() {
 	@include border_radius(6px);
 	margin-bottom: 16px;
-	padding: 6px 10px 10px;
+	padding: 6px 10px 8px;
 }
 	
 @mixin warning_icon_placement() {
@@ -278,11 +278,11 @@
 	overflow: hidden;
 	margin-right: 8px;
 	position: relative;
-	top: 4px;
+	top: 3px;
 }
 	
 @mixin warning_placement_before() {
-	content: url(/images/alert_icons_sprite.png);
+	content: url(/assets/shared/alert_icons_sprite.png);
 	left: 0px ;
 	position: relative;
 }
