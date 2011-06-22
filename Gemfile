@@ -21,5 +21,8 @@ group :development, :test do
 	gem "factory_girl_generator"
 	gem "rspec-rails"
 	gem "cucumber-rails"
+	gem "guard"
+	gem "guard-cucumber"
+	gem "guard-rspec"
 end
 
