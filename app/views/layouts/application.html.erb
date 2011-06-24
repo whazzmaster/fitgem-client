@@ -25,13 +25,11 @@
 						<% end %>
 					</aside>
 					<ul>
-						<% if user_signed_in? %>
-							<li><%= link_to 'My Account Overview', fitbit_info_path %></li>
-						<% end %>
 						<li><%= link_to 'Home', root_path %></li>
+						<li><%= link_to 'General', examples_fitgem_path %></li>
 						<li><%= link_to 'Resources', examples_resources_path %></li>
 						<li><%= link_to 'Subscriptions', examples_subscriptions_path %></li>
-						<li><%= link_to 'About Fitbitclient.com', about_path %></li>
+						<li><%= link_to 'About', about_path %></li>
 					</ul>
 				</nav>
 			</header>

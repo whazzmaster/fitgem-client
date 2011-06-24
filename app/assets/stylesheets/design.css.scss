@@ -99,6 +99,18 @@ article {
   }
 }
 
+.toc {
+ list-style: square inside;
+ padding: 10px 15px;  
+}
+
+.instructional-list {
+ list-style: decimal outside;
+ padding: 10px 15px; 
+ margin-left: 20px;
+ li { padding: 5px 0; }
+}
+
 .grid-1 { @include grid_12(1); }
 .grid-2 { @include grid_12(2); }
 .grid-3 { @include grid_12(3); }

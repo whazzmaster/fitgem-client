@@ -16,6 +16,7 @@ FitgemClient::Application.routes.draw do
     get "user_info", :controller => :user_info, :action => :index
     get "resources", :controller => :resources, :action => :index
     get "subscriptions", :controller => :subscriptions, :action => :index
+    get "fitgem", :controller => :fitgem, :action => :index
   end
   
   get "welcome/index"
