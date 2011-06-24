@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Fitgem Test Client (Rails)" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Fitgem Reference Client" %></title>
 
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold' rel='stylesheet' type='text/css'>
@@ -25,9 +25,13 @@
 						<% end %>
 					</aside>
 					<ul>
-						<li><a href="">Resources</a></li>
-						<li><a href="">Subscriptions</a></li>
-						<li><%= link_to 'About', about_path %></li>
+						<% if user_signed_in? %>
+							<li><%= link_to 'My Account Overview', fitbit_info_path %></li>
+						<% end %>
+						<li><%= link_to 'Home', root_path %></li>
+						<li><%= link_to 'Resources', examples_resources_path %></li>
+						<li><%= link_to 'Subscriptions', examples_subscriptions_path %></li>
+						<li><%= link_to 'About Fitbitclient.com', about_path %></li>
 					</ul>
 				</nav>
 			</header>

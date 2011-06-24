@@ -54,7 +54,14 @@ h5 { @include font(1.5em, "", inherit); margin: 0.2em 0; font-family: 'Droid San
   .outer {
     width: 960px;
     margin: 0 auto;
-    .inner { @include grid_12(12); }
+    margin-top: 30px;
+    .inner { 
+      @include grid_12(12); 
+    }
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 7px 15px;
+    height: 20px;
   }
 }
 

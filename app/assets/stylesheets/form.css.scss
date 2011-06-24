@@ -478,6 +478,15 @@ form {
 	}
 }
 .success-box { @include success-box; }
+.information-box {
+  @include success-box;
+  p { margin-left: 27px; }
+  .success_icon {
+    left: 2px;
+    top: 7px;
+    float: left;
+  }
+}
 
 @mixin error-box {
 	background-color: $charlie_color;

@@ -15,6 +15,12 @@ $(document).ready(function() {
       $('<span class="alert_icon"></span>').prependTo($(this));
     }
   });
+  
+  $('.information-box').each(function(){
+    if($(this).children('span.success_icon').length < 1){
+      $('<span class="success_icon"></span>').prependTo($(this));
+    }
+  });
 
   $('.success-box').each(function(){
     if($(this).children('span.success_icon').length < 1){
