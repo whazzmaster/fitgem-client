@@ -1,4 +1,5 @@
-# Read about factories at http://github.com/thoughtbot/factory_girl
-
-Factory.define :user do |f|
+Factory.define :user do |u|
+  u.email "regularuser@test.com"
+  u.password "regularguypassword"
+  u.password_confirmation "regularguypassword"  
 end

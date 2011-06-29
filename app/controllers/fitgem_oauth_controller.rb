@@ -18,8 +18,9 @@ class FitgemOauthController < ApplicationController
   def verify
     if params[:oauth_token] && params[:oauth_verifier]
       @client = Fitgem::Client.new({:consumer_key => APP_CONFIG[:fitbit_consumer_key], :consumer_secret => APP_CONFIG[:fitbit_consumer_secret], :user_id => '-'})
+      fitbit_account = current_user.fitbit_account
       token = params[:oauth_token]
-      secret = current_user.fitbit_account.request_secret
+      secret = fitbit_account.request_secret
       verifier = params[:oauth_verifier]
       begin
         access_token = @client.authorize(token, secret, { :oauth_verifier => verifier })
@@ -27,7 +28,7 @@ class FitgemOauthController < ApplicationController
         flash[:alert] = "Oops, there wasn't a valid OAuth session on Fitbit. Try to authorize again."
         redirect_to fitbit_index_path and return
       end
-      current_user.fitbit_account.verify!(access_token.token, access_token.secret, verifier)
+      fitbit_account.verify!(access_token.token, access_token.secret, verifier)
       @info = @client.user_info['user']
     else
       flash[:alert] = 'Could not verify your account with Fitbit'

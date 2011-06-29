@@ -111,6 +111,14 @@ article {
  li { padding: 5px 0; }
 }
 
+code {
+ border: 1px solid #000;
+ @include border-radius(3px);
+ font-family: Monaco, Arial, sans-serif;
+ font-size: 0.8em;
+ padding: 2px 4px; 
+}
+
 .grid-1 { @include grid_12(1); }
 .grid-2 { @include grid_12(2); }
 .grid-3 { @include grid_12(3); }
