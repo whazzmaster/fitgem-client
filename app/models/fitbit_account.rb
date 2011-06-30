@@ -14,7 +14,7 @@ class FitbitAccount < ActiveRecord::Base
   end
   
   def verified?
-    self.access_token && self.access_secret
+    !self.access_token.nil? && !self.access_token.empty? && !self.access_secret.nil? && !self.access_secret.empty?
   end
   
   def verify(token, secret, verifier)
