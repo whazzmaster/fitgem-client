@@ -70,9 +70,9 @@ pre {
     padding: 20px;
     @include border_radius (10px);
     color: orange;
-    @include medium;
+    @include extra-small;
+   font-family: Monaco, Arial, sans-serif;
     margin: 20px 0;
-    font-weight: bolder;
     span {
     	color: white;
     }
@@ -117,6 +117,32 @@ code {
  font-family: Monaco, Arial, sans-serif;
  font-size: 0.8em;
  padding: 2px 4px; 
+}
+
+.fitbit-api-data {
+  font-family: 'Droid Sans', arial, serif;
+ .line-title { 
+   padding: 3px 7px;   
+   font-weight: bold; 
+   text-decoration: underline;
+ }
+ .indent-container {
+   padding-left: 15px;
+ } 
+ .line-item {
+   clear: both;
+  .label { 
+    padding: 3px 7px;
+    width: 130px;
+    text-align: right;
+    float: left; 
+  }
+  .value { 
+    padding: 3px 7px;    
+    font-weight: bold;
+    float: left; 
+  } 
+ }
 }
 
 .grid-1 { @include grid_12(1); }
