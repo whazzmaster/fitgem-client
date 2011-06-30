@@ -4,11 +4,11 @@
 <p>What follows is a description of <strong>one way to accomplish this</strong>.  You can integrate the <code>FitgemClient</code> class in many ways.</p>
 
 <h4>Fitbit Account</h4>
-<p>The FitbitAccount class [<a href="https://github.com/whazzmaster/fitgem-client/blob/master/app/models/fitbit_account.rb">source</a>] encapsulates an authorized fitbit account and allows it to be attached to the User class of the application.  It exposes the important <code>verified?</code> method which allows the application to easily check whether a user (particularly the current_user) has gone through the OAuth process all the way.</a>
+<p>The <code>FitbitAccount</code> class [<a href="https://github.com/whazzmaster/fitgem-client/blob/master/app/models/fitbit_account.rb">source</a>] encapsulates an authorized fitbit account and allows it to be attached to the User class of the application.  It exposes the important <code>verified?</code> method which allows the application to easily check whether a user (particularly the current_user) has gone through the OAuth process all the way.</a>
 
 <h4>Fitgem Client Wrapper</h4>
 
-<p>For this reference application you'll see the FitgemClientWrapper class [<a href="https://github.com/whazzmaster/fitgem-client/blob/master/lib/fitbit_client_wrapper.rb">source</a>] many times in the example code.  It is this wrapper that marries a logged-in user (presumably with a stored oauth session key) to an instance of the FitgemClient class [<a href="https://github.com/whazzmaster/fitgem/blob/master/lib/fitgem/client.rb">source</a>] defined in the gem.</p>
+<p>For this reference application you'll see the <code>FitgemClientWrapper</code> class [<a href="https://github.com/whazzmaster/fitgem-client/blob/master/lib/fitbit_client_wrapper.rb">source</a>] many times in the example code.  It is this wrapper that marries a logged-in user (presumably with a stored oauth session key) to an instance of the FitgemClient class [<a href="https://github.com/whazzmaster/fitgem/blob/master/lib/fitgem/client.rb">source</a>] defined in the gem.</p>
 
-<p>The FitgemClientWrapper takes a FitbitAccoount object and </p>
+<p>The <code>FitgemClientWrapper</code> takes a <code>FitbitAccoount</code> object and </p>
 
