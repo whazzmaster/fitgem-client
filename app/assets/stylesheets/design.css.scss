@@ -1,5 +1,5 @@
 body {
- font-family: 'Droid Serif', arial, serif; 
+ font-family: 'Droid Serif', arial, serif;
 }
 
 h1 { @include font(4em, 1.5em, inherit); font-family: 'Droid Sans', arial, serif; }
@@ -20,20 +20,20 @@ h5 { @include font(1.5em, "", inherit); margin: 0.2em 0; font-family: 'Droid San
   nav {
     width: 960px;
     margin: 0 auto;
-    @include ul_flexbox($width: 50%, $height: auto, $text_align: left); 
+    @include ul_flexbox($width: 50%, $height: auto, $text_align: left);
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     padding: 7px 15px;
   }
   #login-nav {
    float: right;
-   @include small; 
+   @include small;
   }
 }
 
 #main {
  width: 960px;
- margin: 20px auto; 
+ margin: 20px auto;
 }
 
 #content {
@@ -55,8 +55,8 @@ h5 { @include font(1.5em, "", inherit); margin: 0.2em 0; font-family: 'Droid San
     width: 960px;
     margin: 0 auto;
     margin-top: 30px;
-    .inner { 
-      @include grid_12(12); 
+    .inner {
+      @include grid_12(12);
     }
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
@@ -78,11 +78,9 @@ pre {
     }
 }
 
-article {
-  p {
-    padding: 5px 0;
-    line-height: 1.3em;
-  }
+p {
+  padding: 5px 0;
+  line-height: 1.3em;
 }
 
 #login-container {
@@ -101,12 +99,12 @@ article {
 
 .toc {
  list-style: square inside;
- padding: 10px 15px;  
+ padding: 10px 15px;
 }
 
 .instructional-list {
  list-style: decimal outside;
- padding: 10px 15px; 
+ padding: 10px 15px;
  margin-left: 20px;
  li { padding: 5px 0; }
 }
@@ -116,32 +114,32 @@ code {
  @include border-radius(3px);
  font-family: Monaco, Arial, sans-serif;
  font-size: 0.8em;
- padding: 2px 4px; 
+ padding: 2px 4px;
 }
 
 .fitbit-api-data {
   font-family: 'Droid Sans', arial, serif;
- .line-title { 
-   padding: 3px 7px;   
-   font-weight: bold; 
+ .line-title {
+   padding: 3px 7px;
+   font-weight: bold;
    text-decoration: underline;
  }
  .indent-container {
    padding-left: 15px;
- } 
+ }
  .line-item {
    clear: both;
-  .label { 
+  .label {
     padding: 3px 7px;
     width: 130px;
     text-align: right;
-    float: left; 
+    float: left;
   }
-  .value { 
-    padding: 3px 7px;    
+  .value {
+    padding: 3px 7px;
     font-weight: bold;
-    float: left; 
-  } 
+    float: left;
+  }
  }
 }
 

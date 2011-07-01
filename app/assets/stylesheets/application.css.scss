@@ -1,10 +1,10 @@
-/*    
+/*
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
 */
-  
+
 /****************************************************
     Import the reset
  ****************************************************/
@@ -14,18 +14,18 @@
    Import the templates from the /import dir
 ****************************************************/
 @import "imports/mixins.css.scss";
-@import "imports/design.css.scss";  
-@import "imports/text.css.scss"; 
-@import "imports/form.css.scss"; 
+@import "imports/design.css.scss";
+@import "imports/text.css.scss";
+@import "imports/form.css.scss";
 @import "imports/grid.css.scss";
 
 /****************************************************
    Import the main style definitions
-****************************************************/ 
+****************************************************/
 @import "form.css.scss";
 @import "design.css.scss";
 
 /****************************************************
-    Import the styleguide styles 
+    Import the styleguide styles
  ****************************************************/
-@import "styleguide.css.scss";  
+@import "styleguide.css.scss";

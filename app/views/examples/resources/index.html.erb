@@ -27,7 +27,7 @@
 <pre>
 def index
   unless current_user.fitbit_account.verified?
-    flash[:alert] = "Your test account is not connected to 
+    flash[:alert] = "Your test account is not connected to
       a Fitbit account."
     redirect_to :action => :index and return
   end
@@ -42,27 +42,27 @@ end
 &lt;div class=&quot;fitbit-api-data&quot;&gt;
   &lt;div class=&quot;line-title&quot;&gt;User Information from Fitbit.com&lt;/div&gt;
   &lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;User Id:&lt;/div&gt; 
+		&lt;div class=&quot;label&quot;&gt;User Id:&lt;/div&gt;
 		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;encodedId&#x27;] %&gt;&lt;/div&gt;
 	&lt;/div&gt;
 	&lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;Display Name:&lt;/div&gt; 
+		&lt;div class=&quot;label&quot;&gt;Display Name:&lt;/div&gt;
 		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;displayName&#x27;] %&gt;&lt;/div&gt;
 	&lt;/div&gt;
 	&lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;City:&lt;/div&gt; 
+		&lt;div class=&quot;label&quot;&gt;City:&lt;/div&gt;
 		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;city&#x27;] %&gt;&lt;/div&gt;
 	&lt;/div&gt;
 	&lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;State:&lt;/div&gt; 
+		&lt;div class=&quot;label&quot;&gt;State:&lt;/div&gt;
 		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;state&#x27;] %&gt;&lt;/div&gt;
 	&lt;/div&gt;
 	&lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;Gender:&lt;/div&gt; 
+		&lt;div class=&quot;label&quot;&gt;Gender:&lt;/div&gt;
 		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;gender&#x27;] %&gt;&lt;/div&gt;
 	&lt;/div&gt;
 	&lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;Date of Birth:&lt;/div&gt; 
+		&lt;div class=&quot;label&quot;&gt;Date of Birth:&lt;/div&gt;
 		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;dateOfBirth&#x27;] %&gt;&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
@@ -71,32 +71,32 @@ end
 <h5>User Information Example</h5>
 <p>Below are the results of the above view code using your personal fitbit data.</p>
 <% if user_signed_in? && current_user.fitbit_account.verified? %>
-  
-		
+
+
   <div class="fitbit-api-data">
     <div class="line-title">User Information from Fitbit.com</div>
     <div class="line-item">
-  		<div class="label">User Id:</div> 
+  		<div class="label">User Id:</div>
   		<div class="value"><%= @info['encodedId'] %></div>
   	</div>
   	<div class="line-item">
-  		<div class="label">Display Name:</div> 
+  		<div class="label">Display Name:</div>
   		<div class="value"><%= @info['displayName'] %></div>
   	</div>
   	<div class="line-item">
-  		<div class="label">City:</div> 
+  		<div class="label">City:</div>
   		<div class="value"><%= @info['city'] %></div>
   	</div>
   	<div class="line-item">
-  		<div class="label">State:</div> 
+  		<div class="label">State:</div>
   		<div class="value"><%= @info['state'] %></div>
   	</div>
   	<div class="line-item">
-  		<div class="label">Gender:</div> 
+  		<div class="label">Gender:</div>
   		<div class="value"><%= @info['gender'] %></div>
   	</div>
   	<div class="line-item">
-  		<div class="label">Date of Birth:</div> 
+  		<div class="label">Date of Birth:</div>
   		<div class="value"><%= @info['dateOfBirth'] %></div>
   	</div>
   </div>
@@ -109,6 +109,63 @@ end
 <% end %>
 
 <h4><a name="body">Body Measurements</a></h4>
+<div class="information-box">
+	<p><a href="http://wiki.fitbit.com/display/API/API-Get-Body-Measurements">View the Fitbit reference page for body measurements.</a></p>
+</div>
+<p>Body measurements include such things as weight and BMI. The availability of the body measurements resource is strictly controlled by the privacy settings by the fitbit user, but if they set access to public then they are available through the API.</p>
+
+<h5>Getting Access to Body Measurement Information</h5>
+<p>In your controller action, for example:</p>
+<pre>
+def index
+  unless current_user.fitbit_account.verified?
+    flash[:alert] = "Your test account is not connected to
+      a Fitbit account."
+    redirect_to :action => :index and return
+  end
+  client = FitgemClientWrapper.new(current_user.fitbit_account)
+  @body_measurements = client.body_measurements_on_date('today')['user']
+end
+</pre>
+
+<h5>Body Measurements in a View</h5>
+<p>Below is example ERB code showing how the <code>@body_measurements</code> object is used in a view.</p>
+<pre>
+&lt;div class=&quot;fitbit-api-data&quot;&gt;
+  &lt;div class=&quot;line-title&quot;&gt;
+    Body Measurement Information from Fitbit.com
+  &lt;/div&gt;
+  &lt;div class=&quot;line-item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;Today&#x27;s Weight:&lt;/div&gt;
+    &lt;div class=&quot;value&quot;&gt;
+      &lt;%= @body_measurements[&#x27;body&#x27;][&#x27;weight&#x27;] if @body_measurements
+        &amp;&amp; @body_measurements[&#x27;body&#x27;] &amp;&amp;
+        @body_measurements[&#x27;body&#x27;][&#x27;weight&#x27;] %&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<h5>Body Measurements Example</h5>
+<p>Below are the results of the above view code using your personal fitbit data. You may not see anything here if you have not flagged weight for public view.</p>
+<% if user_signed_in? && current_user.fitbit_account.verified? %>
+
+  <div class="fitbit-api-data">
+    <div class="line-title">Body Measurement Information from Fitbit.com</div>
+    <div class="line-item">
+  		<div class="label">Today's Weight:</div>
+  		<div class="value">
+  		  <%= @body_measurements['body']['weight'] if @body_measurements && @body_measurements['body'] && @body_measurements['body']['weight'] %>
+  		</div>
+  	</div>
+  </div>
+
+  <div style="clear:both;">&nbsp;</div>
+<% elsif user_signed_in? %>
+  <%= render :partial => 'examples/link_or_review' %>
+<% else %>
+  <%= render :partial => 'examples/login_and_link' %>
+<% end %>
 
 <h4><a name="activities">Activities</a></h4>
 
