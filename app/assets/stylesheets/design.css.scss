@@ -97,9 +97,21 @@ p {
   }
 }
 
-.toc {
+article ul {
  list-style: square inside;
- padding: 10px 15px;
+ padding-left: 15px;
+ li:first-child {
+  padding-top: 5px;
+ }
+ li {
+  padding-bottom: 5px;
+ }
+}
+
+article aside {
+  @include extra-small;
+  font-family: 'Droid Sans', arial, serif;
+  float: right;
 }
 
 .instructional-list {

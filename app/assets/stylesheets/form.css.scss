@@ -4,8 +4,8 @@
 // UI elements included in this document
 // ----------------------------------------------
 // 1) Buttons
-//		a) Mixins live in /public/styles/less/imports/forms.less 
-// 2) dynamic layout nth child styles for special arrangements 
+//		a) Mixins live in /public/styles/less/imports/forms.less
+// 2) dynamic layout nth child styles for special arrangements
 // 3) styles for custom-select UI
 // 4) inputs
 // 5) form layouts
@@ -47,8 +47,8 @@ button, input[type=submit], input[type=button], a.button {
 	}
 }
 
-// When applied, set nth value for where CANCEL <button> link UI is to appear. 
-// --------------------------------------------------------------------------- 
+// When applied, set nth value for where CANCEL <button> link UI is to appear.
+// ---------------------------------------------------------------------------
 .cancel_buttons {
 	button, input[type=submit], input[type=button], a.button {
 		&:nth-child(1n+2) {
@@ -58,7 +58,7 @@ button, input[type=submit], input[type=button], a.button {
 }
 
 // This will convert a row of buttons to the SMALL style
-// -----------------------------------------------------	
+// -----------------------------------------------------
 .small_buttons {
 	button, input[type=submit], input[type=button], a.button {
 		@include small_button;
@@ -67,7 +67,7 @@ button, input[type=submit], input[type=button], a.button {
 		line-height: 2.5em;
 	}
 }
-		
+
 
 
 
@@ -103,38 +103,38 @@ a#disabled {
 		}
 	}
 }
-	
+
 // Post click active state for buttons
 // You need to turn off all the button UI so that the spinner will show
 // --------------------------------------------------------------------
 button.active, input[type=submit].active, input[type=button].active, a.active {
-	
+
 	// show spinner
 	// ------------
 	@include ajax_spinner_lg;
-	
+
 	// deactivate all the buttons UI
 	// ------------------------------
 	color: fadeout($alpha_grey, 100%);			// makes text transparent
-	@include box_shadow(fadeout($white, 100%), 0 0 0);	// makes shadow transparent 
+	@include box_shadow(fadeout($white, 100%), 0 0 0);	// makes shadow transparent
 	@include text_shadow(0 0 0, fadeout($white, 100%));	// makes text shadow transparent
-	border: 0px;								// removes border	
-	
+	border: 0px;								// removes border
+
 	// keeps the spinner in view with hover
 	// ------------------------------------
 	&:hover {
 		@include ajax_spinner_lg;
 	}
 }
-		
+
 .anti_buttons {
 	@include anti_button;
 }
 
 ////// buttons ////////
- 
- 
- 
+
+
+
 ///////// dynamic layout nth child styles for special arrangements ////////
 // ---------------------------------------------------------------------------
 
@@ -150,7 +150,7 @@ button.active, input[type=submit].active, input[type=button].active, a.active {
  		}
  	}
  }
- 
+
 .dual_primary_cancel_buttons {
  	button, input[type=submit], input[type=button], a.button {
  		&:nth-child(n+2) {
@@ -161,7 +161,7 @@ button.active, input[type=submit].active, input[type=button].active, a.active {
  		}
  	}
  }
- 
+
 .reverse_primary_buttons {
 	button, input[type=submit], input[type=button], a.button {
 		&:nth-child(1) {
@@ -186,7 +186,7 @@ button.active, input[type=submit].active, input[type=button].active, a.active {
 		}
 	}
 }
-			
+
 .reverse_primary_buttons_small {
 	button, input[type=submit], input[type=button], a.button {
 		@include small_button;
@@ -216,16 +216,16 @@ button.active, input[type=submit].active, input[type=button].active, a.active {
 		line-height: 1.2;
 		color: $alpha_grey;
 		@include four_stop_linear_gradient(#E2E2E2, #DBDBDB, #D1D1D1, #DDDDDD);
-				
+
 		-webkit-appearance: none;
-				
+
 		@include border_radius(6px);
-		
+
 		&:hover, &:focus {
 			border-color: $charlie_grey !important;
 		}
 	}
-		
+
 	&:after {
 		content: "\25BC";
 		position: absolute;
@@ -238,20 +238,20 @@ button.active, input[type=submit].active, input[type=button].active, a.active {
 		color: $alpha_grey;
 		border: 1px solid $charlie_grey;
 		border-width: 1px 1px 1px 0;
-	
+
 		pointer-events:none;
-	
+
 		@include border_radius(0 6px 6px 0);
 	}
 }
-	
+
 .no-pointer-events  {
 	.custom-select:after {
 		content: none;
 	}
 }
 
-///////// styles for custom-select UI ///////////						
+///////// styles for custom-select UI ///////////
 
 
 //////// inputs ////////
@@ -269,11 +269,11 @@ input[type=text], input[type=email], input[type=password], select, textarea, a.u
 	@include large;
 	color: $form_field_text;
 }
-	
+
 select {
 	width: 100%;
 }
-	
+
 .fail {
 	background: $form_field_fail_bkg !important;
 	border-color: $form_field_border_fail !important;
@@ -316,7 +316,7 @@ textarea {
 	height: 250px;
 	font-family: Courier;
 }
-			
+
 input[type=file], dl.horizontal_selectors, dl.vertical_selectors {
 	@include field_input_spacing;
 }
@@ -324,7 +324,7 @@ input[type=file], dl.horizontal_selectors, dl.vertical_selectors {
 
 
 //////// inputs ////////
-		
+
 
 //////// form layouts ////////
 // ---------------------------
@@ -349,7 +349,7 @@ form {
 		}
 	}
 }
-			
+
 ///////// styles to manage <ul> containers ///////////
 // ---------------------------------------------------
 
@@ -368,7 +368,7 @@ form {
 		margin: 0px;
 	}
 }
-		
+
 .vertical_selectors {
 	@include field_input_spacing;
 	label {
@@ -378,8 +378,8 @@ form {
 		font-size: 1em;
 	}
 }
-		
-///////// styles to manage <ul> containers ///////////							
+
+///////// styles to manage <ul> containers ///////////
 
 
 
@@ -447,10 +447,10 @@ form {
 		}
 	}
 }
-		
+
 ////////////// Pagination ui //////////////
 
-////////////// Error alert ui //////////////		
+////////////// Error alert ui //////////////
 // ----------------------------------------
 
 @mixin alert-box {
@@ -464,8 +464,22 @@ form {
 		}
 	}
 }
-.alert-box { @include alert-box; }
-			
+.alert-box {
+  @include alert-box;
+}
+.multiline-alert-box {
+  @include alert-box;
+  p {
+    margin-left: 27px;
+    padding-top: 6px;
+  }
+  .alert_icon {
+    left: 2px;
+    top: 7px;
+    float: left;
+  }
+}
+
 @mixin success-box {
 	background-color: $golf_color;
 	@include warning_box;

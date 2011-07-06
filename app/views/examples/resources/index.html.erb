@@ -1,16 +1,22 @@
 <h3>Resource Access API</h3>
 
 <div class="information-box">
-	<p>This page explains how to use the fitgem library to connect to <a href="http://wiki.fitbit.com/display/API/Resource-Access-API">fitbit.com's resource access API</a>.</p>
+	<p>View <a href="http://wiki.fitbit.com/display/API/Resource-Access-API">fitbit.com's resource access API</a> documentation.</p>
 </div>
 
 <p>Fitbit considers a 'resource' to be any of the nouns associated with health tracking. Examples include foods consumed, activities participated in, characteristics of your tracker device, and body measurements.</p>
 
-<h4>Available Resources</h4>
+<h4><a name="start">Available Resources</a></h4>
 <p>Each resource below will include sample code on how to access it using fitgem. I will generally defer to the Fitbit Developer site for complete API documentation as I don't wish this site to get out of date too quickly.  Instead I'll focus on just the mechanics of using the library to interface with the API.</p>
 <p>If you are logged into the site and have connected your login with a Fitbit account, then in each section you'll also see the relevant data retrieved using the API described there.</p>
 <ul class="toc">
-	<li><a href="#userinfo">User Information</a></li>
+	<li><a href="#userinfo">User Information</a>
+	  <ul>
+	    <li><a href="#retrievinguserinfo">Retrieving User Information</a></li>
+  	  <li><a href="#userinfoinaview">User Information in a View</a></li>
+    	<li><a href="#userinfoexample">User Information Example</a></li>
+    </ul>
+	</li>
 	<li><a href="#body">Body Measurements</a></li>
 	<li><a href="#activities">Activities</a></li>
 	<li><a href="#foods">Foods</a></li>
@@ -22,7 +28,7 @@
 </div>
 <p>The user information interface is used to access whatever profile information that the user has allowed to be viewed publicly.  This includes information such as the user's name, fitbit user id, gender, height, etc.  <strong>Please note</strong> that the user must explicitly allow this info to be shared or else it will not show up in the data returned by the service.</p>
 
-<h5>Getting Access to User Information</h5>
+<h5><a name="retrievinguserinfo">Retrieving User Information</a></h5>
 <p>In your controller action, for example:</p>
 <pre>
 def index
@@ -35,8 +41,9 @@ def index
   @info = client.user_info['user']
 end
 </pre>
+<aside><a href="#start">Back to Top</a></aside>
 
-<h5>User Information in a View</h5>
+<h5><a name="userinfoinaview">User Information in a View</a></h5>
 <p>Below is example ERB code showing how the <code>@info</code> object is used in a view.</p>
 <pre>
 &lt;div class=&quot;fitbit-api-data&quot;&gt;
@@ -67,8 +74,9 @@ end
 	&lt;/div&gt;
 &lt;/div&gt;
 </pre>
+<aside><a href="#start">Back to Top</a></aside>
 
-<h5>User Information Example</h5>
+<h5><a name="userinfoexample">User Information Example</a></h5>
 <p>Below are the results of the above view code using your personal fitbit data.</p>
 <% if user_signed_in? && current_user.fitbit_account.verified? %>
 
@@ -107,6 +115,7 @@ end
 <% else %>
   <%= render :partial => 'examples/login_and_link' %>
 <% end %>
+<aside><a href="#start">Back to Top</a></aside>
 
 <h4><a name="body">Body Measurements</a></h4>
 <div class="information-box">
@@ -127,6 +136,7 @@ def index
   @body_measurements = client.body_measurements_on_date('today')['user']
 end
 </pre>
+<aside><a href="#start">Back to Top</a></aside>
 
 <h5>Body Measurements in a View</h5>
 <p>Below is example ERB code showing how the <code>@body_measurements</code> object is used in a view.</p>
@@ -145,6 +155,7 @@ end
   &lt;/div&gt;
 &lt;/div&gt;
 </pre>
+<aside><a href="#start">Back to Top</a></aside>
 
 <h5>Body Measurements Example</h5>
 <p>Below are the results of the above view code using your personal fitbit data. You may not see anything here if you have not flagged weight for public view.</p>
@@ -166,7 +177,103 @@ end
 <% else %>
   <%= render :partial => 'examples/login_and_link' %>
 <% end %>
+<aside><a href="#start">Back to Top</a></aside>
 
 <h4><a name="activities">Activities</a></h4>
+<div class="information-box">
+	<p>View the Fitbit reference page for <a href="http://wiki.fitbit.com/display/API/API-Log-Activity">logging</a> and <a href="http://wiki.fitbit.com/display/API/API-Get-Time-Series">retrieving</a> activity data.</a></p>
+</div>
+<p>Activity data can be logged to the fitbit.com service, deleted from the service, and queried using various time-based or metadata-based methods.</p>
+
+<h5>Retrieving Activity Information</h5>
+<p>Once you have an instance of the fitgem client object (for which <code>client.verified? == true</code> you have the ability to retrieve activity data in <strong>four ways</strong>.</p>
+<ul>
+  <li>Time series (custom date ranges)</li>
+  <li>Recent activities</li>
+  <li>Frequent activities</li>
+  <li>Favorite activities</li>
+</ul>
+<pre>
+unless current_user.fitbit_account.verified?
+  flash[:alert] = "Your test account is not connected to
+    a Fitbit account."
+  redirect_to :action => :index and return
+end
+client = FitgemClientWrapper.new(current_user.fitbit_account)
+@recent_activities = client.recent_activities
+@frequent_activities = client.frequent_activities
+@favorite_activities = client.favorite_activities
+@activities_today = client.activities_on_date('today')
+</pre>
+<p>The method <code>activities_on_date(date)</code> takes either a String in YYYY-MM-DD format, the strings 'today' or 'yesterday', or a Ruby Date object to retrieve relative dates.</p>
+<p>The hash returned from the activities methods contains a list of the activities found in the query, as well as summary information about the activities.  An example is shown below (static data, this is not dynamic.)</p>
+<pre>
+{"activities"=>
+  [{"activityId"=>1020,
+    "activityParentId"=>90001,
+    "activityParentName"=>"Bicycling",
+    "calories"=>148,
+    "description"=>"Leisurely - 10 to 11.9mph",
+    "distance"=>3.93,
+    "duration"=>1200000,
+    "isFavorite"=>true,
+    "logId"=>1529651,
+    "name"=>"Bicycling",
+    "startTime"=>"08:31"},
+   {"activityId"=>2130,
+    "activityParentId"=>2130,
+    "activityParentName"=>
+     "Weight lifting",
+    "calories"=>222,
+    "description"=>"",
+    "distance"=>0,
+    "duration"=>3600000,
+    "isFavorite"=>true,
+    "logId"=>1529653,
+    "name"=>
+     "Weight lifting",
+    "startTime"=>"09:00"},
+   {"activityId"=>1020,
+    "activityParentId"=>90001,
+    "activityParentName"=>"Bicycling",
+    "calories"=>147,
+    "description"=>"Leisurely - 10 to 11.9mph",
+    "distance"=>3.92,
+    "duration"=>1190000,
+    "isFavorite"=>true,
+    "logId"=>1529652,
+    "name"=>"Bicycling",
+    "startTime"=>"10:30"}],
+ "summary"=>
+  {"activeScore"=>443,
+   "caloriesOut"=>1633,
+   "distances"=>
+    [{"activity"=>"total", "distance"=>10.04},
+     {"activity"=>"tracker", "distance"=>2.19},
+     {"activity"=>"loggedActivities", "distance"=>7.85},
+     {"activity"=>"veryActive", "distance"=>0.58},
+     {"activity"=>"moderatelyActive", "distance"=>1.3},
+     {"activity"=>"lightlyActive", "distance"=>0.29},
+     {"activity"=>"sedentaryActive", "distance"=>0},
+     {"activity"=>
+       "Weight lifting",
+      "distance"=>0},
+     {"activity"=>"Bicycling", "distance"=>7.85}],
+   "fairlyActiveMinutes"=>104,
+   "lightlyActiveMinutes"=>29,
+   "sedentaryMinutes"=>730,
+   "steps"=>4845,
+   "veryActiveMinutes"=>22}}
+</pre>
+<p>There is much you can distill from the returned data; in addition to the list of logged activities you get access to total distances traveled during activities, total 'active core' (a Fitbit measure of how active you are over the course of the day), and an analysis (via the Fitbit tracker) of how your activities break down across the sedentary-to-highly-active spectrum.</p>
+<aside><a href="#start">Back to Top</a></aside>
+
+<h5>Logging Activity Information</h5>
+
+<aside><a href="#start">Back to Top</a></aside>
+
+<h5>Deleting Activity Information</h5>
+
+<aside><a href="#start">Back to Top</a></aside>
 
 <h4><a name="foods">Foods</a></h4>

@@ -15,7 +15,13 @@ $(document).ready(function() {
       $('<span class="alert_icon"></span>').prependTo($(this));
     }
   });
-  
+
+  $('.multiline-alert-box').each(function(){
+    if($(this).children('span.alert_icon').length < 1){
+      $('<span class="alert_icon"></span>').prependTo($(this));
+    }
+  });
+
   $('.information-box').each(function(){
     if($(this).children('span.success_icon').length < 1){
       $('<span class="success_icon"></span>').prependTo($(this));
