@@ -5,7 +5,7 @@
 
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold' rel='stylesheet' type='text/css'>
-		
+
 		<%= stylesheet_link_tag    "application" %>
 	  <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
@@ -26,6 +26,7 @@
 					</aside>
 					<ul>
 						<li><%= link_to 'Home', root_path %></li>
+						<li><%= link_to 'Blog', blog_path %></li>
 						<li><%= link_to 'General', examples_fitgem_path %></li>
 						<li><%= link_to 'Resources', examples_resources_path %></li>
 						<li><%= link_to 'Subscriptions', examples_subscriptions_path %></li>
@@ -33,7 +34,7 @@
 					</ul>
 				</nav>
 			</header>
-			
+
 			<div id="main" role="main">
 				<article id="content">
 					<% if flash[:notice] %>
@@ -43,20 +44,20 @@
 					<% end %>
 
 				  <%= content_tag :h1, yield(:title) if show_title? %>
-				
+
 					<%= yield %>
 				</article>
-				
+
 				<aside id="site-sidebar">
 					<%= yield(:sidebar) %>
 					<%= render :partial => 'layouts/sidebar' %>
 				</aside>
 			</div>
-			
+
 			<footer id="site-footer">
 				<div class="outer">
 					<div class="inner">
-						Copyright 2011, Zachery Moneypenny. See the <%= link_to 'About', about_path %> page for more information. 
+						Copyright 2011, Zachery Moneypenny. See the <%= link_to 'About', about_path %> page for more information.
 					</div>
 				</div>
 			</footer>

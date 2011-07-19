@@ -4,8 +4,11 @@ class WelcomeController < ApplicationController
     client = conditionally_create_client
     @info = client.user_info['user'] unless client.nil?
   end
-  
+
   def about
+  end
+
+  def blog
   end
 
 end

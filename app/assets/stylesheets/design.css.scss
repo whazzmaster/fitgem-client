@@ -116,9 +116,9 @@ article aside {
 
 .instructional-list {
  list-style: decimal outside;
- padding: 10px 15px;
+ padding: 7px 15px;
  margin-left: 20px;
- li { padding: 5px 0; }
+ li { padding: 3px 0; }
 }
 
 code {
@@ -153,6 +153,25 @@ code {
     float: left;
   }
  }
+}
+
+#blog {
+  section {
+
+  }
+  aside {
+   padding: 16px 10px;
+  }
+  h4 {
+    padding: 5px 0 5px 10px;
+    background-color: $hotel_grey;
+  }
+  ol {
+    list-style: decimal outside;
+    padding: 7px 15px;
+    margin-left: 20px;
+    li { padding: 3px 0; }
+  }
 }
 
 .grid-1 { @include grid_12(1); }

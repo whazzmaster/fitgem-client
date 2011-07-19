@@ -6,8 +6,8 @@ describe "route for examples main controller" do
   end
 end
 
-describe "routes for user_info example controllers" do
+describe "routes for resources example controllers" do
   it "INDEX is routable" do
-    { :get => '/examples/user_info' }.should be_routable
+    { :get => '/examples/resources' }.should be_routable
   end
 end

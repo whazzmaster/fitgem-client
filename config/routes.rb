@@ -9,21 +9,21 @@ FitgemClient::Application.routes.draw do
   post "fitbit/disconnect", :controller => :fitgem_oauth, :action => :disconnect
 
   devise_for :users
-  
+
   # Routing for the code examples
   get "examples", :controller => :examples, :action => :index
   namespace :examples do
-    get "user_info", :controller => :user_info, :action => :index
     get "resources", :controller => :resources, :action => :index
     get "subscriptions", :controller => :subscriptions, :action => :index
     get "fitgem", :controller => :fitgem, :action => :index
   end
-  
+
   get "welcome/index"
   get "about", :controller => :welcome, :action => :about
-  
+  get "blog", :controller => :welcome, :action => :blog
+
   resources :notifications
-  
+
   root :to => "welcome#index"
 
   # The priority is based upon order of creation:

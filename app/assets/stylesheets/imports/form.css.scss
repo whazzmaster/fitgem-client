@@ -26,7 +26,7 @@
 // in this theme, primary and secondary disabled buttons are the same
 // but axle can support having independent designs for each disabled button if needed
 // ----------------------------------------------
-@mixin button_disabled() {   
+@mixin button_disabled() {
 	@include echo_color_gradient;
 	color: $input_disabled_text;
 	cursor: text;
@@ -40,11 +40,11 @@
 @mixin primary_button_disabled() {
 	@include button_disabled;
 }
-	
+
 @mixin secondary_button_color() {
 	@include charlie_color_gradient;
 }
-	
+
 @mixin secondary_button_hover {
 	@include delta_color_gradient;
 }
@@ -52,7 +52,7 @@
 @mixin secondary_button_active() {
 	@include delta_color_gradient;
 }
-	
+
 @mixin secondary_button_disabled() {
 	@include button_disabled;
 }
@@ -86,26 +86,26 @@
 	outline: none;
 	letter-spacing: -1px;
 	border: 1px solid $echo_color;
-	
+
 	&:hover {
 	  @include primary_button_hover;
 	  @include box_shadow($shadow_color, 0px 1px 2px);
 	}
-		
+
 	&:active {
 	  @include primary_button_active;
 	}
-		
+
 	&[disabled] {
 	  @include primary_button_disabled;
 	  @include button_shadow ($shadow_color, $fox_grey);
 		&:hover {
 	    @include box_shadow($shadow_color, 0px 3px 3px);
 		}
-		
+
 	}
 }
-		
+
 @mixin secondary_button() {
 	@include secondary_button_color;
 	border: 1px solid $quebec_color;
@@ -133,23 +133,23 @@
 	letter-spacing: 1px;
 	font-weight: normal;
 	@include border_radius(0px);
-	@include box_shadow(0 0 0, $white);	
+	@include box_shadow(0 0 0, $white);
 	@include text_shadow(0 0 0, $white);
 	@include large;
-	
+
 	&:hover, &:active {
 		text-decoration: underline;
 		background: none;
-	  @include box_shadow(0 0 0, $white);	
+	  @include box_shadow(0 0 0, $white);
 	}
-	
+
 	&[disabled] {
 		text-decoration: none;
 		color: $input_disabled_text;
 		background: none;
-	  @include box_shadow(0 0 0, $white);	
+	  @include box_shadow(0 0 0, $white);
 		&:hover {
-	    @include box_shadow(0 0 0, $white);	
+	    @include box_shadow(0 0 0, $white);
 		}
 	}
 }
@@ -162,7 +162,7 @@
 	line-height: 1em;
 	height: 2.5em;
 }
-	
+
 @mixin anti_button() {
 	button, input[type=submit], a.button {
  		font-size: inherit;
@@ -179,22 +179,22 @@
  		margin: 0;
  		width: auto;
  		outline: none;
- 		
+
 		&:hover {
 			background: #fff;
 		}
-			
+
 		&:active {
 			background: #fff;
 		}
-			
+
 		&[disabled] {
 			background: #fff;
 		}
 	}
 }
-		
-	
+
+
 /////// Buttons design - primary, secondary, and small ////////
 
 
@@ -209,7 +209,7 @@
 		margin-top: -8px;
 	}
 }
-		
+
 @mixin dl_selectors() {
 	float: left;
 	width: 100%;
@@ -232,7 +232,7 @@
 		margin: 0px;
 	}
 }
-		
+
 @mixin field_focus() {
 	&:hover {
 		border-color: $form_field_focus_border_color;
@@ -267,10 +267,10 @@
 // -----------------------------------------
 @mixin warning_box() {
 	@include border_radius(6px);
-	margin-bottom: 16px;
+	margin: 16px 0;
 	padding: 6px 10px 8px;
 }
-	
+
 @mixin warning_icon_placement() {
 	width: 16px;
 	height: 17px;
@@ -280,7 +280,7 @@
 	position: relative;
 	top: 3px;
 }
-	
+
 @mixin warning_placement_before() {
 	content: url(/assets/shared/alert_icons_sprite.png);
 	left: 0px ;

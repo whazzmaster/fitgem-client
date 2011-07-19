@@ -4,6 +4,10 @@
 	<p>View <a href="http://wiki.fitbit.com/display/API/Resource-Access-API">fitbit.com's resource access API</a> documentation.</p>
 </div>
 
+<div class="multiline-alert-box">
+	<p>The resources examples are under development at this time.  What is present here is up-to-date, but new examples will be added as they are completed.</p>
+</div>
+
 <p>Fitbit considers a 'resource' to be any of the nouns associated with health tracking. Examples include foods consumed, activities participated in, characteristics of your tracker device, and body measurements.</p>
 
 <h4><a name="start">Available Resources</a></h4>
@@ -204,9 +208,10 @@ client = FitgemClientWrapper.new(current_user.fitbit_account)
 @frequent_activities = client.frequent_activities
 @favorite_activities = client.favorite_activities
 @activities_today = client.activities_on_date('today')
+@activities_on_march_third = client.activities_on_date('2011-03-03')
 </pre>
 <p>The method <code>activities_on_date(date)</code> takes either a String in YYYY-MM-DD format, the strings 'today' or 'yesterday', or a Ruby Date object to retrieve relative dates.</p>
-<p>The hash returned from the activities methods contains a list of the activities found in the query, as well as summary information about the activities.  An example is shown below (static data, this is not dynamic.)</p>
+<p>The hash returned from the activities methods contains a list of the activities found in the query, as well as summary information about the activities.  An example is shown below (please note this is static data for illustration purposes.)</p>
 <pre>
 {"activities"=>
   [{"activityId"=>1020,
@@ -269,11 +274,28 @@ client = FitgemClientWrapper.new(current_user.fitbit_account)
 <aside><a href="#start">Back to Top</a></aside>
 
 <h5>Logging Activity Information</h5>
-
+<p>You may log completed activities for the user with the <code>log_activity</code> method.  It takes a hash of options (explained in more detail in the <a href="https://github.com/whazzmaster/fitgem/blob/master/lib/fitgem/activities.rb">comments</a>), and revolves around knowledge of the activity id.  See the <a href="http://wiki.fitbit.com/display/API/API-Log-Activity">fitbit documentation</a> for more information on the various types of activity id's.</p>
+<p>The example below begins with the assumption that we know the activity id of the activity we want to log.  <strong>In practice</strong>, you'll likely need to search or browse for the activity by name to get the correct activity id.</p>
+<pre>
+unless current_user.fitbit_account.verified?
+  flash[:alert] = "Your test account is not connected to
+    a Fitbit account."
+  redirect_to :action => :index and return
+end
+client = FitgemClientWrapper.new(current_user.fitbit_account)
+client.log_activity({
+  :activityId => 1020, # Bicyling
+  :durationMillis => 1320000,
+  :startTime => "08:33",
+  :date => "2011-07-12",
+  :distance => "3.93",
+  :distanceUnit => Fitgem::ApiDistanceUnit.miles
+})
+</pre>
 <aside><a href="#start">Back to Top</a></aside>
 
 <h5>Deleting Activity Information</h5>
-
+<p></p>
 <aside><a href="#start">Back to Top</a></aside>
 
 <h4><a name="foods">Foods</a></h4>
