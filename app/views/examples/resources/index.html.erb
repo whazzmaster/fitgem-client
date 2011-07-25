@@ -22,7 +22,13 @@
     </ul>
 	</li>
 	<li><a href="#body">Body Measurements</a></li>
-	<li><a href="#activities">Activities</a></li>
+	<li><a href="#activities">Activities</a>
+	  <ul>
+	    <li><a href="#retrieving-activities">Retrieving Activities</a></li>
+  	  <li><a href="#logging-activities">Logging Activities</a></li>
+    	<li><a href="#removing-activities">Removing Activities</a></li>
+    </ul>
+  </li>
 	<li><a href="#foods">Foods</a></li>
 </ul>
 
@@ -86,7 +92,8 @@ end
 
 
   <div class="fitbit-api-data">
-    <div class="line-title">User Information from Fitbit.com</div>
+    <div class="source">Live from Fitbit.com</div>
+    <div class="line-title">User Information</div>
     <div class="line-item">
   		<div class="label">User Id:</div>
   		<div class="value"><%= @info['encodedId'] %></div>
@@ -111,6 +118,7 @@ end
   		<div class="label">Date of Birth:</div>
   		<div class="value"><%= @info['dateOfBirth'] %></div>
   	</div>
+  	<div class="end">&nbsp;</div>
   </div>
 
   <div style="clear:both;">&nbsp;</div>
@@ -166,13 +174,15 @@ end
 <% if user_signed_in? && current_user.fitbit_account.verified? %>
 
   <div class="fitbit-api-data">
-    <div class="line-title">Body Measurement Information from Fitbit.com</div>
+    <div class="source">Live from Fitbit.com</div>
+    <div class="line-title">Body Measurement Information</div>
     <div class="line-item">
   		<div class="label">Today's Weight:</div>
   		<div class="value">
   		  <%= @body_measurements['body']['weight'] if @body_measurements && @body_measurements['body'] && @body_measurements['body']['weight'] %>
   		</div>
   	</div>
+  	<div class="end">&nbsp;</div>
   </div>
 
   <div style="clear:both;">&nbsp;</div>
@@ -189,7 +199,7 @@ end
 </div>
 <p>Activity data can be logged to the fitbit.com service, deleted from the service, and queried using various time-based or metadata-based methods.</p>
 
-<h5>Retrieving Activity Information</h5>
+<h5><a name="retrieving-activities">Retrieving Activity Information</a></h5>
 <p>Once you have an instance of the fitgem client object (for which <code>client.verified? == true</code> you have the ability to retrieve activity data in <strong>four ways</strong>.</p>
 <ul>
   <li>Time series (custom date ranges)</li>
@@ -273,7 +283,7 @@ client = FitgemClientWrapper.new(current_user.fitbit_account)
 <p>There is much you can distill from the returned data; in addition to the list of logged activities you get access to total distances traveled during activities, total 'active core' (a Fitbit measure of how active you are over the course of the day), and an analysis (via the Fitbit tracker) of how your activities break down across the sedentary-to-highly-active spectrum.</p>
 <aside><a href="#start">Back to Top</a></aside>
 
-<h5>Logging Activity Information</h5>
+<h5><a name="logging-activities">Logging Activity Information</a></h5>
 <p>You may log completed activities for the user with the <code>log_activity</code> method.  It takes a hash of options (explained in more detail in the <a href="https://github.com/whazzmaster/fitgem/blob/master/lib/fitgem/activities.rb">comments</a>), and revolves around knowledge of the activity id.  See the <a href="http://wiki.fitbit.com/display/API/API-Log-Activity">fitbit documentation</a> for more information on the various types of activity id's.</p>
 <p>The example below begins with the assumption that we know the activity id of the activity we want to log.  <strong>In practice</strong>, you'll likely need to search or browse for the activity by name to get the correct activity id.</p>
 <pre>
@@ -294,8 +304,11 @@ client.log_activity({
 </pre>
 <aside><a href="#start">Back to Top</a></aside>
 
-<h5>Deleting Activity Information</h5>
-<p></p>
+<h5><a name="removing-activities">Deleting Activity Information</a></h5>
+<h6>Deleting a Logged Activity</h6>
+<p>You can delete previously-logged activities if you have the id that was assigned to the logged activity.  The method call is straightforward; pass the logged-activity-id to <code>delete_logged_activity</code>.</p>
+<h6>Removing a Favorite Activity</h6>
+<p>It is also possible to remove an activity from a user's favorite activity list. Simply call <code>remove_favorite_activity</code> and pass in the activity id.</p>
 <aside><a href="#start">Back to Top</a></aside>
 
 <h4><a name="foods">Foods</a></h4>

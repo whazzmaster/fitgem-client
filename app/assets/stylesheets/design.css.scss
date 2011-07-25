@@ -7,6 +7,7 @@ h2 { @include font(3em, 1.5em, inherit); font-family: 'Droid Sans', arial, serif
 h3 { @include font(2.34em, "", inherit); margin: 0.2em 0; font-family: 'Droid Sans', arial, serif; }
 h4 { @include font(2em, "", inherit); margin: 0.2em 0; font-family: 'Droid Sans', arial, serif; }
 h5 { @include font(1.5em, "", inherit); margin: 0.2em 0; font-family: 'Droid Sans', arial, serif; }
+h6 { @include font(1em, "", inherit); margin: 0.5em 0; font-family: 'Droid Sans', arial, serif; }
 
 #site-header {
   width: 960px;
@@ -131,10 +132,16 @@ code {
 
 .fitbit-api-data {
   font-family: 'Droid Sans', arial, serif;
+  @include border-radius(5px);
+  border: 2px solid #000;
+  color: #fffe40;
+  background-color: #313131;
  .line-title {
+   padding: 3px 7px 3px 150px;
+ }
+ .source {
+   float: right;
    padding: 3px 7px;
-   font-weight: bold;
-   text-decoration: underline;
  }
  .indent-container {
    padding-left: 15px;
@@ -153,6 +160,7 @@ code {
     float: left;
   }
  }
+ .end { padding-bottom: 8px; }
 }
 
 #blog {
