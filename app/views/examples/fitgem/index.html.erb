@@ -1,5 +1,15 @@
-<h3>Using Fitgem</h3>
-<p>The structure and usage of the fitgem library mirror closely the oauth flow of the <a href="https://github.com/moomerman/twitter_oauth">twitter_oauth gem</a>.  You can use the fitgem gem to get access to the fitbit API from any sort of application, but if you're going to use it in a Rails application then you will need to integrate the OAuth implementation with your own user management setup.</p>
+<h3>Getting Started with fitgem</h3>
+<p>To play around with the fitgem library you'll need the <a href="http://rubygems.org/gems/fitgem">gem itself</a>:</p>
+<pre>
+<span>$ gem install fitgem</span>
+</pre>
+<p>You can also grab the source by cloning <a href="https://github.com/whazzmaster/fitgem">the fitgem github repo</a>.</p>
+<pre>
+<span>$ git clone git@github.com:whazzmaster/fitgem.git</span>
+</pre>
+
+<h3>Using fitgem</h3>
+<p>The structure and usage of the fitgem library mirror closely the oauth flow of the <a href="https://github.com/moomerman/twitter_oauth">twitter_oauth gem</a>.  You can use the fitgem gem to get access to the Fitbit REST API from any sort of application, but if you're going to use it in a Rails application then you will need to integrate the OAuth implementation with your own user management setup.</p>
 
 <p>What follows is a description of <strong>one way to accomplish this</strong>.  You can integrate the <code>FitgemClient</code> class in many ways.</p>
 
