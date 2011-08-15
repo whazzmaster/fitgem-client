@@ -4,7 +4,7 @@
 
 // UI elements included in this document
 // ----------------------------------------------
-// 1) text arguments 
+// 1) text arguments
 // 2) gradient arguments
 // 3) shadow arguments
 // 4) border-radius arguments
@@ -27,7 +27,7 @@
 
 //////// gradient arguments /////////
 // The following gradients are designed to use specific color stops
-// I prefer to use standardized code as to increase consistency 
+// I prefer to use standardized code as to increase consistency
 // In your app, you are free to update so that the mixin includes setting the color stop
 // ----------------------------------------------
 @mixin two_stop_linear_gradient ($start_color, $end_color) {
@@ -47,8 +47,8 @@
   //-ms-filter: %("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d, endColorstr=%d)", $start_color, $end_color);
 }
 
-// two color stop linear gradient with color stops set as variable 
-// -------------- 
+// two color stop linear gradient with color stops set as variable
+// --------------
 @mixin two_stop_linear_gradient_freestop ($start_color, $start_color_stop, $end_color, $end_color_stop) {
 	// default fallback //
 	background: $start_color;
@@ -99,7 +99,7 @@
   // IE8 //
   //-ms-filter: %("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d, endColorstr=%d)", $start_color, $end_color);
 }
-	
+
 @mixin five_stop_linear_gradient ($start_color, $quater_color, $mid_color, $quater3_color, $end_color) {
 	// default fallback //
 	background: $start_color;
@@ -114,8 +114,8 @@
   // IE8 //
   //-ms-filter: %("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d, endColorstr=%d)", $start_color, $end_color);
 }
-	
-// I know, I have to refactor this, this is kinda ugly ;(	
+
+// I know, I have to refactor this, this is kinda ugly ;(
 // ---------------------
 @mixin complex_gradient($zero, $ten, $twentyfive, $thirtyseven, $fifty, $fiftyone, $eightythree, $onehndred) {
 	// default fallback //
@@ -138,10 +138,10 @@
 
 /////// shadow arguments /////////
 // -------------------------------
-@mixin box_shadow ($color, $shadow) {
-	-moz-box-shadow: $color $shadow;
-	-webkit-box-shadow: $color $shadow;
-	box-shadow: $color $shadow;
+@mixin box_shadow ($x, $y, $blur, $color) {
+	-moz-box-shadow: $x $y $blur $color;
+	-webkit-box-shadow: $x $y $blur $color;
+	box-shadow: $x $y $blur $color;
 }
 
 @mixin dual_box_shadow ($color, $shadow, $inset_color, $inset_shadow) {
@@ -245,15 +245,8 @@
 	}
 	zoom: 1;
 }
-.clearfix { 
-  @include clearfix(); 
+.clearfix {
+  @include clearfix();
 }
 
 /////// clearfix //////////
-
-///////// inset border /////////
-@mixin inset_border () {
-	@include box_shadow(inset 0 0 1px, $alpha_grey);
-}
-
-///////// inset border /////////

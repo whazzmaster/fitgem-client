@@ -14,25 +14,27 @@
   <body>
     <div id="container">
 			<header id="site-header">
-				<h1><%= link_to "Fitgem Reference Client", root_url %></h1>
-				<nav>
-					<aside id="login-nav">
-						<% if user_signed_in? %>
-							Signed in as <%= current_user.email %>. Not you?
-							<%= link_to "Sign out", destroy_user_session_path %>
-						<% else %>
-							<%= link_to "Sign in", new_user_session_path %>
-						<% end %>
-					</aside>
-					<ul>
-						<li><%= link_to 'Home', root_path %></li>
-						<li><%= link_to 'Blog', blog_path %></li>
-						<li><%= link_to 'Fitgem on Rails', examples_fitgem_path %></li>
-						<li><%= link_to 'Resources', examples_resources_path %></li>
-						<li><%= link_to 'Subscriptions', examples_subscriptions_path %></li>
-						<li><%= link_to 'About', about_path %></li>
-					</ul>
-				</nav>
+			  <div id="header-container">
+  			  <aside id="login-nav">
+  					<% if user_signed_in? %>
+  						Signed in as <%= current_user.email %>. Not you?
+  						<%= link_to "Sign out", destroy_user_session_path %>
+  					<% else %>
+  						<%= link_to "Sign in", new_user_session_path %>
+  					<% end %>
+  				</aside>
+  				<h1><%= link_to "Fitgem Reference Client", root_url %></h1>
+  				<nav>
+  					<ul>
+  						<li><%= link_to 'Home', root_path %></li>
+  						<li><%= link_to 'Blog', blog_path %></li>
+  						<li><%= link_to 'Fitgem on Rails', examples_fitgem_path %></li>
+  						<li><%= link_to 'Resources', examples_resources_path %></li>
+  						<li><%= link_to 'Subscriptions', examples_subscriptions_path %></li>
+  						<li><%= link_to 'About', about_path %></li>
+  					</ul>
+  				</nav>
+			  </div>
 			</header>
 
 			<div id="main" role="main">
@@ -52,13 +54,18 @@
 					<%= yield(:sidebar) %>
 					<%= render :partial => 'layouts/sidebar' %>
 				</aside>
+
+				<div class="shim">&nbsp;</div>
 			</div>
 
 			<footer id="site-footer">
-				<div class="outer">
-					<div class="inner">
-						Copyright 2011, Zachery Moneypenny. See the <%= link_to 'About', about_path %> page for more information.
-					</div>
+				<div id="footer-container">
+				  <aside>
+				    <%= link_to 'About', about_path %> |
+				    <%= link_to 'Fitgem on Github', 'https://github.com/whazzmaster/fitgem' %> |
+				    <%= link_to 'Fitgem Client on Github', 'https://github.com/whazzmaster/fitgem-client' %>
+			    </aside>
+				  &copy; 2011, Zachery Moneypenny
 				</div>
 			</footer>
     </div>

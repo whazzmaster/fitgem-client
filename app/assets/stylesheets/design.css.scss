@@ -1,5 +1,6 @@
 body {
  font-family: 'Droid Serif', arial, serif;
+ background-color: $charlie_primary;
 }
 
 h1 { @include font(4em, 1.5em, inherit); font-family: 'Droid Sans', arial, serif; }
@@ -11,10 +12,19 @@ h6 { @include font(1em, "", inherit); margin: 0.5em 0; font-family: 'Droid Sans'
 
 strong { font-weight: bold; }
 
+aside#login-nav {
+ padding: 5px 0;
+}
+
 #site-header {
-  width: 960px;
-  margin: 20px auto;
+  #header-container {
+    width: 960px;
+    margin: 20px auto;
+  }
+  background-color: $bravo_primary;
   h1 {
+    clear: right;
+    text-shadow: 2px 2px 5px $charlie_primary;
     a { text-decoration: none; color: $primary_text; }
     a:hover { text-decoration: none; color: $primary_text; }
     a:visited { text-decoration: none; color: $primary_text; }
@@ -23,10 +33,29 @@ strong { font-weight: bold; }
   nav {
     width: 960px;
     margin: 0 auto;
-    @include ul_flexbox($width: 50%, $height: auto, $text_align: left);
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
+    @include ul_flexbox($width: 100%, $height: auto, $text_align: center);
     padding: 7px 15px;
+    font-family: 'Droid Sans', arial, serif;
+    li {
+      color: $primary_text;
+      @include border-radius(5px);
+      padding: 5px 0;
+      width: 175px;
+    }
+    li:hover {
+      @include box_shadow(2px, 2px, 5px, #000);
+      background-color: $charlie_primary;
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+    a {
+     text-decoration: none;
+     color: $primary_text;
+    }
+    a:hover {
+      color: $primary_text;
+    }
   }
   #login-nav {
    float: right;
@@ -34,9 +63,12 @@ strong { font-weight: bold; }
   }
 }
 
-#main {
+div#main {
  width: 960px;
  margin: 20px auto;
+ div.shim {
+   clear: both;
+ }
 }
 
 #content {
@@ -52,19 +84,16 @@ strong { font-weight: bold; }
 
 #site-footer {
   clear: both;
-  height: 75px;
-  padding: 10px 0;
-  .outer {
+  background-color: $bravo_primary;
+  font-family: 'Droid Sans', arial, serif;
+  @include small;
+  #footer-container {
     width: 960px;
     margin: 0 auto;
-    margin-top: 30px;
-    .inner {
-      @include grid_12(12);
-    }
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-    padding: 7px 15px;
-    height: 20px;
+    padding: 10px;
+  }
+  aside {
+   float: right;
   }
 }
 

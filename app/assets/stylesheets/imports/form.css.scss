@@ -89,7 +89,7 @@
 
 	&:hover {
 	  @include primary_button_hover;
-	  @include box_shadow($shadow_color, 0px 1px 2px);
+	  @include box_shadow(0px, 1px, 2px, $shadow_color);
 	}
 
 	&:active {
@@ -100,7 +100,7 @@
 	  @include primary_button_disabled;
 	  @include button_shadow ($shadow_color, $fox_grey);
 		&:hover {
-	    @include box_shadow($shadow_color, 0px 3px 3px);
+	    @include box_shadow(0px, 3px, 3px, $shadow_color);
 		}
 
 	}
@@ -112,7 +112,7 @@
 	@include button_shadow ($shadow_color, $quebec_color);
 	&:hover {
 	  @include secondary_button_hover;
-	  @include box_shadow($shadow_color, 0px 1px 2px);
+	  @include box_shadow(0px, 1px, 2px, $shadow_color);
 	}
 	&:active {
 		@include secondary_button_active;
@@ -133,23 +133,23 @@
 	letter-spacing: 1px;
 	font-weight: normal;
 	@include border_radius(0px);
-	@include box_shadow(0 0 0, $white);
+	@include box_shadow(0, 0, 0, $white);
 	@include text_shadow(0 0 0, $white);
 	@include large;
 
 	&:hover, &:active {
 		text-decoration: underline;
 		background: none;
-	  @include box_shadow(0 0 0, $white);
+	  @include box_shadow(0, 0, 0, $white);
 	}
 
 	&[disabled] {
 		text-decoration: none;
 		color: $input_disabled_text;
 		background: none;
-	  @include box_shadow(0 0 0, $white);
+	  @include box_shadow(0, 0, 0, $white);
 		&:hover {
-	    @include box_shadow(0 0 0, $white);
+	    @include box_shadow(0, 0, 0, $white);
 		}
 	}
 }
@@ -174,7 +174,7 @@
  		line-height: 1em;
 	  @include border_radius(0px);
  		background: #fff;
-	  @include box_shadow(#fff, 0px 0px 0px);
+	  @include box_shadow(0, 0, 0, #fff);
  		text-decoration: none;
  		margin: 0;
  		width: auto;

@@ -40,18 +40,12 @@ $white: #FFFFFF;
 
 /////// OOCSS generic color blocks ////////
 // ----------------------------------------------
-$alpha_primary: #E84137;
-$bravo_primary: #5BA418;
-$charlie_primary: #FADC03;
-$delta_primary: #4878CC;
-$echo_primary: #FF8609;
-/*
-$alpha_primary: #BCBCBC;
-$bravo_primary: #3299BB;
-$charlie_primary: #424242;
-$delta_primary: #E9E9E9;
-$echo_primary: #FF9900;
-*/
+$alpha_primary: #FFFFFF;
+$bravo_primary: #CBE86B;
+$charlie_primary: #F2E9E1;
+$delta_primary: #1C140D;
+$echo_primary: #CBE86B;
+
 $alpha_color: $alpha_primary;
 $bravo_color: lighten($alpha_primary, 10%);
 $charlie_color: lighten($alpha_primary, 30%);
@@ -132,7 +126,7 @@ $tango_color: lighten($echo_primary, 40%);
 	@include two_stop_linear_gradient($not_set, $not_set);
 }
 .juliet_color_gradient { @include juliet_color_gradient }
-	
+
 @mixin kilo_color_gradient {
 	@include two_stop_linear_gradient($not_set, $not_set);
 }
@@ -149,7 +143,7 @@ $tango_color: lighten($echo_primary, 40%);
 .mike_color_gradient { @include mike_color_gradient }
 /////// OOCSS gradient color mixins ////////
 
-/////// Semantic gradient objects /////// 
+/////// Semantic gradient objects ///////
 // ----------------------------------------------
 
 @mixin site_navigation_gradient() {
@@ -164,10 +158,10 @@ $tango_color: lighten($echo_primary, 40%);
 	@include india_color_gradient;
 }
 
-/////// Semantic gradient objects /////// 
+/////// Semantic gradient objects ///////
 
 
-///////// general UI mixins	///////// 
+///////// general UI mixins	/////////
 // ----------------------------------------------
 
 @mixin ajax_spinner_sml() {
@@ -183,20 +177,20 @@ $tango_color: lighten($echo_primary, 40%);
 
 @mixin spinner_sml() {
 	@include ajax_spinner_sml;
-}	
+}
 
 @mixin spinner_lg() {
 	@include ajax_spinner_lg;
 }
 
 @mixin soft_shadow() {
-	@include box_shadow(0 5px 15px -8px, $shadow_color);
+	@include box_shadow(0, 5px, 15px, $shadow_color);
 }
 
 // This mixin is used for a linear layout of LIs versus using floats
 // ----------------------------------
 @mixin ul_flexbox ($width: 100%, $height: auto, $text_align :center) {
-	ul { 
+	ul {
 		@include flexbox (horizontal, center, center, $width, $height);
 	}
 	li {
@@ -219,7 +213,7 @@ $white: $india_grey;
 $shadow_color: fadeout($alpha_grey, 50%);
 
 // primary font color for the app
-$primary_text: $bravo_grey;
+$primary_text: $delta_primary;
 
 // header text
 $header_text: $quebec_color;
@@ -255,7 +249,7 @@ $form_field_text: $delta_grey;
 $form_field_fail: $alpha_color;
 $form_field_text_fail: $form_field_fail;
 $form_field_border_fail: $form_field_fail;
-$form_field_fail_bkg: lighten($alpha_color, 35%); 
+$form_field_fail_bkg: lighten($alpha_color, 35%);
 
 $input_disabled: $bravo_grey;
 $input_disabled_bkg: fadeout($input_disabled, 80%);
@@ -272,7 +266,6 @@ $button_text: $white;
 
 @mixin white {
 	background-color: $white;
-	@include inset_border;
 }
 .white { @include white }
 
@@ -285,30 +278,30 @@ $button_text: $white;
 	background-color: $bravo_grey;
 }
 .bravo_grey { @include bravo_grey }
-	
+
 @mixin charlie_grey {
 	background-color: $charlie_grey;
 }
 .charlie_grey { @include charlie_grey }
-	
+
 @mixin delta_grey {
 	background-color: $delta_grey;
 }
 .delta_grey { @include delta_grey; }
-	
+
 @mixin echo_grey {
 	background-color: $echo_grey;
 }
 .echo_grey { @include echo_grey }
-	
+
 @mixin fox_grey {
 	background-color: $fox_grey;
 }
 .fox_grey { @include fox_grey }
-	
+
 @mixin golf_grey {
 	background-color: $golf_grey;
-}	
+}
 .golf_grey { @include golf_grey }
 
 @mixin hotel_grey {
@@ -346,7 +339,7 @@ $button_text: $white;
 	background-color: $charlie_color;
 }
 .charlie_color { @include charlie_color }
-	
+
 @mixin delta_color {
 	background-color: $delta_color;
 }
@@ -356,17 +349,17 @@ $button_text: $white;
 	background-color: $echo_color;
 }
 .echo_color { @include echo_color }
-	
+
 @mixin fox_color {
 	background-color: $fox_color;
 }
 .fox_color { @include fox_color }
-	
+
 @mixin golf_color {
 	background-color: $golf_color;
 }
 .golf_color { @include golf_color }
-	
+
 @mixin hotel_color {
 	background-color: $hotel_color;
 }

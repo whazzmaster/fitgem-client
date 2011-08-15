@@ -2,33 +2,33 @@
 //// styleguide UI ////
 .styleguide {
 	background: $white;
-	
+
 	body {
 		background: $white;
 	}
-	
+
 	#header {
 		visibility: hidden;
 		display: none;
 	}
-	
+
 	.instructions {
 		display: block;
     @include large;
 	}
-	
+
 	code {
 		padding: 3px 6px;
 		border: 1px solid $alpha_grey;
 		white-space: nowrap;
     line-height: 1.5em;
 	}
-	
+
 	article {
 		float: left;
 		width: 100%;
 	}
-		
+
 	pre {
 	    background: #313131;
 	    padding: 20px;
@@ -41,13 +41,13 @@
 	    	color: white;
 	    }
 	}
-	
+
 	.button_styleguide {
 		div {
 			padding-bottom: 10px;
 		}
 	}
-	
+
 	.form_styleguide {
 		pre {
 			width: 590px;
@@ -64,7 +64,7 @@
 			width: 550px;
 		}
 	}
-	
+
 	.styleguide_header {
 		width: 100%;
 		position: fixed;
@@ -75,12 +75,12 @@
 			padding: 10px 20px;
 	    @include complex_gradient(#b8e1fc, #a9d2f3, #90bae4, #90bcea, #90bff0, #6ba8e5, #a2daf5, #bdf3fd );
 			border-bottom: 1px solid $alpha_grey;
-	    @include box_shadow($shadow_color, 0px 0px 40px);
+	    @include box_shadow(0, 0, 40px, $shadow_color);
 			font-family: 'Pacifico', arial, serif;
 			font-size: 3em;
 		}
 	}
-	
+
 	.styleguide_body {
 		float: none;
 		width: 960px;
@@ -116,7 +116,7 @@
 	    @include column_count(3, 1em);
 		}
 	}
-	
+
 	.styleguide_footer {
 		width: 100%;
 		float: left;
@@ -124,7 +124,7 @@
 		padding: 30px 0 30px 0;
 		height: 100px;
 	}
-		
+
 	.colorcode, .gradient {
 		div {
 			width: 70%;
@@ -161,7 +161,7 @@
 	  @include border_radius(6px);
 		margin-bottom: 10px;
 	}
-		
+
 	.flex_blocks {
 		.india_grey {
 			border: 1px dashed transparentize($alpha_grey, .7);
@@ -170,7 +170,7 @@
 			}
 		}
 	}
-				
+
 	.gradient {
 		.alpha_color_gradient {
 			p {
@@ -183,9 +183,9 @@
 		margin: 0 0 30px 0;
 		padding: 0;
 	}
-	
-	
-	
+
+
+
  	.styleguide_nav {
 		position: fixed;
 		z-index: 1000;
@@ -195,7 +195,7 @@
 		width: 120px;
 		padding: 10px 20px 10px 10px;
 	  @include border_radius(5px);
-	  @include box_shadow(#ccc, 0px 0px 20px);
+	  @include box_shadow(0, 0, 20px, #ccc);
 	  @include transition(all, .5s, ease-in-out, 0s);
 		background-color: #fff;
 		.nav_title {
@@ -251,7 +251,7 @@
 	.foo_form {
 	  @include large_form;
 	}
-	
+
 	/////// semantic color blocks ////////
 	// this is only to display these colors in full color blocks
 	// not intended to be used throughout the application
@@ -259,100 +259,96 @@
 	.primary_text {
 		background-color: $primary_text;
 	}
-		
+
 	.href_color {
 		background-color: $href_color;
 	}
-	
+
 	.instructional_text {
 		background-color: $instructional_text;
 	}
-		
+
 	.error_text {
 		background-color: $error_text;
 	}
-		
+
 	.button_text {
 		background-color: $button_text;
-	  @include inset_border;
 	}
-		
+
 	.shadow_color {
 		background-color: $shadow_color;
 	}
-		
+
 	//.secondary_button_hover {
 	//	background-color: $secondary_button_hover;
 	//}
-		
+
 	.form_field_border {
 		background-color: $form_field_border;
 	}
-	
+
 	.form_field_focus_border_color {
 		background-color: $form_field_focus_border_color;
 	}
-	
+
 	.form_field_focus_color {
 		background-color: $form_field_focus_color;
 	}
-	
+
 	.form_field_text {
 		background-color: $form_field_text;
 	}
-		
+
 	.form_field_text_fail {
 		background-color: $form_field_text_fail;
 	}
-	
+
 	.form_field_border_fail {
 		background-color: $form_field_border_fail;
 	}
-		
+
 	.form_field_fail_bkg {
 		background-color: $form_field_fail_bkg;
 	}
-		
+
 	.input_disabled_bkg {
 		background-color: $input_disabled_bkg;
 	}
-	
+
 	.form_field_background_color {
-		background-color: $form_field_background_color;	
-	  @include inset_border;
+		background-color: $form_field_background_color;
 	}
-		
+
 	.input_disabled_border {
 		background-color: $input_disabled_border;
 	}
-		
+
 	.input_disabled_text {
 		background-color: $input_disabled_text;
 	}
-	
+
 	.mark_color {
 		background-color: $mark_color;
 	}
-	
+
 	.selection_color {
 		background-color: $selection_color;
 	}
-	
+
 	.selection_text_color {
 		background-color: $selection_text_color;
-	  @include inset_border;
 	}
-	
+
 	.india_grey, .hotel_color_gradient, .india_color_gradient {
-	  @include inset_border;
 	}
 	/////// semantic color blocks ////////
-	
-	
+
+
 	////// 12 col 960 grid system ///////////
 	// used only for the UI display of the 960 grid
 	// not intended to be used throughout the application
-	
+
 	.grid_960 {
 		background: url(/assets/styleguide/12_col.gif) repeat-y ;
 		width: 960px;
@@ -367,7 +363,7 @@
 			margin: 1em 0;
 			li {
 				background: fadeout($india_grey, 50%);
-	      @include box_shadow(inset 0 0 10px, $alpha_grey);
+	      @include box_shadow(0, 0, 10px, $alpha_grey);
 				padding: 5px 0;
 			}
 		}
