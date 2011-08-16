@@ -17,6 +17,7 @@ aside#login-nav {
 }
 
 #site-header {
+  @include box_shadow(1px, 1px, 10px, $delta_primary);
   #header-container {
     width: 960px;
     margin: 20px auto;
@@ -78,7 +79,44 @@ div#main {
 #site-sidebar {
   @include grid_12(4);
   section {
-   padding: 5px;
+   background-color: $alpha_primary;
+   @include border-radius(5px);
+   @include box_shadow(1px, 1px, 10px, $delta_primary);
+   padding: 0;
+   margin: 0 0 20px 0;
+   header {
+     background-color: $delta_primary;
+     color: $charlie_primary;
+     -moz-border-radius-topright: 5px;
+     -moz-border-radius-topleft: 5px;
+     -webkit-border-top-right-radius: 5px;
+     -webkit-border-top-left-radius: 5px;
+     margin: 0;
+     padding: 5px;
+     h1 {
+       margin: 0;
+       @include small;
+     }
+   }
+   ul {
+    font-family: "Droid Sans", Tahoma, Arial, sans-serif;
+    li {
+      padding: 4px 5px;
+      opacity: .65;
+      a { text-decoration: none; color: $delta_primary; }
+      a:visited { text-decoration: none; color: $delta_primary; }
+      a:hover { text-decoration: none; color: $delta_primary; }
+    }
+    li:hover {
+      opacity: 1;
+      background-color: $golf_color;
+    }
+   }
+   div.content {
+     @include extra-small;
+     font-family: "Droid Sans", Tahoma, Arial, sans-serif;
+     padding: 5px;
+   }
   }
 }
 
@@ -86,6 +124,7 @@ div#main {
   clear: both;
   background-color: $bravo_primary;
   font-family: 'Droid Sans', arial, serif;
+  @include box_shadow(1px, 1px, 10px, $delta_primary);
   @include small;
   #footer-container {
     width: 960px;

@@ -61,18 +61,16 @@
 			<footer id="site-footer">
 				<div id="footer-container">
 				  <aside>
-				    <%= link_to 'About', about_path %> |
-				    <%= link_to 'Fitgem on Github', 'https://github.com/whazzmaster/fitgem' %> |
-				    <%= link_to 'Fitgem Client on Github', 'https://github.com/whazzmaster/fitgem-client' %>
+				    <a title="Real Time Web Analytics" href="http://getclicky.com/66459794"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+            <script src="//static.getclicky.com/js" type="text/javascript"></script>
+            <script type="text/javascript">try{ clicky.init(<%= APP_CONFIG[:clicky_analytics_id] %>); }catch(e){}</script>
+            <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66459794ns.gif" /></p></noscript>
+
+				    <%= link_to 'about fitbitclient.com', about_path %>
 			    </aside>
-				  &copy; 2011, Zachery Moneypenny
+				  &copy; 2011 Zachery Moneypenny
 				</div>
 			</footer>
     </div>
-
-    <a title="Real Time Web Analytics" href="http://getclicky.com/66459794"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-    <script src="//static.getclicky.com/js" type="text/javascript"></script>
-    <script type="text/javascript">try{ clicky.init(<%= APP_CONFIG[:clicky_analytics_id] %>); }catch(e){}</script>
-    <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66459794ns.gif" /></p></noscript>
   </body>
 </html>
