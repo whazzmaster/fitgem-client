@@ -8,24 +8,20 @@ gem 'pg'
 gem 'visual-environments'
 gem 'nifty-generators'
 
-group :assets do
-  gem 'sass-rails', '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'sass-twitter-bootstrap-rails'
-end
-
 gem 'backbone-on-rails'
-gem 'handlebars_assets'
-
 gem 'haml'
 
 # Production hosted on heroku
 gem 'heroku'
 
-# Deploy with Capistrano
-gem 'capistrano'
-gem 'capistrano-ext'
+group :assets do
+  gem 'sass-rails', '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-twitter-bootstrap-rails'
+  gem 'jquery-rails'
+  gem 'handlebars_assets'
+end
 
 group :development, :test do
 	gem "factory_girl_rails"

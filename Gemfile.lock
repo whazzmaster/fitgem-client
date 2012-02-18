@@ -37,14 +37,6 @@ GEM
       railties (>= 3.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
-    capistrano (2.9.0)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
-    capistrano-ext (1.2.1)
-      capistrano (>= 1.0.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -91,7 +83,6 @@ GEM
       rest-client (~> 1.6.1)
       rubyzip
       term-ansicolor (~> 1.0.5)
-    highline (1.6.11)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.1)
@@ -107,13 +98,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.0.4)
-    net-scp (1.0.4)
-      net-ssh (>= 1.99.1)
-    net-sftp (2.0.5)
-      net-ssh (>= 2.0.9)
-    net-ssh (2.3.0)
-    net-ssh-gateway (1.1.0)
-      net-ssh (>= 1.99.1)
     nifty-generators (0.4.6)
     nokogiri (1.5.0)
     oauth (0.4.5)
@@ -197,8 +181,6 @@ PLATFORMS
 
 DEPENDENCIES
   backbone-on-rails
-  capistrano
-  capistrano-ext
   coffee-rails (~> 3.2.1)
   database_cleaner
   devise
@@ -209,6 +191,7 @@ DEPENDENCIES
   haml
   handlebars_assets
   heroku
+  jquery-rails
   nifty-generators
   pg
   rails (= 3.2.0)
