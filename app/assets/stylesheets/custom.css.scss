@@ -40,4 +40,16 @@
   width: 99.99999998999999%;
 }
 
+#main-footer { margin-top: 1em; }
 .copyright { float: right; }
+h1 { margin-bottom: 0.3em; }
+.alert {
+  a { font-weight: bold; }
+}
+header {
+  padding-bottom: 1em;
+  h1 {
+    margin: 0;
+    border-bottom: 1px solid #000;
+  }
+}

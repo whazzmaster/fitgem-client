@@ -1,65 +1,35 @@
-<h3>Resource Access API</h3>
+<h1>Resource Access API</h1>
 
-<div class="information-box">
-	<p>View <a href="http://wiki.fitbit.com/display/API/Resource-Access-API">fitbit.com's resource access API</a> documentation.</p>
-</div>
-
-<div class="multiline-alert-box">
-	<p>The resources examples are under development at this time.  What is present here is up-to-date, but new examples will be added as they are completed.</p>
+<div class="alert alert-info">
+	View <a href="http://wiki.fitbit.com/display/API/Resource-Access-API">fitbit.com's resource access API</a> documentation.
 </div>
 
 <p>Fitbit considers a 'resource' to be any of the nouns associated with health tracking. Examples include foods consumed, activities participated in, characteristics of your tracker device, and body measurements.</p>
 
-<h4><a name="start">Available Resources</a></h4>
+<h2>Available Resources<a name="start">&nbsp;</a></h2>
 <p>Each resource below will include sample code on how to access it using fitgem. I will generally defer to the Fitbit Developer site for complete API documentation as I don't wish this site to get out of date too quickly.  Instead I'll focus on just the mechanics of using the library to interface with the API.</p>
 <p>If you are logged into the site and have connected your login with a Fitbit account, then in each section you'll also see the relevant data retrieved using the API described there.</p>
-<ul class="toc">
-	<li><a href="#userinfo">User Information</a>
-	  <ul>
-	    <li><a href="#retrievinguserinfo">Retrieving User Information</a></li>
-  	  <li><a href="#userinfoinaview">User Information in a View</a></li>
-    	<li><a href="#userinfoexample">User Information Example</a></li>
-    </ul>
-	</li>
-	<li><a href="#body">Body Measurements</a></li>
-	<li><a href="#activities">Activities</a>
-	  <ul>
-	    <li><a href="#retrieving-activities">Retrieving Activities</a></li>
-  	  <li><a href="#logging-activities">Logging Activities</a></li>
-    	<li><a href="#removing-activities">Removing Activities</a></li>
-    </ul>
-  </li>
-	<li><a href="#foods">Foods</a>
-	  <ul>
-	    <li><a href="#search-foods">Search Foods and Food Units</a></li>
-	    <li><a href="#retrieving-user-foods">Retrieving User Foods</a></li>
-  	  <li><a href="#logging-user-foods">Logging User Foods</a></li>
-  	  <li><a href="#creating-user-foods">Creating User Foods</a></li>
-    	<li><a href="#deleting-user-foods">Deleting User Foods</a></li>
-    </ul>
-  </li>
-</ul>
 
-<h4><a name="userinfo">User Information</a></h4>
-<div class="information-box">
-	<p><a href="http://wiki.fitbit.com/display/API/API-Get-User-Info">View the Fitbit reference page for user information.</a></p>
-</div>
+<h2>User Information<a name="userinfo">&nbsp;</a></h2>
+
 <p>The user information interface is used to access whatever profile information that the user has allowed to be viewed publicly.  This includes information such as the user's name, fitbit user id, gender, height, etc.  <strong>Please note</strong> that the user must explicitly allow this info to be shared or else it will not show up in the data returned by the service.</p>
 
-<h5><a name="retrievinguserinfo">Retrieving User Information</a></h5>
+<div class="alert alert-info">
+	<i class="icon-book"></i> <a href="http://wiki.fitbit.com/display/API/API-Get-User-Info">View the Fitbit reference page for user information.</a>
+</div>
+
+<h3>Retrieving User Information<a name="retrievinguserinfo">&nbsp;</a></h3>
 <p>In your controller action, for example:</p>
 <pre>
 def index
-  unless current_user.fitbit_account.verified?
-    flash[:alert] = "Your test account is not connected to
-      a Fitbit account."
-    redirect_to :action => :index and return
-  end
-  client = FitgemClientWrapper.new(current_user.fitbit_account)
-  @info = client.user_info['user']
+unless current_user.fitbit_account.verified?
+  flash[:alert] = "Your test account is not connected to a Fitbit account."
+  redirect_to :action => :index and return
 end
-</pre>
-<aside><a href="#start">Back to Top</a></aside>
+client = FitgemClientWrapper.new(current_user.fitbit_account)
+@info = client.user_info['user']
+end</pre>
+
 
 <h5><a name="userinfoinaview">User Information in a View</a></h5>
 <p>Below is example ERB code showing how the <code>@info</code> object is used in a view.</p>
@@ -92,7 +62,7 @@ end
 	&lt;/div&gt;
 &lt;/div&gt;
 </pre>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h5><a name="userinfoexample">User Information Example</a></h5>
 <p>Below are the results of the above view code using your personal fitbit data.</p>
@@ -135,7 +105,7 @@ end
 <% else %>
   <%= render :partial => 'examples/login_and_link' %>
 <% end %>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h4><a name="body">Body Measurements</a></h4>
 <div class="information-box">
@@ -156,7 +126,7 @@ def index
   @body_measurements = client.body_measurements_on_date('today')['user']
 end
 </pre>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h5>Body Measurements in a View</h5>
 <p>Below is example ERB code showing how the <code>@body_measurements</code> object is used in a view.</p>
@@ -175,7 +145,7 @@ end
   &lt;/div&gt;
 &lt;/div&gt;
 </pre>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h5>Body Measurements Example</h5>
 <p>Below are the results of the above view code using your personal fitbit data. You may not see anything here if you have not flagged weight for public view.</p>
@@ -199,7 +169,7 @@ end
 <% else %>
   <%= render :partial => 'examples/login_and_link' %>
 <% end %>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h4><a name="activities">Activities</a></h4>
 <div class="information-box">
@@ -289,7 +259,7 @@ client = FitgemClientWrapper.new(current_user.fitbit_account)
    "veryActiveMinutes"=>22}}
 </pre>
 <p>There is much you can distill from the returned data; in addition to the list of logged activities you get access to total distances traveled during activities, total 'active core' (a Fitbit measure of how active you are over the course of the day), and an analysis (via the Fitbit tracker) of how your activities break down across the sedentary-to-highly-active spectrum.</p>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h5><a name="logging-activities">Logging Activity Information</a></h5>
 <p>You may log completed activities for the user with the <code>log_activity</code> method.  It takes a hash of options (explained in more detail in the <a href="https://github.com/whazzmaster/fitgem/blob/master/lib/fitgem/activities.rb">comments</a>), and revolves around knowledge of the activity id.  See the <a href="http://wiki.fitbit.com/display/API/API-Log-Activity">fitbit documentation</a> for more information on the various types of activity id's.</p>
@@ -310,18 +280,18 @@ client.log_activity({
   :distanceUnit => Fitgem::ApiDistanceUnit.miles
 })
 </pre>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h5><a name="removing-activities">Deleting Activity Information</a></h5>
 <h6>Deleting a Logged Activity</h6>
 <p>You can delete previously-logged activities if you have the id that was assigned to the logged activity.  The method call is straightforward; pass the logged-activity-id to <code>delete_logged_activity</code>.</p>
 <h6>Removing a Favorite Activity</h6>
 <p>It is also possible to remove an activity from a user's favorite activity list. Simply call <code>remove_favorite_activity</code> and pass in the activity id.</p>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h4><a name="foods">Foods</a></h4>
 <p>There are two aspects of foods that are tracked by Fitbit: the list of foods that can be used to log user meals, as well as food activity specific to a user.</p>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h5><a name="search-foods">Food Search and Food Units</a></h5>
 <div class="information-box">
@@ -340,7 +310,7 @@ client = FitgemClientWrapper.new(current_user.fitbit_account)
 @search_results = client.find_food('banana')
 @food_units = client.foods_units
 </pre>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h5><a name="retrieving-user-foods">Retrieving User Foods</a></h5>
 <div class="information-box">
@@ -359,7 +329,7 @@ client = FitgemClientWrapper.new(current_user.fitbit_account)
 @frequent_foods = client.frequent_foods
 @favorite_foods = client.favorite_foods
 </pre>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h5><a name="logging-user-foods">Logging User Foods</a></h5>
 <div class="information-box">
@@ -382,7 +352,7 @@ client.log_food({
   :date => "2011-08-01"
 })
 </pre>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h5><a name="creating-user-foods">Creating User Foods</a></h5>
 <div class="information-box">
@@ -406,7 +376,7 @@ client.create_food({
   :description => "Protein shake mix"
 })
 </pre>
-<aside><a href="#start">Back to Top</a></aside>
+
 
 <h5><a name="deleting-user-foods">Deleting User Foods</a></h5>
 <div class="information-box">
@@ -416,4 +386,3 @@ client.create_food({
 <p>There are two food-related items that can be deleted through the API: a user's food log can be deleted, and a specific food can be removed from a user's favorites list.</p>
 <p>To delete a user's food log, you must have a reference to the food log ID that was assigned to it when it was created.</p>
 <p>To remove a food from a user's favorites list, you must have the ID of the food to remove.</p>
-<aside><a href="#start">Back to Top</a></aside>
