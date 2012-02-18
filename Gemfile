@@ -15,7 +15,7 @@ group :assets do
   gem 'sass-twitter-bootstrap-rails'
 end
 
-gem 'rails-backbone'
+gem 'backbone-on-rails'
 gem 'handlebars_assets'
 
 gem 'haml'
