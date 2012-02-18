@@ -1,76 +1,40 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Fitgem Reference Client" %></title>
+!!! 5
+%head
+  %meta{:charset => "utf-8"}
+  %title= content_for?(:title) ? yield(:title) : "Fitgem Reference Client"
 
-		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold' rel='stylesheet' type='text/css'>
+  %link{:href => 'http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold', :rel => 'stylesheet', :type => 'text/css'}
+  %link{:href => 'http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold', :rel => 'stylesheet', :type => 'text/css'}
 
-		<%= stylesheet_link_tag    "application" %>
-	  <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tag %>
-    <%= yield(:head) %>
-  </head>
-  <body>
-    <div id="container">
-			<header id="site-header">
-			  <div id="header-container">
-  			  <aside id="login-nav">
-  					<% if user_signed_in? %>
-  						Signed in as <%= current_user.email %>. Not you?
-  						<%= link_to "Sign out", destroy_user_session_path %>
-  					<% else %>
-  						<%= link_to "Sign in", new_user_session_path %>
-  					<% end %>
-  				</aside>
-  				<h1><%= link_to "Fitgem Reference Client", root_url %></h1>
-  				<nav>
-  					<ul>
-  						<li><%= link_to 'Home', root_path %></li>
-  						<li><%= link_to 'Blog', blog_path %></li>
-  						<li><%= link_to 'Fitgem on Rails', examples_fitgem_path %></li>
-  						<li><%= link_to 'Resources', examples_resources_path %></li>
-  						<li><%= link_to 'Subscriptions', examples_subscriptions_path %></li>
-  						<li><%= link_to 'About', about_path %></li>
-  					</ul>
-  				</nav>
-			  </div>
-			</header>
+  = stylesheet_link_tag :application
+  = javascript_include_tag :application
+  = csrf_meta_tag
+  = yield(:head)
 
-			<div id="main" role="main">
-				<article id="content">
-					<% if flash[:notice] %>
-						<div class="flash success-box"><%= flash[:notice] %></div>
-					<% elsif flash[:alert] %>
-						<div class="flash error-box"><%= flash[:alert] %></div>
-					<% end %>
+%body
+  .navbar
+    .navbar-inner
+      .container-fluid
+        %a.btn.btn-navbar{:data => {:toggle => 'collapse', :target => '.nav-collapse'}}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to 'Fitgem Reference Client', root_path, :class => 'brand'
 
-				  <%= content_tag :h1, yield(:title) if show_title? %>
+  .container-fluid
+    .row-fluid
+      .span3
+        .well
+          %ul.nav.nav-list
+            %li.nav-header List header
+            %li.active
+              %a{ :href => "#"} Home
+            %li
+              %a{ :href => "#"} Library
+      .span9
+        %h2 Main Content
+        = yield
 
-					<%= yield %>
-				</article>
-
-				<aside id="site-sidebar">
-					<%= yield(:sidebar) %>
-					<%= render :partial => 'layouts/sidebar' %>
-				</aside>
-
-				<div class="shim">&nbsp;</div>
-			</div>
-
-			<footer id="site-footer">
-				<div id="footer-container">
-				  <aside>
-				    <a title="Real Time Web Analytics" href="http://getclicky.com/66459794"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-            <script src="//static.getclicky.com/js" type="text/javascript"></script>
-            <script type="text/javascript">try{ clicky.init(<%= APP_CONFIG[:clicky_analytics_id] %>); }catch(e){}</script>
-            <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66459794ns.gif" /></p></noscript>
-
-				    <%= link_to 'about fitbitclient.com', about_path %>
-			    </aside>
-				  &copy; 2011 Zachery Moneypenny
-				</div>
-			</footer>
-    </div>
-  </body>
-</html>
+    .row-fluid
+      .span12
+        &copy; 2012 Zachery Moneypenny
