@@ -1,5 +1,11 @@
 .row-fluid#main-footer
   .span12
     .well
-      .copyright
+      .copyright{:style => "line-height:32px;"}
         &copy; 2012 Zachery Moneypenny (<a href="http://twitter.com/whazzmaster">twitter</a>, <a href="http://github.com/whazzmaster">github</a>, <a href="http://whazzing.com">dev blog</a>)
+      .powered-by
+        %a{:href=>"http://www.fitbit.com"}
+          %span{:style => "display:inline-block;vertical-align:middle;"}
+            Powered by
+          %span{:style => "display:inline-block;vertical-align:middle;"}
+            = image_tag('fitbit_logo_dark_100px.png', :border => 0)
