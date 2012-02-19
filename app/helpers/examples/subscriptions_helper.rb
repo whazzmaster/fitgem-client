@@ -1,2 +1,0 @@
-module Examples::SubscriptionsHelper
-end

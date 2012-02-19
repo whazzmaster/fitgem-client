@@ -1,2 +1,0 @@
-module Examples::FitgemHelper
-end
