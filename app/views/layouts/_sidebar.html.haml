@@ -1,30 +1,15 @@
 .well
   %ul.nav.nav-list
-    %li.nav-header Topics
-    %li= link_to "Fitgem on Rails", examples_fitgem_path
-    %li
-      = link_to "Resource Types", examples_resources_path
-      %ul
-        %li
-          = link_to "Users", examples_resources_path + "#userinfo"
-          %ul
-            %li= link_to "Retrieving User Info", examples_resources_path + "#retrievinguserinfo"
-            %li= link_to "User Info in a View", examples_resources_path + "#userinfoinaview"
-            %li= link_to "Example", examples_resources_path + "#userinfoexample"
-        %li
-          = link_to "Body Measurements", examples_resources_path + "#body"
-        %li
-          = link_to "Activities", examples_resources_path + "#activities"
-          %ul
-            %li= link_to "Retrieving Activities", examples_resources_path + "#retrieving-activities"
-            %li= link_to "Logging Activities", examples_resources_path + "#logging-activities"
-            %li= link_to "Removing Activities", examples_resources_path + "#removing-activities"
-        %li
-          = link_to "Foods", examples_resources_path + "#foods"
-          %ul
-            %li= link_to "Search Foods and Food Units", examples_resources_path + "#search-foods"
-            %li= link_to "Retrieving User Foods", examples_resources_path + "#retrieving-user-foods"
-            %li= link_to "Logging User Foods", examples_resources_path + "#logging-user-foods"
-            %li= link_to "Creating User Foods", examples_resources_path + "#creating-user-foods"
-            %li= link_to "Deleting User Foods", examples_resources_path + "#deleting-user-foods"
-    %li= link_to "Subscriptions", examples_subscriptions_path
+    %li= link_to "Home", root_path
+    %li.nav-header Guide
+    %li{ :class => controller.action_name == "introduction" ? "active" : ""}= link_to "Introduction", introduction_path
+    %li{ :class => controller.action_name == "getting_started" ? "active" : ""}= link_to "Getting Started", getting_started_path
+    %li{ :class => controller.action_name == "using_fitgem" ? "active" : ""}= link_to "Using Fitgem", using_fitgem_path
+    %li{ :class => controller.action_name == "fitbit_resources" ? "active" : ""}= link_to "Fitbit Resources", fitbit_resources_path
+    %li{ :class => controller.action_name == "fitbit_subscriptions" ? "active" : ""}= link_to "Fitbit Subscriptions", fitbit_subscriptions_path
+    %li{ :class => controller.action_name == "fitgem_on_rails" ? "active" : ""}= link_to "Fitgem on Rails", fitgem_on_rails_path
+    %li.nav-header More Information
+    %li= link_to "Fitgem Source", "http://github.com/whazzmaster/fitgem"
+    %li= link_to "Fitgem Documentation", "http://rubydoc.info/github/whazzmaster/fitgem/master/frames"
+    %li= link_to "Source for this site", "http://github.com/whazzmaster/fitgem-client"
+    %li= link_to "Fitbit.com Developer Site", "http://dev.fitbit.com"

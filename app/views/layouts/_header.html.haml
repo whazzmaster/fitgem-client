@@ -7,9 +7,23 @@
         %span.icon-bar
       = link_to 'Fitgem Reference Client', root_path, :class => 'brand'
       .nav-collapse
-        %ul.nav.pull-right
-          %li
-            = link_to "About", about_path
+        %ul.nav.pull-left
+          %li{ :class => controller.action_name == "about" ? "active" : ""}= link_to "About", about_path
           %li.vertical-divider
-          %li
-            = link_to "Blog", blog_path
+          %li{ :class => controller.action_name == "blog" ? "active" : ""}= link_to "Blog", blog_path
+        %ul.nav.pull-right
+          - if user_signed_in?
+            %li
+              %p.navbar-text
+                Signed in as
+                = current_user.email
+            %li.divider-vertical
+            %li
+              = link_to "Logout", logout_path
+          - else
+            %li
+              = link_to "Login", login_path
+            %li.divider-vertical
+            %li
+              = link_to "Sign Up", signup_path
+

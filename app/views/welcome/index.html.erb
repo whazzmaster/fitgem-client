@@ -1,12 +1,30 @@
-<p><strong>Fitbit.com</strong> is a <a href="http://www.fitbit.com">great web application</a> that allows you to track your daily meals, exercise, activity, and more.  You may further purchase a <a href="http://www.fitbit.com/product">Fitbit Tracker</a> that will automatically gather information such as steps taken, miles traveled, and the intensity of your activity.</p>
+<div class="hero-unit">
+  <h1>Fitgem Client</h1>
+  <p>
+  A Ruby-on-Rails reference app for learning how to create interesting fitness-oriented applications on top of the
+  data from <a href="http://www.fitbit.com">Fitbit.com</a>
+  </p>
+  <p>
+    <%= link_to "Get Started", introduction_path, :class => "btn btn-primary btn-large" %>
+  </p>
+</div>
 
-<p><strong>Fitbitclient.com</strong> is a reference application that explains how to use the
-	<a href="http://rubygems.org/gems/fitgem">fitgem rubygem</a>
-	in a <a href="http://rubyonrails.org">Ruby on Rails</a> application to access the health data through the <a href="http://www.fitbit.com">Fitbit.com REST API</a>.</p>
+<div class="row-fluid">
+  <div class="span6">
+    <h2>About Fitbit.com</h2>
+    <p><strong>Fitbit.com</strong> is a great web application that allows you to track your daily meals, exercise, activity, and more.  You may further purchase a <a href="http://www.fitbit.com/product">Fitbit Tracker</a> that will automatically gather information such as steps taken, miles traveled, and the intensity of your activity.</p>
+    <p>
+      <a class="btn" href="http://www.fitbit.com">Fitbit.com »</a>
+    </p>
+  </div>
 
-<h4>Starting Your Journey...</h4>
-<p>Check out <strong><%= link_to 'Fitgem on Rails', examples_fitgem_path %></strong> for information on how to integrate the <a href="http://rubygems.org/gems/fitgem">fitgem</a> library into your Ruby web application (including implementing the OAuth handshake.)</p>
-<p>Once you can get ahold of a valid <code>FitgemClient</code> (or <code>FitgemClientWrapper</code>) move on to the <strong><%= link_to "Resources examples", examples_resources_path %></strong> to learn how to query, add, edit, and delete the health-related objects available through the Fitbit REST API.</p>
-<p>Finally, if your client application needs to subscribe to change notifications from Fitbit, check out the <strong><%= link_to "Subscriptions examples", examples_subscriptions_path %></strong>.</p>
-
-
+  <div class="span6">
+    <h2>About FitbitClient.com</h2>
+    <p><strong>Fitbitclient.com</strong> is a reference application that explains how to use the
+    	<a href="http://rubygems.org/gems/fitgem">fitgem rubygem</a>
+    	in a <a href="http://rubyonrails.org">Ruby on Rails</a> application to access the health data through the <a href="http://www.fitbit.com">Fitbit.com REST API</a>.</p>
+    <p>
+      <%= link_to "Get Started »", introduction_path, :class => "btn" %>
+    </p>
+  </div>
+</div>

@@ -15,6 +15,17 @@
   = render 'layouts/header'
 
   .container-fluid
+    - if notice
+      .row-fluid
+        #flash.alert.alert-success
+          = link_to '&times;'.html_safe, nil, :class => 'close', :data => { :dismiss => 'alert' }
+          = notice
+    - elsif alert
+      .row-fluid
+        #flash.alert.alert-error
+          = link_to '&times;'.html_safe, nil, :class => 'close', :data => { :dismiss => 'alert' }
+          = alert
+
     .row-fluid
       .span3
         = render 'layouts/sidebar'
