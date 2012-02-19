@@ -1,0 +1,15 @@
+.navbar
+  .navbar-inner
+    .container-fluid
+      %a.btn.btn-navbar{:data => {:toggle => 'collapse', :target => '.nav-collapse'}}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'Fitgem Reference Client', root_path, :class => 'brand'
+      .nav-collapse
+        %ul.nav.pull-right
+          %li
+            = link_to "About", about_path
+          %li.vertical-divider
+          %li
+            = link_to "Blog", blog_path

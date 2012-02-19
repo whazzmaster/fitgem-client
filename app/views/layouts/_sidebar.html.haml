@@ -1,0 +1,30 @@
+.well
+  %ul.nav.nav-list
+    %li.nav-header Topics
+    %li= link_to "Fitgem on Rails", examples_fitgem_path
+    %li
+      = link_to "Resource Types", examples_resources_path
+      %ul
+        %li
+          = link_to "Users", examples_resources_path + "#userinfo"
+          %ul
+            %li= link_to "Retrieving User Info", examples_resources_path + "#retrievinguserinfo"
+            %li= link_to "User Info in a View", examples_resources_path + "#userinfoinaview"
+            %li= link_to "Example", examples_resources_path + "#userinfoexample"
+        %li
+          = link_to "Body Measurements", examples_resources_path + "#body"
+        %li
+          = link_to "Activities", examples_resources_path + "#activities"
+          %ul
+            %li= link_to "Retrieving Activities", examples_resources_path + "#retrieving-activities"
+            %li= link_to "Logging Activities", examples_resources_path + "#logging-activities"
+            %li= link_to "Removing Activities", examples_resources_path + "#removing-activities"
+        %li
+          = link_to "Foods", examples_resources_path + "#foods"
+          %ul
+            %li= link_to "Search Foods and Food Units", examples_resources_path + "#search-foods"
+            %li= link_to "Retrieving User Foods", examples_resources_path + "#retrieving-user-foods"
+            %li= link_to "Logging User Foods", examples_resources_path + "#logging-user-foods"
+            %li= link_to "Creating User Foods", examples_resources_path + "#creating-user-foods"
+            %li= link_to "Deleting User Foods", examples_resources_path + "#deleting-user-foods"
+    %li= link_to "Subscriptions", examples_subscriptions_path
