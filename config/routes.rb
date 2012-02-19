@@ -7,13 +7,16 @@ FitgemClient::Application.routes.draw do
     get  '/signup' => "users/registrations#new"
   end
 
+  get "profile" => 'users/profiles#show', :as => :user_profile
+
   # Speciality routing for the OAuth login flow
-  get "fitbit", :controller => :fitgem_oauth, :action => :index
-  get "fitbit/index", :controller => :fitgem_oauth, :action => :index
-  post "fitbit/start", :controller => :fitgem_oauth, :action => :start
-  get "fitbit/verify", :controller => :fitgem_oauth, :action => :verify
-  get "fitbit/info", :controller => :fitgem_oauth, :action => :info
-  post "fitbit/disconnect", :controller => :fitgem_oauth, :action => :disconnect
+  scope "/fitbit" do
+    get "connect", :controller => "oauth/fitbit", :action => :index, :as => :fitbit_connect
+    post "start", :controller => "oauth/fitbit", :action => :start, :as => :fitbit_start
+    get "verify", :controller => "oauth/fitbit", :action => :verify, :as => :fitbit_verify
+    get "unlink", :controller => "oauth/fitbit", :action => :unlink, :as => :fitbit_unlink
+    post "disconnect", :controller => "oauth/fitbit", :action => :disconnect, :as => :fitbit_disconnect
+  end
 
   # Routing for the code examples
   get "examples", :controller => :examples, :action => :index

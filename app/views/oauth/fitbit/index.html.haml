@@ -1,0 +1,10 @@
+.hero-unit
+  %h1 Connect To Fitbit
+  %p
+    In just a few steps you can authorize Fitbit to exchange data with this test site!
+    %ol
+      %li Click the 'Authorize with Fitbit' button at the bottom of this page.
+      %li You will be directed to fitbit.com; log in with your fitbit account information.
+      %li You will be asked to authorize the <strong>Fitgem Reference Client</strong> application.
+      %li Once approved, Fitbit will redirect you back to this site to complete the link.
+  %p= button_to 'Authorize with Fitbit', fitbit_start_path, :class => "btn btn-primary btn-large"

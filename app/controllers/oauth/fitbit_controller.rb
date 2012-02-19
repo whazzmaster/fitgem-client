@@ -1,11 +1,11 @@
 require 'fitbit_client_wrapper'
 
-class FitgemOauthController < ApplicationController
+class Oauth::FitbitController < ApplicationController
   before_filter :authenticate_user!
-  
+
   def index
   end
-  
+
   def start
     client = Fitgem::Client.new({:consumer_key => APP_CONFIG[:fitbit_consumer_key], :consumer_secret => APP_CONFIG[:fitbit_consumer_secret]})
     request_token = client.request_token
@@ -29,22 +29,13 @@ class FitgemOauthController < ApplicationController
         redirect_to fitbit_index_path and return
       end
       fitbit_account.verify!(access_token.token, access_token.secret, verifier)
-      @info = @client.user_info['user']
+      redirect_to
     else
       flash[:alert] = 'Could not verify your account with Fitbit'
       redirect_to root_url
     end
   end
-  
-  def info
-    unless current_user.fitbit_account.verified?
-      flash[:alert] = "Your test account is not connected to a Fitbit account. "
-      redirect_to :action => :index and return
-    end
-    client = FitgemClientWrapper.new(current_user.fitbit_account)
-    @info = client.user_info['user']
-  end
-  
+
   def disconnect
     current_user.fitbit_account.clear!
     flash[:notice] = "Your test account has been disconnected from your Fitbit account"
