@@ -3,7 +3,7 @@
 </div>
 
 <div class="row-fluid">
-  <div class="span8" id="fitbit-user-data">Loading...</div>
+  <div class="span8 fitbit-data-view" id="fitbit-user-data">Loading...</div>
   <div class="span4">
     <div class="well">
       <h4>Change Password</h4>
@@ -33,3 +33,5 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">$(document).ready(function(){FitgemClient.init({logged_in:<%= user_signed_in? %>,linked:<%= user_signed_in? && current_user.linked? %>});});</script>

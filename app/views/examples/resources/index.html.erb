@@ -65,9 +65,7 @@ end</pre>
 
 <p>Below are the results of the above view code using your personal fitbit data.</p>
 
-<% present @fitbit_user_data, FitbitDataPresenter do |user_data_presenter| %>
-  <%= user_data_presenter.table_data %>
-<% end %>
+<div id="fitbit-user-data">Loading...</div>
 
 <h2>Body Measurements<a name="body">&nbsp;</a></h2>
 
@@ -352,3 +350,5 @@ client.create_food({
 <p>There are two food-related items that can be deleted through the API: a user's food log can be deleted, and a specific food can be removed from a user's favorites list.</p>
 <p>To delete a user's food log, you must have a reference to the food log ID that was assigned to it when it was created.</p>
 <p>To remove a food from a user's favorites list, you must have the ID of the food to remove.</p>
+
+<script type="text/javascript">$(document).ready(function(){FitgemClient.init({logged_in:<%= user_signed_in? %>,linked:<%= user_signed_in? && current_user.fitbit_account.verified? %>});});</script>

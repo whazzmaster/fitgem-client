@@ -11,6 +11,9 @@ gem 'nifty-generators'
 gem 'backbone-on-rails'
 gem 'haml'
 
+gem 'rabl'
+gem 'google-code-prettify-rails'
+
 # Production hosted on heroku
 gem 'heroku'
 

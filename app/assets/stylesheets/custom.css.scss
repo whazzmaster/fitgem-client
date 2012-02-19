@@ -42,14 +42,11 @@
 
 #main-footer { margin-top: 1em; }
 .copyright { float: right; }
+.powered-by {
+  a { text-decoration: none; }
+}
 h1 { margin-bottom: 0.3em; }
 .alert {
   a { font-weight: bold; }
 }
-header {
-  padding-bottom: 1em;
-  h1 {
-    margin: 0;
-    border-bottom: 1px solid #000;
-  }
-}
+li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 { list-style-type: inherit }

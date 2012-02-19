@@ -26,20 +26,24 @@ class Oauth::FitbitController < ApplicationController
         access_token = @client.authorize(token, secret, { :oauth_verifier => verifier })
       rescue
         flash[:alert] = "Oops, there wasn't a valid OAuth session on Fitbit. Try to authorize again."
-        redirect_to fitbit_index_path and return
+        redirect_to fitbit_connect_path and return
       end
       fitbit_account.verify!(access_token.token, access_token.secret, verifier)
-      redirect_to
+      flash[:notice] = "Congratulations! Your Fitbit account is now connected to your Fitbitclient.com account"
+      redirect_to user_profile_path
     else
       flash[:alert] = 'Could not verify your account with Fitbit'
       redirect_to root_url
     end
   end
 
+  def unlink
+  end
+
   def disconnect
     current_user.fitbit_account.clear!
-    flash[:notice] = "Your test account has been disconnected from your Fitbit account"
-    redirect_to root_url
+    flash[:notice] = "Your Fitbitclient.com account has been unlinked from your Fitbit account"
+    redirect_to user_profile_path
   end
 
 end
