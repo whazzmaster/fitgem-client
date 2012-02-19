@@ -13,13 +13,18 @@
           %li{ :class => controller.action_name == "blog" ? "active" : ""}= link_to "Blog", blog_path
         %ul.nav.pull-right
           - if user_signed_in?
-            %li
-              %p.navbar-text
-                Signed in as
+            %li.dropdown
+              %a.dropdown-toggle{:data => {:toggle => "dropdown"}}
+                Logged in as
                 = current_user.email
-            %li.divider-vertical
-            %li
-              = link_to "Logout", logout_path
+                %b.caret
+              %ul.dropdown-menu
+                - if current_user.linked?
+                  %li= link_to "Unlink Fitbit Account", fitbit_disconnect_path, :confirm => "Are you sure you want to unlink this site form your Fitbit account?"
+                - else
+                  %li= link_to "Link Fitbit Account", fitbit_path
+                %li.divider
+                %li= link_to "Logout", logout_path
           - else
             %li
               = link_to "Login", login_path
