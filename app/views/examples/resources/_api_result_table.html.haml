@@ -1,0 +1,8 @@
+%table.table-bordered.table-striped
+  %captionLive data from Fitbit.com
+  %thead
+    %tr
+      %th API Field
+      %th API Value
+  %tbody
+    = render '_api_result', :collection => items

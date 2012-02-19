@@ -1,7 +1,7 @@
 <h1>Resource Access API</h1>
 
 <div class="alert alert-info">
-	View <a href="http://wiki.fitbit.com/display/API/Resource-Access-API">fitbit.com's resource access API</a> documentation.
+	<i class="icon-book"></i> View <a href="http://wiki.fitbit.com/display/API/Resource-Access-API">fitbit.com's resource access API</a> documentation.
 </div>
 
 <p>Fitbit considers a 'resource' to be any of the nouns associated with health tracking. Examples include foods consumed, activities participated in, characteristics of your tracker device, and body measurements.</p>
@@ -20,103 +20,68 @@
 
 <h3>Retrieving User Information<a name="retrievinguserinfo">&nbsp;</a></h3>
 <p>In your controller action, for example:</p>
-<pre>
-def index
-unless current_user.fitbit_account.verified?
-  flash[:alert] = "Your test account is not connected to a Fitbit account."
-  redirect_to :action => :index and return
-end
-client = FitgemClientWrapper.new(current_user.fitbit_account)
-@info = client.user_info['user']
+<pre>def index
+  unless current_user.fitbit_account.verified?
+    flash[:alert] = "Your test account is not connected to a Fitbit account."
+    redirect_to :action => :index and return
+  end
+  client = FitgemClientWrapper.new(current_user.fitbit_account)
+  @info = client.user_info['user']
 end</pre>
 
 
-<h5><a name="userinfoinaview">User Information in a View</a></h5>
+<h3>User Information in a View<a name="userinfoinaview">&nbsp;</a></h3>
 <p>Below is example ERB code showing how the <code>@info</code> object is used in a view.</p>
-<pre>
-&lt;div class=&quot;fitbit-api-data&quot;&gt;
+<pre>&lt;div class=&quot;fitbit-api-data&quot;&gt;
   &lt;div class=&quot;line-title&quot;&gt;User Information from Fitbit.com&lt;/div&gt;
   &lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;User Id:&lt;/div&gt;
-		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;encodedId&#x27;] %&gt;&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;Display Name:&lt;/div&gt;
-		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;displayName&#x27;] %&gt;&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;City:&lt;/div&gt;
-		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;city&#x27;] %&gt;&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;State:&lt;/div&gt;
-		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;state&#x27;] %&gt;&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;Gender:&lt;/div&gt;
-		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;gender&#x27;] %&gt;&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;div class=&quot;line-item&quot;&gt;
-		&lt;div class=&quot;label&quot;&gt;Date of Birth:&lt;/div&gt;
-		&lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;dateOfBirth&#x27;] %&gt;&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-</pre>
+    &lt;div class=&quot;label&quot;&gt;User Id:&lt;/div&gt;
+    &lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;encodedId&#x27;] %&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;line-item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;Display Name:&lt;/div&gt;
+    &lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;displayName&#x27;] %&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;line-item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;City:&lt;/div&gt;
+    &lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;city&#x27;] %&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;line-item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;State:&lt;/div&gt;
+    &lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;state&#x27;] %&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;line-item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;Gender:&lt;/div&gt;
+    &lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;gender&#x27;] %&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;line-item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;Date of Birth:&lt;/div&gt;
+    &lt;div class=&quot;value&quot;&gt;&lt;%= @info[&#x27;dateOfBirth&#x27;] %&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
 
 
-<h5><a name="userinfoexample">User Information Example</a></h5>
+<h3>User Information Example<a name="userinfoexample">&nbsp;</a></h3>
+
 <p>Below are the results of the above view code using your personal fitbit data.</p>
-<% if user_signed_in? && current_user.fitbit_account.verified? %>
 
-
-  <div class="fitbit-api-data">
-    <div class="source">Live from Fitbit.com</div>
-    <div class="line-title">User Information</div>
-    <div class="line-item">
-  		<div class="label">User Id:</div>
-  		<div class="value"><%= @info['encodedId'] %></div>
-  	</div>
-  	<div class="line-item">
-  		<div class="label">Display Name:</div>
-  		<div class="value"><%= @info['displayName'] %></div>
-  	</div>
-  	<div class="line-item">
-  		<div class="label">City:</div>
-  		<div class="value"><%= @info['city'] %></div>
-  	</div>
-  	<div class="line-item">
-  		<div class="label">State:</div>
-  		<div class="value"><%= @info['state'] %></div>
-  	</div>
-  	<div class="line-item">
-  		<div class="label">Gender:</div>
-  		<div class="value"><%= @info['gender'] %></div>
-  	</div>
-  	<div class="line-item">
-  		<div class="label">Date of Birth:</div>
-  		<div class="value"><%= @info['dateOfBirth'] %></div>
-  	</div>
-  	<div class="end">&nbsp;</div>
-  </div>
-
-  <div style="clear:both;">&nbsp;</div>
-<% elsif user_signed_in? %>
-  <%= render :partial => 'examples/link' %>
-<% else %>
-  <%= render :partial => 'examples/login_and_link' %>
+<% present @fitbit_user_data, FitbitDataPresenter do |user_data_presenter| %>
+  <%= user_data_presenter.table_data %>
 <% end %>
 
+<h2>Body Measurements<a name="body">&nbsp;</a></h2>
 
-<h4><a name="body">Body Measurements</a></h4>
-<div class="information-box">
-	<p><a href="http://wiki.fitbit.com/display/API/API-Get-Body-Measurements">View the Fitbit reference page for body measurements.</a></p>
+<div class="alert alert-info">
+  <a class="icon-book"></i> <a href="http://wiki.fitbit.com/display/API/API-Get-Body-Measurements">View the Fitbit reference page for body measurements.</a>
 </div>
+
 <p>Body measurements include such things as weight and BMI. The availability of the body measurements resource is strictly controlled by the privacy settings by the fitbit user, but if they set access to public then they are available through the API.</p>
 
-<h5>Getting Access to Body Measurement Information</h5>
+<h3>Getting Access to Body Measurement Information</h3>
+
 <p>In your controller action, for example:</p>
-<pre>
-def index
+
+<pre>def index
   unless current_user.fitbit_account.verified?
     flash[:alert] = "Your test account is not connected to
       a Fitbit account."
@@ -124,12 +89,13 @@ def index
   end
   client = FitgemClientWrapper.new(current_user.fitbit_account)
   @body_measurements = client.body_measurements_on_date('today')['user']
-end
-</pre>
+end</pre>
 
 
-<h5>Body Measurements in a View</h5>
+<h3>Body Measurements in a View</h3>
+
 <p>Below is example ERB code showing how the <code>@body_measurements</code> object is used in a view.</p>
+
 <pre>
 &lt;div class=&quot;fitbit-api-data&quot;&gt;
   &lt;div class=&quot;line-title&quot;&gt;
