@@ -26,5 +26,6 @@
 
 $(document).ready(function(){
   prettyPrint();
+  $("a[rel=tooltip]").tooltip();
 });
 
