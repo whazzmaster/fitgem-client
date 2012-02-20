@@ -14,7 +14,8 @@ class FitgemClient.Routers.ResourcesRouter extends Backbone.Router
             user_view = new FitgemClient.Views.Resources.ShowUserView(model: @user)
             $('#fitbit-user-data').html(user_view.render().el)
           error: =>
-            alert "There was an error while retrieving the fitbit user data"
+            view = new FitgemClient.Views.Common.ConnectionErrorView()
+            $(".fitbit-data-view").html(view.render().el)
 
     else if @user.get("logged_in")
       view = new FitgemClient.Views.Common.AccountsNotLinkedView()
