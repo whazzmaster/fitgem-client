@@ -1,6 +1,7 @@
 .well
   %ul.nav.nav-list
-    %li= link_to "Home", root_path
+    %li= link_to "<i class='icon-home'></i> Home".html_safe, root_path
+
     %li.nav-header Guide
     %li{ :class => controller.action_name == "introduction" ? "active" : ""}= link_to "Introduction", introduction_path
     %li{ :class => controller.action_name == "getting_started" ? "active" : ""}= link_to "Getting Started", getting_started_path
@@ -8,8 +9,13 @@
     %li{ :class => controller.action_name == "fitbit_resources" ? "active" : ""}= link_to "Fitbit Resources", fitbit_resources_path
     %li{ :class => controller.action_name == "fitbit_subscriptions" ? "active" : ""}= link_to "Fitbit Subscriptions", fitbit_subscriptions_path
     %li{ :class => controller.action_name == "fitgem_on_rails" ? "active" : ""}= link_to "Fitgem on Rails", fitgem_on_rails_path
+
     %li.nav-header More Information
     %li= link_to "Fitgem Source", "http://github.com/whazzmaster/fitgem"
     %li= link_to "Fitgem Documentation", "http://rubydoc.info/github/whazzmaster/fitgem/master/frames"
     %li= link_to "Source for this site", "http://github.com/whazzmaster/fitgem-client"
     %li= link_to "Fitbit.com Developer Site", "http://dev.fitbit.com"
+
+    %li.nav-header Feedback
+    %li= link_to "Site Issues or Bugs", "http://github.com/whazzmaster/fitgem-client/issues"
+    %li= link_to "General Feedback or Ideas", "mailto:fitgem.client@whazzing.com"
