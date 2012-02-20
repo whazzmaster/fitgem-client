@@ -1,12 +1,28 @@
 <div class="page-header">
-  <h1>Fitgem Client Blog</h1>
+  <h1>Fitgem Reference Client Blog</h1>
 </div>
 
 <div class="blog-posts">
   <article class="well">
+    <aside>February 19th, 2012</aside>
+    <h2>New Guide, Twitter Bootstrap, and More</h2>
+    <p>I settled down at the February 18th <a href="http://www.meetup.com/Mad-Railers/">MadRailers Meetup</a> <a href="http://www.meetup.com/Mad-Railers/events/51780542/">Hack Day</a> determined to update this
+      reference site and get it looking nice and clean with the <a href="http://twitter.github.com/bootstrap">Twitter Bootstrap library</a>.
+      Once I dug into the source, however, I realized I could restructure the whole app to be a lot nice, code-wise, and DRY things up a bit
+      in the process.</p>
+    <p>Here's the changelog for this release:</p>
+    <ul>
+      <li>Redesigned all UI to use <a href="http://twitter.github.com/bootstrap">Twitter Bootstrap</a></li>
+      <li>Moved all Fitbit API data fetching into controllers meant to be called from Backbone.  The implication is that we don't synchronously wait for the Fitbit API response.  Instead the local page loads and then it uses a little <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> scaffold to request an API fetch if the user is logged-in and has their account linked to their Fitbit account.</li>
+      <li>Migrated from two mega-pages about resources and subscriptions to a multi-page guide based on teaching how to use the
+        gem in isolation, and then moving onto using it in a Rails application.</li>
+    </ul>
+  </article>
+
+  <article class="well">
     <aside>August 1st, 2011</aside>
     <h2>New Foods Examples</h2>
-    <p>I've updated the <%= link_to 'Resources', examples_resources_path %> page with new examples around the Foods abstraction.  Check it out to learn about searching for foods, retrieving a user's foods, logging a user's foods, creating new foods, and deleting user's logged foods.</p>
+    <p>I've updated the <%= link_to 'Resources', fitbit_resources_path %> page with new examples around the Foods abstraction.  Check it out to learn about searching for foods, retrieving a user's foods, logging a user's foods, creating new foods, and deleting user's logged foods.</p>
   </article>
 
   <article class="well">
@@ -15,8 +31,8 @@
     <p>Today I pushed a new look of this site live to the web.  It includes three main features:</p>
     <ol>
       <li>New visual look and feel</li>
-      <li><%= link_to 'New examples', examples_resources_path %> for the fitbit.com resources API</li>
-      <li>Integration with the fitbit API that will show you your own health data in the examples, if you have <%= link_to 'authorized this application', fitbit_index_path %>.</li>
+      <li><%= link_to 'New examples', fitbit_resources_path %> for the fitbit.com resources API</li>
+      <li>Integration with the fitbit API that will show you your own health data in the examples, if you have <%= link_to 'authorized this application', fitbit_connect_path %>.</li>
     </ol>
     <p>The purpose of this site is both to illustrate to developers how to use <strong>fitgem</strong> in the context of a Rails application, and also to provide a 'real world' application so I can test out the fitgem interfaces to ensure they're sufficiently usable.</p>
     <p>I'm continually working on adding new examples on how to use the various interfaces exposed from the gem.  I will be pushing them live and noting on this blog the updates as I finish them.</p>

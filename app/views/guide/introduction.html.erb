@@ -8,6 +8,83 @@
   <h1>Introduction</h1>
 </div>
 
-<p>
+<!-- <a rel="tooltip" data-original-title="first tooltip"></a> -->
 
+<p>
+So you'd like to create an interesting application on top of the data available from the <a href="http://dev.fitbit.com">Fitbit
+REST API</a>.  <b>Provided you want to use <a href="http://rubylang.org">ruby</a> to build the interesting application</b>, this guide
+will help you to get setup to use <a href="http://rubygems.org/gems/fitgem">fitgem</a> to interact with the API.
 </p>
+
+<p>
+This application exists to teach users on several levels:
+<ol>
+  <li>As a reference app for how to write a real, OAuth-enabled application (<a href="https://github.com/whazzmaster/fitgem-client">the source for this app is available on github!</a>)</li>
+  <li>As a testbed for the <b>fitgem</b> library in the context of a real, OAuth-enabled application.</li>
+  <li>As in-depth examples on how to use the <b>fitgem</b> library.  <a href="http://rubydoc.info/github/whazzmaster/fitgem/master/frames">The fitgem API is documented thoroughly</a>, but this site provides a way to look at the method calls in the context of executing a task (getting user data, logging an activity, etc.)</li>
+</ol>
+</p>
+
+<h2>Guide Topics</h2>
+<p>
+This introduction section is meant to define terms and make sure you have the right context for the rest of the guide.  The guide covers five broad topics that should get you on your way to building an app using ruby, some kind of ruby web framework, and fitgem.
+</p>
+
+<h3><%= link_to "Getting Started", getting_started_path %></h3>
+<p>
+The <b>Getting Started</b> section contains details on installing the gem and configuring it to be able to talk to the Fitbit REST API.
+By the end of this section you should be ready to start looking at how to use the fitgem classes in ruby code.
+</p>
+
+<h3><%= link_to "Using Fitgem", using_fitgem_path %></h3>
+<p>
+<b>Using Fitgem</b> walks through the conventions used by the gem, and describes how to create use the library to read to and write from the Fitbit REST API.  By the end of this section you should be able to write command-line ruby scripts that can read or write data to Fitbit.
+</p>
+
+<h3><%= link_to "Fitbit Resources", fitbit_resources_path %></h3>
+<p>
+The <b>Fitbit Resources</b> section describes the various resources you can read and write through the REST API in more detail, including
+examples for various types of resources
+</p>
+
+<h3><%= link_to "Fitbit Subscriptions", fitbit_subscriptions_path %></h3>
+<p>
+The <b>Fitbit Subscriptions</b> section describes how to use notifications to subscribe to a stream of data from the REST API.
+</p>
+
+<h3><%= link_to "Fitgem on Rails", fitgem_on_rails_path %></h3>
+<p>
+The final section, <b>Fitgem on Rails</b> walks through some potential patterns you can use in a Ruby on Rails application when
+integrating Fitbit API support.  It also discusses helpful wrapper and helper classes you can integrate into your rails app to
+provide a layer of abstraction between your views/models and the Fitbit API.
+</p>
+
+<h2>Conventions Used in This Guide</h2>
+
+<div class="well">
+<h3>Tooltips</h3>
+Throughout the guide, when you see a <a rel="tooltip" data-original-title="Additional tooltip text"><i class="icon-question-sign"></i> text link like this</a> it denotes an available tooltip.  By hovering over it you will see additional information.
+</div>
+
+<div class="well">
+<h3>Links to Github Source</h3>
+Throughout the examples there are links to the source code for this site.  When linking to code on github, the link will always appear <a href="https://github.com/whazzmaster/fitgem-client/blob/master/README.md"><i class="icon-search"></i> like this</a>.
+</div>
+
+<div class="well">
+<h3>Live Data</h3>
+<p>
+In the examples are several areas where <b>live data</b> from the Fitbit API will appear if you have created an account and linked it
+with a corresponding Fitbit account.  This functionality is part of using this application as a real-life test of the fitgem library,
+and you don't have to create or link accounts to in order to view the guide.
+</p>
+<p>
+If you do <%= link_to "create an account", signup_path %> it is easy to delete it from the <%= link_to "profile page", user_profile_path %>.
+</p>
+</div>
+
+<ul class="pager">
+  <li class="next">
+    <%= link_to "Getting Started &rarr;".html_safe, getting_started_path %>
+  </li>
+</ul>
