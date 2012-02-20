@@ -1,4 +1,11 @@
 /*********************************************************
+  Fix to show line numbers on google-prettified code
+  blocks (there seems to be a bug in the CSS included in
+  the google-code-prettify-rails gem)
+**********************************************************/
+li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 { list-style-type: inherit }
+
+/*********************************************************
   Fixes for sass-twitter-bootstrap-rails since it's
   calculating the fluid % sizes incorrectly.
 **********************************************************/
@@ -49,4 +56,6 @@ h1 { margin-bottom: 0.3em; }
 .alert {
   a { font-weight: bold; }
 }
-li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 { list-style-type: inherit }
+table {
+  dl { margin: 0; }
+}
