@@ -12,5 +12,156 @@
 </div>
 
 <p>
-Hello
+By the end of this section you should be able to retrieve and log resources with the Fitbit API.
+Included are a few helper scripts you can use to get up and running so that you can concentrate
+on learning the type and format of the data returned by Fitbit.
 </p>
+
+<h2>Set Up a Config File</h2>
+<p>
+The helper script included below uses a configuration file to store the oauth tokens.  Create a
+file called <b>.fitgem.yml</b> and add the <code>consumer_key</code> and <code>consumer_secret</code>
+you received from the Fitbit API site.
+</p>
+
+<h6>.fitgem.yml</h6>
+<pre class="prettyprint">oauth:
+  consumer_key: &lt;your consumer key here&gt;
+  consumer_secret: &lt;your consumer secret here&gt;
+</pre>
+
+<p>
+After you complete the initial authorization the script will write the complete set of oauth tokens back to
+<b>.fitgem.yml</b> so that on subsequent calls you don't need to reauthorize and can make API calls at will.
+</p>
+
+<h2>Get the Helper Script</h2>
+<p>
+Copy the code below and create a file called <b>test-fitgem.rb</b>.  You'll need to set it for execution:
+</p>
+
+<pre class="prettyprint"> $ chmod +x test-fitgem.rb</pre>
+
+<p>
+Now you can call it with:
+</p>
+
+<pre class="prettyprint"> $ ./test-fitgem.rb</pre>
+
+<p>
+The first time you call the script it will output a URL that you need to copy/paste into your browser.
+You will need to login to Fitbit.com and approve the application, and then you'll see a verifier code
+that you need to copy/paste back into the command prompt.  After hitting pasting in the verifier code
+and hitting 'Enter' you should be all set.
+</p>
+
+<a name="testscript">&nbsp;</a>
+<h6>test-fitgem.rb</h6>
+<pre class="prettyprint linenums">#!/usr/bin/env ruby
+
+require "fitgem"
+require "pp"
+require "yaml"
+
+# Load the existing yml config
+config = begin
+  Fitgem::Client.symbolize_keys(YAML.load(File.open(".fitgem.yml")))
+rescue ArgumentError => e
+  puts "Could not parse YAML: #{e.message}"
+  exit
+end
+
+client = Fitgem::Client.new(config[:oauth])
+
+# With the token and secret, we will try to use them
+# to reconstitute a usable Fitgem::Client
+if config[:oauth][:token] && config[:oauth][:secret]
+  begin
+    access_token = client.reconnect(config[:oauth][:token], config[:oauth][:secret])
+  rescue Exception => e
+    puts "Error: Could not reconnect Fitgem::Client due to invalid keys in .fitgem.yml"
+    exit
+  end
+# Without the secret and token, initialize the Fitgem::Client
+# and send the user to login and get a verifier token
+else
+  request_token = client.request_token
+  token = request_token.token
+  secret = request_token.secret
+
+  puts "Go to http://www.fitbit.com/oauth/authorize?oauth_token=#{token} and then enter the verifier code below"
+  verifier = gets.chomp
+
+  begin
+    access_token = client.authorize(token, secret, { :oauth_verifier => verifier })
+  rescue Exception => e
+    puts "Error: Could not authorize Fitgem::Client with supplied oauth verifier"
+    exit
+  end
+
+  puts 'Verifier is: '+verifier
+  puts "Token is:    "+access_token.token
+  puts "Secret is:   "+access_token.secret
+
+  user_id = client.user_info['user']['encodedId']
+  puts "Current User is: "+user_id
+
+  config[:oauth].merge!(:token => access_token.token, :secret => access_token.secret, :user_id => user_id)
+
+  # Write the whole oauth token set back to the config file
+  File.open(".fitgem.yml", "w") {|f| f.write(config.to_yaml) }
+end
+
+# ============================================================
+# Add Fitgem API calls on the client object below this line
+
+pp client.activities_on_date 'today'
+
+</pre>
+
+<p>
+In the sample script it will <a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:activities_on_date">fetch all the activities logged 'today'</a> as an example.  You can replace that line with any combination of API calls to the
+<a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client">Fitgem::Client class</a>.
+</p>
+
+<p>
+On the day I ran the above script I received the following output:
+</p>
+
+<pre class="prettyprint linenums">{"activities"=>[],
+ "goals"=>
+  {"activeScore"=>1000,
+   "caloriesOut"=>2911,
+   "distance"=>5,
+   "floors"=>10,
+   "steps"=>10000},
+ "summary"=>
+  {"activeScore"=>384,
+   "activityCalories"=>781,
+   "caloriesOut"=>2270,
+   "distances"=>
+    [{"activity"=>"total", "distance"=>0.81},
+     {"activity"=>"tracker", "distance"=>0.81},
+     {"activity"=>"loggedActivities", "distance"=>0},
+     {"activity"=>"veryActive", "distance"=>0},
+     {"activity"=>"moderatelyActive", "distance"=>0.43},
+     {"activity"=>"lightlyActive", "distance"=>0.36},
+     {"activity"=>"sedentaryActive", "distance"=>0}],
+   "elevation"=>30,
+   "fairlyActiveMinutes"=>49,
+   "floors"=>3,
+   "lightlyActiveMinutes"=>168,
+   "marginalCalories"=>431,
+   "sedentaryMinutes"=>1159,
+   "steps"=>1803,
+   "veryActiveMinutes"=>0}}
+</pre>
+
+<ul class="pager">
+  <li class="previous">
+    <%= link_to "&larr; Getting Started".html_safe, getting_started_path %>
+  </li>
+  <li class="next">
+    <%= link_to "Fitbit Resources &rarr;".html_safe, fitbit_resources_path %>
+  </li>
+</ul>

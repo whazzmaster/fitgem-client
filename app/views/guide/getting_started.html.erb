@@ -11,6 +11,103 @@
   <h1>Getting Started</h1>
 </div>
 
+<h2>Installing The Gem</h2>
 <p>
-Hello
+Use <a href="https://rubygems.org/pages/download">rubygems</a> to install the gem:
+</p>
+<pre class="prettyprint lang-bash"> $ gem install fitgem</pre>
+<p>
+If you're using Bundler add <code>gem 'fitgem'</code> to your Gemfile and run <code>bundle install</code>.
+</p>
+
+<h2>Registering Your App</h2>
+<p>
+<b>In order to make calls to the Fitbit REST API, you'll need to have a set of developer keys.</b>  To get them, go to the
+<a href="http://dev.fitbit.com">Fitbit Developer Site</a>, create an account, and then <a href="https://dev.fitbit.com/apps/new">register
+a new app</a> in order to get a set of oauth credentials.
+</p>
+<p>
+If this is the first time you are registering an app and you're looking to test out the API then create a personal test app.
+Select the appropriate type of application you are going to be making (Desktop vs. Browser); if you are going to start learning
+about the API by writing some command-line scripts then choose 'desktop.'
+</p>
+<p>
+The key items you'll need are the <b>consumer key</b> and <b>consumer secret</b>; these are the keys required to create a <code>Fitgem::Client</code> instance and start the oauth
+login process (<a href="https://wiki.fitbit.com/display/API/OAuth+Authentication+in+the+Fitbit+API"><i class="icon-search"></i> described in more detail here</a>).
+</p>
+
+<h2>The OAuth Process</h2>
+<p>
+Let's walk through creating a usable client to the Fitbit API. Create an instance of <code>Fitgem::Client</code> and supply the appropriate
+<b>consumer key</b> and <b>consumer secret</b>.
+</p>
+<pre class="prettyprint lang-ruby">client = Fitgem::Client.new(:consumer_key => MY_CONSUMER_KEY, :consumer_secret => MY_CONSUMER_SECRET)</pre>
+
+<p>
+You then have two options:
+<ul>
+  <li>
+    <b>If you don't have the user's access token credentials</b>: Go through the steps to have the user authorize your app with Fitbit (i.e., First Use)
+  </li>
+  <li><b>If you have the user's access token credentials</b>: Use the <code>reconnect</code> method to reconstitute the oauth connector.</li>
+</ul>
+</p>
+
+<h3>First Use</h3>
+<p>
+I'm going to be honest here: <b>getting the access token for the first time is the toughest aspect of the OAuth process.</b> Going through the steps below, always keep in mind that if something isn't working, check that you are referencing the correct token/secret combination.  Unfortunately, the oauth world contains a multitude of things called tokens and secrets, and you must always use the correct one at the correct time.
+</p>
+<p>
+If at any time the steps need clarification, check out the <%= link_to "test script", using_fitgem_path+"#testscript" %> to view
+all of the steps in context.
+</p>
+<p>
+<ol>
+  <li>Get a client object as per the above code</li>
+  <li>
+    <p>Get a <code>request_token</code> from the client. The <code>request_token</code> gives you a set of tokens that you use when
+    doing the first use scenario.</p>
+    <div class="alert alert-info">
+      <h4 class="alert-heading">Important!</h4>
+      During the authorization process you must store the <code>request_token</code> data; you'll need to reference the <code>token</code> and <code>secret</code> after fitbit.com generates the crucial <code>oauth_verifier</code> value.
+    </div>
+    <pre class="prettyprint lang-ruby">request_token = client.request_token</pre>
+  </li>
+  <li>
+    <p>Use the <code>request_token.token</code> value to craft an authorization URL to start the authorization process.</p>
+    <pre class="prettyprint lang-ruby">token = request_token.token
+auth_url = "http://www.fitbit.com/oauth/authorize?oauth_token=#{token}"</pre>
+  </li>
+  <li>
+    <p>Direct the user to the URL where they must explicitly grant your application access to their data.</p>
+    <pre class="prettyprint lang-ruby">puts "Go to #{auth_url} and then enter the verifier code below"</pre>
+  </li>
+  <li>
+    <p>The user will then be redirected back to the callback URL you previously setup on the Fitbit API Developer site. When working on the command line client there will be no server to redirect to so the URL shouldn't resolve.  You should have access to the URL istelf, however, including the HTTP parameters.</p>
+  </li>
+  <li>
+    <p>The user should enter the <code>oauth_verifier</code> value.  <b>This is the crucial value you'll need to generate an</b> <code>access_token</code> <b>and make API calls</b>.</p>
+  </li>
+  <li>
+    <p>Now, using the previously generated <code>request_token.secret</code>, <code>request_token.token</code>, and the supplied <code>oauth_verifier</code>, call <code>client.authorize</code> to complete the token.</p>
+    <pre class="prettyprint lang-ruby">verifier = gets.chomp
+access_token = client.authorize(request_token.token, request_token.secret, { :oauth_verifier => verifier })</pre>
+  </li>
+  <li>
+    <p>You should now be able to make API calls.</p>
+    <pre class="prettyprint lang-ruby">user_data = client.user_info['user']</pre>
+  </li>
+  <li>Store the <code>access_token.token</code> and <code>access_token.secret</code> for subsequent API calls.  You can use them to reconstitute the client without needing further authorization.</li>
+</ol>
+</p>
+
+<h3>Reconnect</h3>
+<p>
+
+</p>
+
+<h2>Get the Source (Optional)</h2>
+<p>
+If you'd like to fix issues any issues, add new functionality, or even just see how fitgem works internally you can grab the code
+from <a href="http://github.com/whazzmaster/fitgem"><i class="icon-search"></i> github</a>
 </p>
