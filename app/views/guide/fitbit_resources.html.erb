@@ -165,40 +165,62 @@ of error information, or a hash containing the updated body information.
    "weight"=>190}}
 </pre>
 
-<h5>Body Measurements Example</h5>
+<h3>Body Measurements Example</h3>
 <p>
 If you have connected your account with your fitbit account you will see live data displayed below.
 </p>
 
 <div class="fitbit-data-view" id="fitbit-body-measurements-data">Loading...</div>
 
-<h4><a name="activities">Activities</a></h4>
-<div class="information-box">
-	<p>View the Fitbit reference page for <a href="http://wiki.fitbit.com/display/API/API-Log-Activity">logging</a> and <a href="http://wiki.fitbit.com/display/API/API-Get-Time-Series">retrieving</a> activity data.</a></p>
-</div>
-<p>Activity data can be logged to the fitbit.com service, deleted from the service, and queried using various time-based or metadata-based methods.</p>
+<h2>Activities</h2>
+<p>
+Using the fitgem methods activity information can be logged to the fitbit.com service, deleted from the service, and queried using various time-based or metadata-based methods.  The most useful pieces of information when working with activities are the <b>activity id</b>
+and the <b>activity log id</b>.  The former refers to a definition of an activity, while the latter refers to the actual logging
+of a specific activity for a user on a date.
+</p>
 
-<h5><a name="retrieving-activities">Retrieving Activity Information</a></h5>
-<p>Once you have an instance of the fitgem client object (for which <code>client.verified? == true</code> you have the ability to retrieve activity data in <strong>four ways</strong>.</p>
-<ul>
-  <li>Time series (custom date ranges)</li>
-  <li>Recent activities</li>
-  <li>Frequent activities</li>
-  <li>Favorite activities</li>
-</ul>
-<pre>
-unless current_user.fitbit_account.verified?
-  flash[:alert] = "Your test account is not connected to
-    a Fitbit account."
-  redirect_to :action => :index and return
-end
-client = FitgemClientWrapper.new(current_user.fitbit_account)
-@recent_activities = client.recent_activities
-@frequent_activities = client.frequent_activities
-@favorite_activities = client.favorite_activities
-@activities_today = client.activities_on_date('today')
-@activities_on_march_third = client.activities_on_date('2011-03-03')
+<div class="alert alert-info">
+  <i class="icon-book"></i>
+	View the Fitbit reference page for <a href="http://wiki.fitbit.com/display/API/API-Log-Activity">logging</a> and <a href="http://wiki.fitbit.com/display/API/API-Get-Time-Series">retrieving</a> activity data.
+</div>
+
+<h3>Fetching Activity Information</h3>
+<p>
+Once you have an instance of the fitgem client object (for which <code>client.verified? == true</code> you have the ability to retrieve activity data in <strong>four ways</strong>.
+</p>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <td><code>frequent_activities()</code></td>
+      <td>Fetch the current user's frequently logged activities</td>
+      <td><a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:frequent_activities"><i class="icon-info-sign"></i> Documentation</a></td>
+    </tr>
+    <tr>
+      <td><code>recent_activities()</code></td>
+      <td>Fetch the current user's recently logged activities</td>
+      <td><a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:recent_activities"><i class="icon-info-sign"></i> Documentation</a></td>
+    </tr>
+    <tr>
+      <td><code>favorite_activities()</code></td>
+      <td>Fetch the current user's favorite activities</td>
+      <td><a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:favorite_activities"><i class="icon-info-sign"></i> Documentation</a></td>
+    </tr>
+    <tr>
+      <td><code>activities_on_date(date)</code></td>
+      <td>Fetch all activities logged on a specified date</td>
+      <td><a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:activities_on_date"><i class="icon-info-sign"></i> Documentation</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="prettyprint linenums lang-ruby">recent_activities = client.recent_activities
+frequent_activities = client.frequent_activities
+favorite_activities = client.favorite_activities
+activities_today = client.activities_on_date('today')
+activities_on_march_third = client.activities_on_date('2011-03-03')
 </pre>
+
 <p>The method <code>activities_on_date(date)</code> takes either a String in YYYY-MM-DD format, the strings 'today' or 'yesterday', or a Ruby Date object to retrieve relative dates.</p>
 <p>The hash returned from the activities methods contains a list of the activities found in the query, as well as summary information about the activities.  An example is shown below (please note this is static data for illustration purposes.)</p>
 <pre>
