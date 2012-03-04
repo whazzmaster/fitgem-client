@@ -5,6 +5,7 @@ class FitgemClient.Routers.ResourcesRouter extends Backbone.Router
   initialize: (options) ->
     Backbone.emulateHTTP = true
     @user = new FitgemClient.Models.User(options)
+    @body_measurements = new FitgemClient.Models.BodyMeasurements()
 
   show: ->
     if @user.get("linked")
@@ -13,6 +14,15 @@ class FitgemClient.Routers.ResourcesRouter extends Backbone.Router
           success: =>
             user_view = new FitgemClient.Views.Resources.ShowUserView(model: @user)
             $('#fitbit-user-data').html(user_view.render().el)
+          error: =>
+            view = new FitgemClient.Views.Common.ConnectionErrorView()
+            $(".fitbit-data-view").html(view.render().el)
+
+      if $('#fitbit-body-measurements-data')
+        @body_measurements.fetch
+          success: =>
+            user_view = new FitgemClient.Views.Resources.ShowBodyMeasurementsView(model: @body_measurements)
+            $('#fitbit-body-measurements-data').html(user_view.render().el)
           error: =>
             view = new FitgemClient.Views.Common.ConnectionErrorView()
             $(".fitbit-data-view").html(view.render().el)

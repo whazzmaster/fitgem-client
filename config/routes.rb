@@ -18,14 +18,6 @@ FitgemClient::Application.routes.draw do
     post "disconnect", :controller => "oauth/fitbit", :action => :disconnect, :as => :fitbit_disconnect
   end
 
-  # Routing for the code examples
-  get "examples", :controller => :examples, :action => :index
-  namespace :examples do
-    get "resources", :controller => :resources, :action => :index
-    get "subscriptions", :controller => :subscriptions, :action => :index
-    get "fitgem", :controller => :fitgem, :action => :index
-  end
-
   # Routing for the pages of the guide
   scope "/guide" do
     get "introduction", :controller => :guide, :action => :introduction
@@ -39,6 +31,7 @@ FitgemClient::Application.routes.draw do
   # Routes for the api interfaces
   namespace :api do
     get "user", :controller => "users", :action => "show"
+    get "body_measurements", :controller => "body_measurements", :action => "show"
   end
 
   # Miscellaneous pages

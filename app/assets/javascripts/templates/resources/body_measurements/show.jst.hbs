@@ -1,0 +1,99 @@
+<table class="table-bordered table-striped">
+  <caption>Live Body Measurement Data from <a href="http://www.fitbit.com">Fitbit.com</caption>
+  <thead>
+    <tr>
+      <th>Field Name</th>
+      <th>Value from REST API</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bicep Measurement</td>
+      {{#if bicep}}
+        <td><b>{{bicep}}</b></td>
+      {{else}}
+        <td>None recorded today</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td>BMI</td>
+      {{#if bmi}}
+        <td><b>{{bmi}}</b></td>
+      {{else}}
+        <td>None recorded today</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td>Calf Measurement</td>
+      {{#if calf}}
+        <td><b>{{calf}}</b></td>
+      {{else}}
+        <td>None recorded today</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td>Chest Measurement</td>
+      {{#if chest}}
+        <td><b>{{chest}}</b></td>
+      {{else}}
+        <td>None recorded today</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td>Body Fat Percentage</td>
+      {{#if fat}}
+        <td><b>{{fat}}</b></td>
+      {{else}}
+        <td>None recorded today</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td>Forearm Measurement</td>
+      {{#if forearm}}
+        <td><b>{{forearm}}</b></td>
+      {{else}}
+        <td>None recorded today</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td>Hips Measurement</td>
+      {{#if hips}}
+        <td><b>{{hips}}</b></td>
+      {{else}}
+        <td>None recorded today</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td>Neck Measurement</td>
+      {{#if neck}}
+        <td><b>{{neck}}</b></td>
+      {{else}}
+        <td>None recorded today</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td>Thigh Measurement</td>
+      {{#if thigh}}
+        <td><b>{{thigh}}</b></td>
+      {{else}}
+        <td>None recorded today</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td>Waist Measurement</td>
+      {{#if waist}}
+        <td><b>{{waist}}</b></td>
+      {{else}}
+        <td>None recorded today</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td>Weight</td>
+      {{#if weight}}
+        <td><b>{{weight}}</b></td>
+      {{else}}
+        <td>None recorded today</td>
+      {{/if}}
+    </tr>
+  </tbody>
+</table>

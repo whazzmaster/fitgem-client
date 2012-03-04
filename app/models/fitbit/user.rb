@@ -1,10 +1,5 @@
 class Fitbit::User < Fitbit::Data
-  attr_accessor :logged_in, :linked, :fitbit_id, :display_name, :city, :state, :gender, :date_of_birth
-
-  def initialize(logged_in)
-    @logged_in = logged_in
-    @linked = false
-  end
+  attr_accessor :fitbit_id, :display_name, :city, :state, :gender, :date_of_birth
 
   def load(data)
     if @logged_in

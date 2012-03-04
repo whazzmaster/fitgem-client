@@ -11,21 +11,27 @@
   <h1>Fitbit Resources</h1>
 </div>
 
-<div class="alert alert-info">
-	<i class="icon-book"></i> View <a href="http://wiki.fitbit.com/display/API/Resource-Access-API">fitbit.com's resource access API</a> documentation.
-</div>
-
 <p>
-Fitbit considers a 'resource' to be any of the nouns associated with health tracking. Examples include foods consumed, activities participated in, characteristics of your tracker device, and body measurements.
+Fitbit considers a 'resource' to be any of the nouns associated with health tracking. Examples include foods consumed, activities participated in, characteristics of your tracker device, and body measurements.  From the <i class="icon-search"></i> <a href="https://wiki.fitbit.com/display/API/Fitbit+Resource+Access+API">Fitbit Resource API page</a>:
+<blockquote>The Resource Access API is the main part of Fitbit API and contains of long list of REST endpoints that allow reading and modifying user resources via their URLs. Currently we provide methods to work with tracker collections and their metadata, profile and social resources and actions, user's device data and general system resources. The most basic example of resources are user's activities and food log entries.</blockquote>
+
 </p>
 
 <h2>Available Resources</h2>
 <p>
 Each resource below will include sample code on how to access it using fitgem. I will generally defer to the Fitbit Developer site for complete API documentation as I don't wish this site to get out of date too quickly.  Instead I'll focus on just the mechanics of using the library to interface with the API.
 </p>
+
 <p>
-If you are logged into the site and have connected your login with a Fitbit account, then in each section you'll also see the relevant data retrieved using the API described there.
+If you are logged into this site and have connected your login with a Fitbit account, then in each section you'll also see the relevant data retrieved using the API described there.
 </p>
+
+<div class="alert alert-info">
+	<h4 class="alert-heading">Important!</h4>
+	All code examples assume you already have access to an instance of the <code>Fitgem::Client</code> class, referred to as
+	<code>client</code> in the code.  They include output as an example of the structure of the data that's returned; take care that
+	the API may evolve so pay more attention to the structure than specific fields.
+</div>
 
 <h2>User Information</h2>
 <p>
@@ -37,56 +43,134 @@ The user information interface is used to access whatever profile information th
 	<a href="http://wiki.fitbit.com/display/API/API-Get-User-Info">View the Fitbit reference page for user information.</a>
 </div>
 
-<h3>Retrieving User Information</h3>
+<h3>Fetching User Information</h3>
 <p>
-In your controller action, for example:
+The User Info resource includes information about the user's account, as well as the profile information (city, state, country, nickname).
+The data is available under the 'user' key in the returned hash.
 </p>
-<pre class="prettyprint linenums">def index
-  unless current_user.fitbit_account.verified?
-    flash[:alert] = "Your test account is not connected to a Fitbit account."
-    redirect_to :action => :index and return
-  end
-  client = FitgemClientWrapper.new(current_user.fitbit_account)
-  @info = client.user_info['user']
-end</pre>
-
+<pre class="prettyprint linenums">info = client.user_info['user']</pre>
+<p>
+The output (some data has been removed for obvious reasons):
+</p>
+<pre class="prettyprint linenums lang-ruby">p info
+{"avatar"=>
+  "http://cache.fitbit.com/7DEC9854-1E62-0DFF-C8E7-C932911A9D97_profile_100_square.png",
+ "city"=>"Madison",
+ "country"=>"US",
+ "dateOfBirth"=>"****-**-**",
+ "displayName"=>"whazzmaster",
+ "distanceUnit"=>"en_US",
+ "encodedId"=>"******",
+ "fullName"=>"****** **********",
+ "gender"=>"MALE",
+ "glucoseUnit"=>"en_US",
+ "height"=>69.01574803149606,
+ "heightUnit"=>"en_US",
+ "locale"=>"en_US",
+ "memberSince"=>"****-**-**",
+ "nickname"=>"whazzmaster",
+ "offsetFromUTCMillis"=>-21600000,
+ "state"=>"WI",
+ "strideLengthRunning"=>0,
+ "strideLengthWalking"=>0,
+ "timezone"=>"America/Chicago",
+ "waterUnit"=>"METRIC",
+ "weight"=>***.**,
+ "weightUnit"=>"en_US"}
+</pre>
 
 <h3>User Information Example</h3>
 <p>
-Below are the results of the above view code using your personal fitbit data.
+If you have connected your account with your fitbit account you will see live data displayed below.
 </p>
 
 <div class="fitbit-data-view" id="fitbit-user-data">Loading...</div>
 
 <h2>Body Measurements<a name="body">&nbsp;</a></h2>
+<p>
+Body measurements include such things as weight, body fat percentage, and BMI. The availability of the body measurements resource is strictly controlled by the privacy settings by the fitbit user, but if they set access to public then they are available through the API. There are two methods dealing with body_measurements:
+<table class="table">
+  <tbody>
+    <tr>
+      <td><code>body_measurements_on_date(date)</code></td>
+      <td>Fetch the body measurements for a specific date</td>
+      <td><a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:body_measurements_on_date"><i class="icon-info-sign"></i> Documentation</a></td>
+    </tr>
+    <tr>
+      <td><code>log_body_measurement(options)</code></td>
+      <td>Save body measurements for a specific date</td>
+      <td><a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:log_body_measurements"><i class="icon-info-sign"></i> Documentation</a></td>
+    </tr>
+  </tbody>
+</table>
+</p>
 
 <div class="alert alert-info">
   <a class="icon-book"></i>
   <a href="http://wiki.fitbit.com/display/API/API-Get-Body-Measurements">View the Fitbit reference page for body measurements.</a>
 </div>
 
-<p>Body measurements include such things as weight and BMI. The availability of the body measurements resource is strictly controlled by the privacy settings by the fitbit user, but if they set access to public then they are available through the API.</p>
+<h3>Fetching Body Measurement Information</h3>
+<p>
+Fetching body measurement data is based on the date you're interested in.  Dates may be supplied as a Date,
+DateTime, or a String in the format <code>yyyy-MM-dd</code>.  There are two special string values that are also
+accepted: "today" and "yesterday."
+</p>
+<pre class="prettyprint linenums lang-ruby">body_measurements = client.body_measurements_on_date('today')</pre>
 
-<h3>Getting Access to Body Measurement Information</h3>
+<p>
+The output:
+</p>
+<pre class="prettyprint linenums lang-ruby">p body_measurements
+{"body"=>
+  {"bicep"=>0,
+   "bmi"=>0,
+   "calf"=>0,
+   "chest"=>0,
+   "fat"=>0,
+   "forearm"=>0,
+   "hips"=>0,
+   "neck"=>0,
+   "thigh"=>0,
+   "waist"=>0,
+   "weight"=>0},
+ "goals"=>{"weight"=>165}}
+</pre>
 
-<p>In your controller action, for example:</p>
+<h3>Saving Body Measurement Information</h3>
+<p>
+Saving body measurement information for a specific date involves a minimum of two pieces of information: the date to log for and
+at least one piece of body measurement information. Dates may be supplied as a Date,
+DateTime, or a String in the format <code>yyyy-MM-dd</code>.  There are two special string values that are also
+accepted: "today" and "yesterday."
+</p>
+<pre class="prettyprint linenums lang-ruby">resp = client.log_body_measurement(:date => 'today', :weight => 190)</pre>
 
-<pre>def index
-  unless current_user.fitbit_account.verified?
-    flash[:alert] = "Your test account is not connected to
-      a Fitbit account."
-    redirect_to :action => :index and return
-  end
-  client = FitgemClientWrapper.new(current_user.fitbit_account)
-  @body_measurements = client.body_measurements_on_date('today')['user']
-end</pre>
-
-
+<p>
+When saving body measurement information, you will either get a hash containing an "errors" key whose value is an array
+of error information, or a hash containing the updated body information.
+</p>
+<pre class="prettyprint linenums lang-ruby">p resp
+{"body"=>
+  {"bicep"=>0,
+   "bmi"=>28.05,
+   "calf"=>0,
+   "chest"=>0,
+   "fat"=>25,
+   "forearm"=>0,
+   "hips"=>0,
+   "neck"=>0,
+   "thigh"=>0,
+   "waist"=>0,
+   "weight"=>190}}
+</pre>
 
 <h5>Body Measurements Example</h5>
-<p>Below are the results of the above view code using your personal fitbit data. You may not see anything here if you have not flagged weight for public view.</p>
+<p>
+If you have connected your account with your fitbit account you will see live data displayed below.
+</p>
 
-<div class="fitbit-data-view" id="fitbit-body-measurement-data">Loading...</div>
+<div class="fitbit-data-view" id="fitbit-body-measurements-data">Loading...</div>
 
 <h4><a name="activities">Activities</a></h4>
 <div class="information-box">
