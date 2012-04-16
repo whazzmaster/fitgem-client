@@ -5,7 +5,6 @@ tmp/
 config/database.yml
 config/deploy/
 config/deploy.rb
-config/app_config.yml
 .rvmrc
 Capfile
 .sass-cache/
