@@ -222,9 +222,10 @@ activities_on_march_third = client.activities_on_date('2011-03-03')
 </pre>
 
 <p>The method <code>activities_on_date(date)</code> takes either a String in YYYY-MM-DD format, the strings 'today' or 'yesterday', or a Ruby Date object to retrieve relative dates.</p>
+
 <p>The hash returned from the activities methods contains a list of the activities found in the query, as well as summary information about the activities.  An example is shown below (please note this is static data for illustration purposes.)</p>
-<pre>
-{"activities"=>
+
+<pre class="prettyprint linenums lang-ruby">{"activities"=>
   [{"activityId"=>1020,
     "activityParentId"=>90001,
     "activityParentName"=>"Bicycling",
@@ -281,20 +282,17 @@ activities_on_march_third = client.activities_on_date('2011-03-03')
    "steps"=>4845,
    "veryActiveMinutes"=>22}}
 </pre>
+
 <p>There is much you can distill from the returned data; in addition to the list of logged activities you get access to total distances traveled during activities, total 'active core' (a Fitbit measure of how active you are over the course of the day), and an analysis (via the Fitbit tracker) of how your activities break down across the sedentary-to-highly-active spectrum.</p>
 
 
-<h5><a name="logging-activities">Logging Activity Information</a></h5>
+<h3>Logging Activity Information</h3>
+
 <p>You may log completed activities for the user with the <code>log_activity</code> method.  It takes a hash of options (explained in more detail in the <a href="https://github.com/whazzmaster/fitgem/blob/master/lib/fitgem/activities.rb">comments</a>), and revolves around knowledge of the activity id.  See the <a href="http://wiki.fitbit.com/display/API/API-Log-Activity">fitbit documentation</a> for more information on the various types of activity id's.</p>
+
 <p>The example below begins with the assumption that we know the activity id of the activity we want to log.  <strong>In practice</strong>, you'll likely need to search or browse for the activity by name to get the correct activity id.</p>
-<pre>
-unless current_user.fitbit_account.verified?
-  flash[:alert] = "Your test account is not connected to
-    a Fitbit account."
-  redirect_to :action => :index and return
-end
-client = FitgemClientWrapper.new(current_user.fitbit_account)
-client.log_activity({
+
+<pre class="prettyprint linenums lang-ruby">client.log_activity({
   :activityId => 1020, # Bicyling
   :durationMillis => 1320000,
   :startTime => "08:33",
@@ -304,70 +302,59 @@ client.log_activity({
 })
 </pre>
 
+<h3>Deleting Activity Information</h3>
 
-<h5><a name="removing-activities">Deleting Activity Information</a></h5>
-<h6>Deleting a Logged Activity</h6>
 <p>You can delete previously-logged activities if you have the id that was assigned to the logged activity.  The method call is straightforward; pass the logged-activity-id to <code>delete_logged_activity</code>.</p>
-<h6>Removing a Favorite Activity</h6>
+
+<h3>Removing a Favorite Activity</h3>
+
 <p>It is also possible to remove an activity from a user's favorite activity list. Simply call <code>remove_favorite_activity</code> and pass in the activity id.</p>
 
 
-<h4><a name="foods">Foods</a></h4>
+<h2>Foods</h2>
+
 <p>There are two aspects of foods that are tracked by Fitbit: the list of foods that can be used to log user meals, as well as food activity specific to a user.</p>
 
+<h3>Food Search and Food Units</h3>
 
-<h5><a name="search-foods">Food Search and Food Units</a></h5>
-<div class="information-box">
-	<p>View the Fitbit reference page for searching <a href="http://wiki.fitbit.com/display/API/API-Search-Foods">foods</a> and retrieving <a href="http://wiki.fitbit.com/display/API/API-Get-Food-Units">food units</a> for more information on the underlying REST API.</p>
-	<p><a href="https://github.com/whazzmaster/fitgem/blob/master/lib/fitgem/foods.rb">View the fitgem code for foods</a> to learn more about the Ruby API.</p>
+<div class="alert alert-info">
+  <i class="icon-book"></i>
+	View the Fitbit reference page for searching <a href="http://wiki.fitbit.com/display/API/API-Search-Foods">foods</a> and retrieving <a href="http://wiki.fitbit.com/display/API/API-Get-Food-Units">food units</a> for more information on the underlying REST API.
 </div>
+
 <p>Generally, in order to log a user's consumption of a specific food you will need to first get the food ID of the item from Fitbit. You then use the ID to refer to the food when subsequently logging it.  Use the food search API to get a list of potential foods from the Fitbit library.</p>
+
 <p>In order to log food, you'll also need to supply the food unit to use.  Fitgem provides the <code>foods_units</code> method to retrieve the list of food units.</p>
-<pre>
-unless current_user.fitbit_account.verified?
-  flash[:alert] = "Your test account is not connected to
-    a Fitbit account."
-  redirect_to :action => :index and return
-end
-client = FitgemClientWrapper.new(current_user.fitbit_account)
-@search_results = client.find_food('banana')
+
+<pre class="prettyprint linenums lang-ruby">@search_results = client.find_food('banana')
 @food_units = client.foods_units
 </pre>
 
 
-<h5><a name="retrieving-user-foods">Retrieving User Foods</a></h5>
-<div class="information-box">
-	<p>View the Fitbit reference page for retrieving <a href="http://wiki.fitbit.com/display/API/API-Get-Recent-Foods">recent</a>, <a href="http://wiki.fitbit.com/display/API/API-Get-Frequent-Foods">frequent</a>, or <a href="http://wiki.fitbit.com/display/API/API-Get-Favorite-Foods">favorite</a> food data for a specific user for more information on the underlying REST API..</a></p>
-	<p><a href="https://github.com/whazzmaster/fitgem/blob/master/lib/fitgem/foods.rb">View the fitgem code for foods</a> to learn more about the Ruby API.</p>
+<h3>Retrieving User Foods</h3>
+
+<div class="alert alert-info">
+  <i class="icon-book"></i>
+	View the Fitbit reference page for retrieving <a href="http://wiki.fitbit.com/display/API/API-Get-Recent-Foods">recent</a>, <a href="http://wiki.fitbit.com/display/API/API-Get-Frequent-Foods">frequent</a>, or <a href="http://wiki.fitbit.com/display/API/API-Get-Favorite-Foods">favorite</a> food data for a specific user for more information on the underlying REST API..</a>
 </div>
-<p>Much like <a href="#activities">activities</a>, a user's food preferences can be access via the recent, frequent, or favorite metadata collections.</p>
-<pre>
-unless current_user.fitbit_account.verified?
-  flash[:alert] = "Your test account is not connected to
-    a Fitbit account."
-  redirect_to :action => :index and return
-end
-client = FitgemClientWrapper.new(current_user.fitbit_account)
-@recent_foods = client.recent_foods
+
+<p>Much like when working with activities a user's food preferences can be access via the recent, frequent, or favorite metadata collections.</p>
+
+<pre class="prettyprint linenums lang-ruby">@recent_foods = client.recent_foods
 @frequent_foods = client.frequent_foods
 @favorite_foods = client.favorite_foods
 </pre>
 
+<h3>Logging User Foods</h3>
 
-<h5><a name="logging-user-foods">Logging User Foods</a></h5>
-<div class="information-box">
-	<p>View the Fitbit reference page for <a href="http://wiki.fitbit.com/display/API/API-Log-Food">logging users' foods</a> for more information on the underlying REST API..</p>
-	<p><a href="https://github.com/whazzmaster/fitgem/blob/master/lib/fitgem/foods.rb">View the fitgem code for foods</a> to learn more about the Ruby API.</p>
+<div class="alert alert-info">
+  <i class="icon-book"></i>
+	View the Fitbit reference page for <a href="http://wiki.fitbit.com/display/API/API-Log-Food">logging users' foods</a> for more information on the underlying REST API.
 </div>
-<p>To log the consumption of a food item, you must supply several IDs of items that would be found through <a href="#search-foods">searching for foods</a> or through the <a href="#retrieving-users-foods">metadata collections (recent, frequent, or favorites)</a>. </p>
-<pre>
-unless current_user.fitbit_account.verified?
-  flash[:alert] = "Your test account is not connected to
-    a Fitbit account."
-  redirect_to :action => :index and return
-end
-client = FitgemClientWrapper.new(current_user.fitbit_account)
-client.log_food({
+
+<p>To log the consumption of a food item, you must supply several IDs of items that would be found through searching for foods or through the metadata collections (recent, frequent, or favorites). </p>
+
+<pre class="prettyprint linenums lang-ruby">client.log_food({
   :foodId => 81170, # BACON!
   :mealTypeId => 1, # Breakfast!
   :unitId => 311,
@@ -376,21 +363,16 @@ client.log_food({
 })
 </pre>
 
+<h3>Creating User Foods</h3>
 
-<h5><a name="creating-user-foods">Creating User Foods</a></h5>
-<div class="information-box">
-	<p>View the Fitbit reference page for <a href="http://wiki.fitbit.com/display/API/API-Create-Food">creating users' foods</a> for more information on the underlying REST API..</p>
-	<p><a href="https://github.com/whazzmaster/fitgem/blob/master/lib/fitgem/foods.rb">View the fitgem code for foods</a> to learn more about the Ruby API.</p>
+<div class="alert alert-info">
+  <i class="icon-book"></i>
+	View the Fitbit reference page for <a href="http://wiki.fitbit.com/display/API/API-Create-Food">creating users' foods</a> for more information on the underlying REST API.
 </div>
+
 <p>Sometimes a user may wish to log a food that isn't in the official list you can query through Fitbit.  You can use the <code>create_food</code> method to create private foods to log.  The API doesn't expose as many options for customizing created foods as the Fitbit website does, but it will allow you create a basic food profile that can be expanded later via the website.</p>
-<pre>
-unless current_user.fitbit_account.verified?
-  flash[:alert] = "Your test account is not connected to
-    a Fitbit account."
-  redirect_to :action => :index and return
-end
-client = FitgemClientWrapper.new(current_user.fitbit_account)
-client.create_food({
+
+<pre class="prettyprint linenums lang-ruby">client.create_food({
   :name => "Amplified Wheybolic Extreme 60 (Cookies & Cream)",
   :defaultFoodMeasurementUnitId => "301",
   :defaultServingSize => "3",
@@ -400,14 +382,17 @@ client.create_food({
 })
 </pre>
 
+<h3>Deleting User Foods</h3>
 
-<h5><a name="deleting-user-foods">Deleting User Foods</a></h5>
-<div class="information-box">
-	<p>View the Fitbit reference page for <a href="http://wiki.fitbit.com/display/API/API-Delete-Food-Log">deleting users' food logs</a> and <a href="http://wiki.fitbit.com/display/API/API-Delete-Favorite-Food">removing a food from users' favorites list</a> for more information on the underlying REST API.</p>
-	<p><a href="https://github.com/whazzmaster/fitgem/blob/master/lib/fitgem/foods.rb">View the fitgem code for foods</a> to learn more about the Ruby API.</p>
+<div class="alert alert-info">
+  <i class="icon-book"></i>
+	View the Fitbit reference page for <a href="http://wiki.fitbit.com/display/API/API-Delete-Food-Log">deleting users' food logs</a> and <a href="http://wiki.fitbit.com/display/API/API-Delete-Favorite-Food">removing a food from users' favorites list</a> for more information on the underlying REST API.
 </div>
+
 <p>There are two food-related items that can be deleted through the API: a user's food log can be deleted, and a specific food can be removed from a user's favorites list.</p>
+
 <p>To delete a user's food log, you must have a reference to the food log ID that was assigned to it when it was created.</p>
+
 <p>To remove a food from a user's favorites list, you must have the ID of the food to remove.</p>
 
 <script type="text/javascript">$(document).ready(function(){FitgemClient.init({logged_in:<%= user_signed_in? %>,linked:<%= user_signed_in? && current_user.fitbit_account.verified? %>});});</script>
