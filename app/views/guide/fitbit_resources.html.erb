@@ -97,7 +97,7 @@ Body measurements include such things as weight, body fat percentage, and BMI. T
       <td><a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:body_measurements_on_date"><i class="icon-info-sign"></i> Documentation</a></td>
     </tr>
     <tr>
-      <td><code>log_body_measurement(options)</code></td>
+      <td><code>log_body_measurements(options)</code></td>
       <td>Save body measurements for a specific date</td>
       <td><a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:log_body_measurements"><i class="icon-info-sign"></i> Documentation</a></td>
     </tr>
@@ -144,7 +144,7 @@ at least one piece of body measurement information. Dates may be supplied as a D
 DateTime, or a String in the format <code>yyyy-MM-dd</code>.  There are two special string values that are also
 accepted: "today" and "yesterday."
 </p>
-<pre class="prettyprint linenums lang-ruby">resp = client.log_body_measurement(:date => 'today', :weight => 190)</pre>
+<pre class="prettyprint linenums lang-ruby">resp = client.log_body_measurements(:date => 'today', :weight => 190)</pre>
 
 <p>
 When saving body measurement information, you will either get a hash containing an "errors" key whose value is an array
