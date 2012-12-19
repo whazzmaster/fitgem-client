@@ -21,7 +21,7 @@ describe WelcomeController do
 
   context "when the user is logged in and the fitbit account is not verified" do
     before(:each) do
-      sign_in Factory.create(:user)
+      sign_in FactoryGirl.create(:user)
             
       @fitbit_account = mock(:fitbit_account)
       @fitbit_account.stub(:verified?).and_return(false)
@@ -41,7 +41,7 @@ describe WelcomeController do
   
   context "when the user is logged in and the fitbit account is verified" do
     before(:each) do
-      sign_in Factory.create(:user)
+      sign_in FactoryGirl.create(:user)
             
       @fitbit_account = mock(:fitbit_account)
       @fitbit_account.stub(:verified?).and_return(true)

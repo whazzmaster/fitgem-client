@@ -1,10 +1,11 @@
 FitgemClient::Application.routes.draw do
 
-  devise_for :users, :controllers => { :registrations => "users/registrations" } do
-    get  '/login'  => "devise/sessions#new"
-    post '/login'  => 'devise/sessions#create',    :as => :user_session
-    get  '/logout' => 'devise/sessions#destroy'
-    get  '/signup' => "users/registrations#new"
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
+  devise_scope :user do
+    get '/login' => "devise/sessions#new"
+    post '/login' => 'devise/sessions#create', :as => :user_session
+    get '/logout' => 'devise/sessions#destroy'
+    get '/signup' => "users/registrations#new"
   end
 
   get "profile" => 'users/profiles#show', :as => :user_profile
@@ -39,6 +40,11 @@ FitgemClient::Application.routes.draw do
   get "blog", :controller => :welcome, :action => :blog
 
   resources :notifications
+
+
+  namespace :examples do
+    resources :fitgem, :resources, :subscriptions
+  end
 
   root :to => "welcome#index"
 

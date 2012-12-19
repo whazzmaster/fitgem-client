@@ -1,6 +1,9 @@
-Factory.define :user do |u|
-  u.email "regularuser@test.com"
-  u.password "regularguypassword"
-  u.password_confirmation "regularguypassword"  
-  u.association :fitbit_account
+FactoryGirl.define do
+  factory :user do
+    email "regularuser@test.com"
+    password "regularguypassword"
+    password_confirmation "regularguypassword"
+    association :fitbit_account
+  end
 end
+

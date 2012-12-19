@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe FitgemOauthController do
+describe Oauth::FitbitController do
   
   context "when a user is not logged in" do
     it "redirects to the login page" do
       get :index
       response.should redirect_to(new_user_session_path)
-      get :verify
+      get :connect
       response.should redirect_to(new_user_session_path)
       get :start
       response.should redirect_to(new_user_session_path)
-      get :info
+      get :verify
       response.should redirect_to(new_user_session_path)
       get :disconnect
       response.should redirect_to(new_user_session_path)
@@ -19,7 +19,7 @@ describe FitgemOauthController do
   
   context "when verify is called without oauth_token or oauth_verifier" do
     before(:each) do
-      sign_in Factory.create(:user)
+      sign_in FactoryGirl.create(:user)
     end
     
     it "redirects to root page" do
@@ -35,7 +35,7 @@ describe FitgemOauthController do
   
   context "when verify is called with a valid oauth_token and oauth_verifier" do
     before(:each) do
-      sign_in Factory.create(:user)
+      sign_in FactoryGirl.create(:user)
       
       @fitbit_account = mock(:fitbit_account)
       @fitbit_account.stub(:request_secret).and_return("abcdef")
@@ -78,7 +78,7 @@ describe FitgemOauthController do
   
   context "when verify is called without a valid oauth_token or oauth_verifier" do
     before(:each) do
-      sign_in Factory.create(:user)
+      sign_in FactoryGirl.create(:user)
       
       @fitbit_account = mock(:fitbit_account)
       @fitbit_account.stub(:request_secret).and_return("abcdef")
@@ -109,7 +109,7 @@ describe FitgemOauthController do
   
   context "when start is called" do
     before(:each) do
-      sign_in Factory.create(:user)
+      sign_in FactoryGirl.create(:user)
       
       @request_token = mock(Object)
       @request_token.stub(:token)
@@ -154,7 +154,7 @@ describe FitgemOauthController do
   
   context "when info is called" do
     before(:each) do
-      sign_in Factory.create(:user)
+      sign_in FactoryGirl.create(:user)
 
       @fitbit_account = mock(:fitbit_account)
       @fitbit_account.stub(:set_request_token!)
@@ -206,7 +206,7 @@ describe FitgemOauthController do
   
   context "when disconnect is called" do
     before(:each) do
-      sign_in Factory.create(:user)
+      sign_in FactoryGirl.create(:user)
 
       @fitbit_account = mock(:fitbit_account)
       @fitbit_account.stub(:clear!)
@@ -218,9 +218,9 @@ describe FitgemOauthController do
       post :disconnect
     end
     
-    it "sets the flas with a notification message" do
+    it "sets the flash with a notification message" do
       post :disconnect
-      flash[:notice].should == "Your test account has been disconnected from your Fitbit account"
+      flash[:notice].should == "Your Fitbitclient.com account has been unlinked from your Fitbit account"
     end
     
     it "redirects to the root url" do

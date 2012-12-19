@@ -3,7 +3,7 @@ require 'spec_helper'
 describe FitbitAccount do
   describe "verification status" do
     before(:each) do
-      @fba = Factory.create(:fitbit_account)
+      @fba = FactoryGirl.create(:fitbit_account)
     end
     
     it "reports true if both access token and access secret are stored" do
@@ -27,7 +27,7 @@ describe FitbitAccount do
 
   describe "subject" do
     before(:each) do
-      @fba = Factory.create(:fitbit_account)
+      @fba = FactoryGirl.create(:fitbit_account)
     end
     
     it "calls default_user_id on save to check the current fitbit user id" do
