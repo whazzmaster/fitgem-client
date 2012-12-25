@@ -1,23 +1,30 @@
 source 'http://rubygems.org'
 
-gem 'rails' #, '3.2.0'
+gem 'rails'
 gem 'fitgem'
+
+# Authentication/Authorization Support
 gem 'devise'
 
+# Database
 gem 'pg'
+
+# Utility
 gem 'visual-environments'
 gem 'nifty-generators'
 
+# Visualization
 gem 'backbone-on-rails'
 gem 'haml'
-
-gem 'rabl'
 gem 'google-code-prettify-rails'
 
+# API Support
+gem 'rabl'
+
 group :assets do
-  gem 'sass-rails' #, '~> 3.2.3'
-  gem 'coffee-rails' #, '~> 3.2.1'
-  gem 'uglifier' #, '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
   gem 'sass-twitter-bootstrap-rails'
   gem 'jquery-rails'
   gem 'handlebars_assets'
@@ -26,7 +33,6 @@ end
 group :development, :test do
 	gem 'factory_girl_rails'
 	gem "rspec-rails"
-	gem "guard"
 	gem "guard-rspec"
 	gem "webrat"
 	gem "database_cleaner"

@@ -1,4 +1,4 @@
-# Fitgem Client Application #
+# Fitgem Client Application
 
 A Rails 3.x-based reference application that shows how to use the Fitbit gem to query the Fitbit OAuth API. It's publicly available at **[fitbitclient.com](http://fitbitclient.com)**.
 
