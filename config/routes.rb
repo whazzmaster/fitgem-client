@@ -2,8 +2,6 @@ FitgemClient::Application.routes.draw do
 
   devise_for :users, controllers: {registrations: "users/registrations", omniauth_callbacks: "omniauth_callbacks"}
   devise_scope :user do
-    get '/login' => "devise/sessions#new"
-    post '/login' => 'devise/sessions#create', as: :user_session
     get '/logout' => 'devise/sessions#destroy'
     get '/signup' => "users/registrations#new"
   end

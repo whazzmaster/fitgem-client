@@ -47,4 +47,32 @@ class User < ActiveRecord::Base
     oauth_token.present? && oauth_secret.present?
   end
 
+  def fitbit_data
+    raise "Account is not linked with a Fitbit account" unless linked?
+    @client ||= Fitgem::Client.new(
+                :consumer_key => ENV["FITBIT_CONSUMER_KEY"],
+                :consumer_secret => ENV["FITBIT_CONSUMER_SECRET"],
+                :token => oauth_token,
+                :secret => oauth_secret,
+                :user_id => uid
+              )
+  end
+
+  def has_fitbit_data?
+    !@client.nil?
+  end
+
+  def unit_measurement_mappings
+    @unit_mappings ||= {
+      :distance => @client.label_for_measurement(:distance),
+      :duration => @client.label_for_measurement(:duration),
+      :elevation => @client.label_for_measurement(:elevation),
+      :height => @client.label_for_measurement(:height),
+      :weight => @client.label_for_measurement(:weight),
+      :measurements => @client.label_for_measurement(:measurements),
+      :liquids => @client.label_for_measurement(:liquids),
+      :blood_glucose => @client.label_for_measurement(:blood_glucose)
+    }
+  end
+
 end
