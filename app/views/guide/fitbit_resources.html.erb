@@ -395,4 +395,4 @@ activities_on_march_third = client.activities_on_date('2011-03-03')
 
 <p>To remove a food from a user's favorites list, you must have the ID of the food to remove.</p>
 
-<script type="text/javascript">$(document).ready(function(){FitgemClient.init({logged_in:<%= user_signed_in? %>,linked:<%= user_signed_in? && current_user.fitbit_account.verified? %>});});</script>
+<script type="text/javascript">$(document).ready(function(){FitgemClient.init({logged_in:<%= user_signed_in? %>,linked:<%= user_signed_in? && current_user.linked? %>});});</script>
