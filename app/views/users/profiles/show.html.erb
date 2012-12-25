@@ -6,26 +6,6 @@
   <div class="span8 fitbit-data-view" id="fitbit-user-data">Loading...</div>
   <div class="span4">
     <div class="well">
-      <h4>Change Password</h4>
-      <p>Click the button below to change your password for fitbitclient.com</p>
-      <%= link_to "Change Password", edit_user_password_path, :class => 'btn' %>
-
-      <hr/>
-
-      <% if current_user.linked? %>
-      <h4>Unlink Fitbit.com Account</h4>
-      <p>Click the button below to detach your unlink this account from your
-        fitbit.com account.</p>
-      <%= link_to "Unlink Accounts", fitbit_unlink_path, :class => 'btn btn-danger' %>
-      <% else %>
-      <h4>Link Fitbit.com Account</h4>
-      <p>Click the button below to link this account to your fitbit.com account and
-        see all sorts of interesting goodness.</p>
-      <%= link_to "Link Accounts", fitbit_connect_path, :class => 'btn btn-success' %>
-      <% end %>
-
-      <hr/>
-
       <h4>Cancel Account</h4>
       <p>Unhappy with this site? Click the button below to delete your fitbitclient.com
         account. This will also unlink the account from fitbit.com.</p>
