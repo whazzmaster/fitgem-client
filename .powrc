@@ -2,3 +2,7 @@ if [ -f "$rvm_path/scripts/rvm" ] && [ -f ".rvmrc" ]; then
   source "$rvm_path/scripts/rvm"
   source ".rvmrc"
 fi
+
+export FITBIT_CONSUMER_KEY="16f0cb3f3dc54f98a2ee5128cb6c3e43"
+export FITBIT_CONSUMER_SECRET="c1cd2806615449ea94386b9c32df8eba"
+export GOOGLE_ANALYTICS_ID=""

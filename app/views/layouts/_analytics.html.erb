@@ -1,7 +1,7 @@
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '<%= APP_CONFIG['google_analytics_id'] %>']);
+  _gaq.push(['_setAccount', '<%= ENV['GOOGLE_ANALYTICS_ID'] %>']);
   _gaq.push(['_trackPageview']);
 
   (function() {

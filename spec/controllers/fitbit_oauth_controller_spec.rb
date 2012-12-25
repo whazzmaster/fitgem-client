@@ -59,7 +59,7 @@ describe Oauth::FitbitController do
     end
 
     it "creates a fitgem client object" do
-      Fitgem::Client.should_receive(:new).with({:consumer_key => APP_CONFIG[:fitbit_consumer_key], :consumer_secret => APP_CONFIG[:fitbit_consumer_secret], :user_id => '-'})
+      Fitgem::Client.should_receive(:new).with({:consumer_key => ENV["FITBIT_CONSUMER_KEY"], :consumer_secret => ENV["FITBIT_CONSUMER_SECRET"], :user_id => '-'})
     end
 
     it "gets the stored request secret from the current user's fitbit_account record" do
@@ -127,7 +127,7 @@ describe Oauth::FitbitController do
     end
 
     it "creates a fitgem client object" do
-      Fitgem::Client.should_receive(:new).with({:consumer_key => APP_CONFIG[:fitbit_consumer_key], :consumer_secret => APP_CONFIG[:fitbit_consumer_secret]})
+      Fitgem::Client.should_receive(:new).with({:consumer_key => ENV["FITBIT_CONSUMER_KEY"], :consumer_secret => ENV["FITBIT_CONSUMER_SECRET"]})
       post :start
     end
 
