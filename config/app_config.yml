@@ -1,19 +1,17 @@
 development:
-  fitbit_consumer_key: 67c54291928f47bc861c2572a78d10d5
-  fitbit_consumer_secret: 57d18a98b37447f0a74d08ae32c34628
+  fitbit_consumer_key: 16f0cb3f3dc54f98a2ee5128cb6c3e43
+  fitbit_consumer_secret: c1cd2806615449ea94386b9c32df8eba
   clicky_analytics_id:
   google_analytics_id:
 
 test:
-#  fitbit_consumer_key: 16f0cb3f3dc54f98a2ee5128cb6c3e43
-#  fitbit_consumer_secret: c1cd2806615449ea94386b9c32df8eba
-  fitbit_consumer_key: 67c54291928f47bc861c2572a78d10d5
-  fitbit_consumer_secret: 57d18a98b37447f0a74d08ae32c34628
+  fitbit_consumer_key: 16f0cb3f3dc54f98a2ee5128cb6c3e43
+  fitbit_consumer_secret: c1cd2806615449ea94386b9c32df8eba
   clicky_analytics_id:
   google_analytics_id:
 
 production:
-  fitbit_consumer_key: 67c54291928f47bc861c2572a78d10d5
-  fitbit_consumer_secret: 57d18a98b37447f0a74d08ae32c34628
+  fitbit_consumer_key: 16f0cb3f3dc54f98a2ee5128cb6c3e43
+  fitbit_consumer_secret: c1cd2806615449ea94386b9c32df8eba
   clicky_analytics_id:
   google_analytics_id:
