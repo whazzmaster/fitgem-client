@@ -10,15 +10,6 @@ FitgemClient::Application.routes.draw do
 
   get "profile" => 'users/profiles#show', as: :user_profile
 
-  # Speciality routing for the OAuth login flow
-  scope "/fitbit" do
-    get "connect", controller: "oauth/fitbit", action: :index, as: :fitbit_connect
-    post "start", controller: "oauth/fitbit", action: :start, as: :fitbit_start
-    get "verify", controller: "oauth/fitbit", action: :verify, as: :fitbit_verify
-    get "unlink", controller: "oauth/fitbit", action: :unlink, as: :fitbit_unlink
-    post "disconnect", controller: "oauth/fitbit", action: :disconnect, as: :fitbit_disconnect
-  end
-
   # Routing for the pages of the guide
   scope "/guide" do
     get "introduction", controller: :guide, action: :introduction
