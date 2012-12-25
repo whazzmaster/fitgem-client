@@ -11,19 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121225191720) do
-
-  create_table "fitbit_accounts", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "request_token"
-    t.string   "request_secret"
-    t.string   "access_token"
-    t.string   "access_secret"
-    t.string   "verifier"
-    t.string   "fb_user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
+ActiveRecord::Schema.define(:version => 20121225193557) do
 
   create_table "notifications", :force => true do |t|
     t.string   "user_id"
@@ -48,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20121225191720) do
     t.string   "provider"
     t.string   "uid"
     t.string   "username"
+    t.string   "oauth_token"
+    t.string   "oauth_secret"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

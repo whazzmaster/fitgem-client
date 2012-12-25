@@ -1,15 +1,11 @@
 class User < ActiveRecord::Base
-  has_one :fitbit_account
-
-  after_create :create_fitbit_account
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :oauth_token, :oauth_secret
 
   validates :username, presence: true
   validates :email, presence: true, uniqueness: true
@@ -19,6 +15,8 @@ class User < ActiveRecord::Base
       user.provider = auth.provider
       user.uid = auth.uid
       user.username = auth.info.nickname
+      user.oauth_token = auth['credentials']['token']
+      user.oauth_secret = auth['credentials']['secret']
     end
   end
 
@@ -46,17 +44,7 @@ class User < ActiveRecord::Base
   end
 
   def linked?
-    if self.fitbit_account.nil?
-      false
-    else
-      self.fitbit_account.verified?
-    end
+    oauth_token.present? && oauth_secret.present?
   end
 
-  private
-
-  def create_fitbit_account
-    self.fitbit_account = FitbitAccount.new
-    save
-  end
 end

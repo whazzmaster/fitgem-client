@@ -1,9 +1,15 @@
 class FitgemClientWrapper
 
-  def initialize(fb_account)
-    return nil if fb_account.nil?
-    return nil unless fb_account.verified?
-    @client = Fitgem::Client.new(:consumer_key => ENV["FITBIT_CONSUMER_KEY"], :consumer_secret => ENV["FITBIT_CONSUMER_SECRET"], :token => fb_account.access_token, :secret => fb_account.access_secret, :user_id => fb_account.fb_user_id)
+  def initialize(oauth_token, oauth_secret, uid)
+    return nil if oauth_token.blank? || oauth_secret.blank? || uid.blank?
+
+    @client = Fitgem::Client.new(
+                :consumer_key => ENV["FITBIT_CONSUMER_KEY"],
+                :consumer_secret => ENV["FITBIT_CONSUMER_SECRET"],
+                :token => oauth_token,
+                :secret => oauth_secret,
+                :user_id => uid
+              )
   end
 
   def unit_measurement_mappings

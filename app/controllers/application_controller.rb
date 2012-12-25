@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
 
   def conditionally_create_client
     client = nil
-    if user_signed_in? && current_user.fitbit_account.verified?
-      client = FitgemClientWrapper.new(current_user.fitbit_account)
+    if user_signed_in? && current_user.linked?
+      client = FitgemClientWrapper.new(current_user.oauth_token, current_user.oauth_secret, current_user.uid)
     end
     client
   end
