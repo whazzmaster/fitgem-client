@@ -23,6 +23,9 @@ gem 'google-code-prettify-rails'
 # API Support
 gem 'rabl'
 
+# Monitoring
+gem 'newrelic_rpm'
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'

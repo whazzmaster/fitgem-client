@@ -114,6 +114,7 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     multi_xml (0.5.1)
+    newrelic_rpm (3.5.4.33)
     nifty-generators (0.4.6)
     nokogiri (1.5.5)
     oauth (0.4.7)
@@ -223,6 +224,7 @@ DEPENDENCIES
   haml-rails
   handlebars_assets
   jquery-rails
+  newrelic_rpm
   nifty-generators
   omniauth-fitbit!
   pg
