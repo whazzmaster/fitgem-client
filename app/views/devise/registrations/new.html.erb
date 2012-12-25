@@ -1,22 +1,20 @@
-<div id="login-container">
-	<h4>Sign Up</h4>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <legend>Complete Your Registration</legend>
 
-	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-	  <%= devise_error_messages! %>
+  <%= f.error_notification %>
 
-	  <p><%= f.label :email %><br />
-	  <%= f.email_field :email %></p>
+  <div class="form-inputs">
+    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :username %>
+    <% if f.object.password_required? %>
+      <%= f.input :password, :required => true %>
+      <%= f.input :password_confirmation, :required => true %>
+    <% end %>
+  </div>
 
-	  <p><%= f.label :password %><br />
-	  <%= f.password_field :password %></p>
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up" %>
+  </div>
+<% end %>
 
-	  <p><%= f.label :password_confirmation %><br />
-	  <%= f.password_field :password_confirmation %></p>
-
-	  <div class="small_buttons" style="float: right;"><%= f.submit "Sign in" %></div>
-	<% end %>
-
-	<div class="clearfix" style="clear:both;">
-		<%= render :partial => "devise/shared/links" %>
-	</div>
-</div>
+<%= render "devise/shared/links" %>

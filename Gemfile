@@ -5,6 +5,7 @@ gem 'fitgem'
 
 # Authentication/Authorization Support
 gem 'devise'
+gem 'omniauth-fitbit', :git => 'git://github.com/whazzmaster/omniauth-fitbit.git'
 
 # Database
 gem 'pg'
@@ -15,7 +16,8 @@ gem 'nifty-generators'
 
 # Visualization
 gem 'backbone-on-rails'
-gem 'haml'
+gem 'haml-rails'
+gem 'simple_form'
 gem 'google-code-prettify-rails'
 
 # API Support
