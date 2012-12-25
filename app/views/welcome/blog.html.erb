@@ -4,6 +4,22 @@
 
 <div class="blog-posts">
   <article class="well">
+    <aside>December 25th, 2012</aside>
+    <h2>Major Refactoring, Code Cleanup, and Move to OmniAuth Login</h2>
+    <p>Today's release includes quite a few structural changes to the reference app code that will make it easier to develop new informational content in the future. The changes include:</p>
+    <ul>
+      <li>Unlocking Rails and upgrading to the latest stable (3.2.9).</li>
+      <li>Moving onto <%= link_to 'omniauth-fitbit', 'https://github.com/tkgospodinov/omniauth-fitbit' %> as the method for logging onto the reference site. Once logged in, we still use <%= link_to 'fitgem', 'https://github.com/whazzmaster/fitgem'%> to query the service for data, but the OAuth login is now handled through OmniAuth &amp; Devise. For a great tutorial on integrating OmniAuth &amp; Devise check out <%= link_to "Ryan Bates's Railscast on the subject", "http://railscasts.com/episodes/235-devise-and-omniauth-revised"%>.</li>
+      <li>The app now uses <%= link_to "Simple Form", "https://github.com/plataformatec/simple_form" %> (with it's new Bootstrap support) for the forms on the site.</li>
+      <li>The many levels of indirection used to access the FitgemClient data object have been simplified.</li>
+      <li>The non-Backbone.js structure that was leftover (but not deleted) when I some of the dynamic content to Backbone.js has been cleaned out. Leaving it in was a terrible oversight on my part as it confused folks about what was actually being used.</li>
+      <li>Fitbit developer keys are now passed in via ENV rather than from APP_CONFIG. It's easier to avoid rewriting other developer's keys during pull requests this way.</li>
+    </ul>
+    <p><b>For anyone looking to contribute to this project</b>, there are two things that can always be improved: the content describing how to use specific fitgem methods in a Rails app and the documentation of the reference app itself so that other developers can clone, inspect, and play with the code easier.</p>
+    <p>Many, many thanks go to <%= link_to 'Marcel van Pinxteren', 'https://github.com/pinx' %> for the pull request that started all this work. I hadn't improved or cleaned up the code for quite awhile and his pull request to update Rails and fix tests got the ball rolling on all these other improvements.</p>
+  </article>
+
+  <article class="well">
     <aside>April 15th, 2012</aside>
     <h2>Moved to Heroku</h2>
     <p>Fitbitclient.com has moved to <a href="http://heroku.com">Heroku</a>!  Along with the change of venue I've spent a considerable amount of time finalizing the update to design that was mentioned in the February 19th post below.</p>
@@ -38,7 +54,7 @@
     <ol>
       <li>New visual look and feel</li>
       <li><%= link_to 'New examples', fitbit_resources_path %> for the fitbit.com resources API</li>
-      <li>Integration with the fitbit API that will show you your own health data in the examples, if you have <%= link_to 'authorized this application', fitbit_connect_path %>.</li>
+      <li>Integration with the fitbit API that will show you your own health data in the examples, if you have <%= link_to 'signed in through Fitbit', user_omniauth_authorize_path(:fitbit) %>.</li>
     </ol>
     <p>The purpose of this site is both to illustrate to developers how to use <strong>fitgem</strong> in the context of a Rails application, and also to provide a 'real world' application so I can test out the fitgem interfaces to ensure they're sufficiently usable.</p>
     <p>I'm continually working on adding new examples on how to use the various interfaces exposed from the gem.  I will be pushing them live and noting on this blog the updates as I finish them.</p>

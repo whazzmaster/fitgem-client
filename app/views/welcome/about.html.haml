@@ -24,7 +24,7 @@
     %tr
       %td Server Framework
       %td
-        %a{:href => "http://rubyonrails.org"} Rails 3.2
+        %a{:href => "http://rubyonrails.org"} Rails 3.2.x
     %tr
       %td Database
       %td
@@ -45,6 +45,8 @@
       %td Authentication
       %td
         %a{:href => "https://github.com/plataformatec/devise"} Devise
+        and
+        %a{:href => "https://github.com/intridea/omniauth"} OmniAuth
     %tr
       %td Hosting
       %td
@@ -83,6 +85,10 @@
             = link_to "<i class='icon-search'></i> patch the CSS".html_safe, "https://github.com/whazzmaster/fitgem-client/blob/master/app/assets/stylesheets/custom.css.scss#L1-6"
             in order to get the line numbers to show up correctly.
           %dt
+            %a{:href => "https://github.com/plataformatec/simple_form"} simple_form
+          %dd
+            Alternate form builder that nicely plays with Twitter Bootstrap form requirements.
+          %dt
             %a{:href => "https://github.com/ccocchi/sass-twitter-bootstrap-rails"} sass-twitter-bootstrap-rails
           %dd
             Great gem that drops the whole Twitter Bootstrap CSS + JS framework into Rails' Asset Pipeline.  I only found one issue
@@ -93,5 +99,9 @@
             %a{:href => "https://github.com/leshill/handlebars_assets"} handlebars_assets
           %dd
             Used to automate the inclusion of handlebars.js via Rails' Asset Pipeline
+          %dt
+            %a{:href => "https://github.com/tkgospodinov/omniauth-fitbit"} omniauth-fitbit
+          %dd
+            Easy integration of Fitbit OAuth login process with Devise authentication
 
 %p If you have a Fitbit account, you can walkthrough the server-side steps on how to authenticate a user with Fitbit and then get data.  It also currently includes a test interface to experiment with how data subscriptions work since the documentation on the process is a little light on the Fitbit developer site.
