@@ -41,10 +41,5 @@ FitgemClient::Application.routes.draw do
 
   resources :notifications
 
-
-  namespace :examples do
-    resources :fitgem, :resources, :subscriptions
-  end
-
   root :to => "welcome#index"
 end
