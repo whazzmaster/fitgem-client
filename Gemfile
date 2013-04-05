@@ -29,7 +29,6 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'sass-twitter-bootstrap-rails'
   gem 'jquery-rails'
   gem 'handlebars_assets'
 end
@@ -37,14 +36,14 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'guard-rspec'
-  gem 'fuubar'
-  gem 'rb-inotify', :require => false
-  gem 'rb-fsevent', :require => false
-  gem 'rb-fchange', :require => false
-  gem 'terminal-notifier-guard'
   gem 'webrat'
   gem 'database_cleaner'
-  gem 'meta_request', '0.2.1'
+end
+
+# Enable better error handling
+group :development do
+  gem 'meta_request', '~> 0.2.1', :require => 'meta_request'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
