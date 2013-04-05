@@ -38,7 +38,11 @@ end
 group :development, :test do
 	gem 'factory_girl_rails'
 	gem 'rspec-rails'
-	gem 'guard-rspec'
+  gem 'fuubar'
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-fchange', :require => false
+  gem 'terminal-notifier-guard'
 	gem 'webrat'
 	gem 'database_cleaner'
 	gem 'meta_request', '0.2.1'
