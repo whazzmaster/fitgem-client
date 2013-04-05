@@ -1,4 +1,4 @@
-<ul class="pager">
+<ul class="pager" xmlns="http://www.w3.org/1999/html">
   <li class="previous">
     <%= link_to "&larr; Getting Started".html_safe, getting_started_path %>
   </li>
@@ -8,127 +8,79 @@
 </ul>
 
 <div class="page-header">
-  <h1>Using Fitgem</h1>
+  <h1>Playing With the Fitgem API</h1>
 </div>
 
 <p>
-By the end of this section you should be able to retrieve and log resources with the Fitbit API.
-Included are a few helper scripts you can use to get up and running so that you can concentrate
-on learning the type and format of the data returned by Fitbit.
+    Let's jump right in and play around with the fitgem API using some command-line Ruby scripts. The necessary
+    files embedded below are <a href="https://gist.github.com/whazzmaster/5322902">available via Gist</a>. <b>As always, you
+    should inspect the scripts you download and run to ensure they do what you think they should</b>.
 </p>
 
-<h2>Set Up a Config File</h2>
+<h3>Step 1: Build Your Sandbox</h3>
 <p>
-The helper script included below uses a configuration file to store the oauth tokens.  Create a
-file called <b>.fitgem.yml</b> and add the <code>consumer_key</code> and <code>consumer_secret</code>
-you received from the Fitbit API site.
+  Create a sandbox to play in and get <code>fitgem</code>.
 </p>
+<pre class="prettyprint lang-bash">$ mkdir fitgem-sandbox
+$ cd fitgem-sandbox
+fitgem-sandbox $ gem install fitgem
+Fetching: oauth-0.4.7.gem (100%)
+Successfully installed oauth-0.4.7
+Fetching: fitgem-0.6.1.gem (100%)
+Successfully installed fitgem-0.6.1
+2 gems installed</pre>
 
-<h6>.fitgem.yml</h6>
-<pre class="prettyprint">oauth:
-  consumer_key: &lt;your consumer key here&gt;
-  consumer_secret: &lt;your consumer secret here&gt;
-</pre>
+<h3>Step 2: Set Up a Config File to Hold OAuth Tokens</h1>
+<p>
+    The bench test script included below uses a YAML file to store the oauth tokens received from Fitbit.
+    Create or download the file called <code>.fitgem.yml</code> and add the <code>consumer_key</code> and
+    <code>consumer_secret</code> you received from the <a href="https://wiki.fitbit.com/display/API/Fitbit+API">Fitbit API</a>
+    site.
+</p>
+<pre class="prettyprint lang-bash">fitgem-sandbox $ curl https://gist.github.com/whazzmaster/5322902/raw/aa4293a9eb288d2096840a05b35a1ecf829defc1/.fitgem.yml > .fitgem.yml</pre>
+<script src="https://gist.github.com/whazzmaster/5322902.js?file=.fitgem.yml"></script>
 
 <p>
-After you complete the initial authorization the script will write the complete set of oauth tokens back to
-<b>.fitgem.yml</b> so that on subsequent calls you don't need to reauthorize and can make API calls at will.
+    <b>Ensure that you edit .fitgem.yml and add your oauth consumer key and secret.</b> After you complete the initial
+    authorization the script will write the complete set of oauth tokens back to
+    <b>.fitgem.yml</b> so that on subsequent calls you don't need to reauthorize and can make API calls at will.
 </p>
 
-<h2>Get the Helper Script</h2>
-<p>
-Copy the code below and create a file called <b>test-fitgem.rb</b>.  You'll need to set it for execution:
-</p>
+<h3>Step 3: Login and Get OAuth Tokens</h3>
+<p>Copy or download the <code>test-fitgem.rb</code> script and enable it for execution.</p>
 
-<pre class="prettyprint"> $ chmod +x test-fitgem.rb</pre>
+<pre class="prettyprint">fitgem-sandbox $ curl https://gist.github.com/whazzmaster/5322902/raw/4439e2d577567d280856a2d77cef7b824a851cd1/test-fitgem.rb > test-fitgem.rb
+fitgem-sandbox $ chmod +x test-fitgem.rb</pre>
+
+<script src="https://gist.github.com/whazzmaster/5322902.js?file=test-fitgem.rb"></script>
 
 <p>
 Now you can call it with:
 </p>
 
-<pre class="prettyprint"> $ ./test-fitgem.rb</pre>
+<pre class="prettyprint">fitgem-sandbox $ ./test-fitgem.rb</pre>
 
 <p>
-The first time you call the script it will output a URL that you need to copy/paste into your browser.
-You will need to login to Fitbit.com and approve the application, and then you'll see a verifier code
-that you need to copy/paste back into the command prompt.  After hitting pasting in the verifier code
-and hitting 'Enter' you should be all set.
+    The first time you call the script it will output a URL that you need to copy/paste into your browser.
+    You will need to login to Fitbit.com and approve the application, and then you'll see a verifier code
+    that you need to copy/paste back into the command prompt.  After hitting pasting in the verifier code
+    and hitting 'Enter' you should be all set.
 </p>
 
-<a name="testscript">&nbsp;</a>
-<h6>test-fitgem.rb</h6>
-<pre class="prettyprint linenums">#!/usr/bin/env ruby
-
-require "fitgem"
-require "pp"
-require "yaml"
-
-# Load the existing yml config
-config = begin
-  Fitgem::Client.symbolize_keys(YAML.load(File.open(".fitgem.yml")))
-rescue ArgumentError => e
-  puts "Could not parse YAML: #{e.message}"
-  exit
-end
-
-client = Fitgem::Client.new(config[:oauth])
-
-# With the token and secret, we will try to use them
-# to reconstitute a usable Fitgem::Client
-if config[:oauth][:token] && config[:oauth][:secret]
-  begin
-    access_token = client.reconnect(config[:oauth][:token], config[:oauth][:secret])
-  rescue Exception => e
-    puts "Error: Could not reconnect Fitgem::Client due to invalid keys in .fitgem.yml"
-    exit
-  end
-# Without the secret and token, initialize the Fitgem::Client
-# and send the user to login and get a verifier token
-else
-  request_token = client.request_token
-  token = request_token.token
-  secret = request_token.secret
-
-  puts "Go to http://www.fitbit.com/oauth/authorize?oauth_token=#{token} and then enter the verifier code below"
-  verifier = gets.chomp
-
-  begin
-    access_token = client.authorize(token, secret, { :oauth_verifier => verifier })
-  rescue Exception => e
-    puts "Error: Could not authorize Fitgem::Client with supplied oauth verifier"
-    exit
-  end
-
-  puts 'Verifier is: '+verifier
-  puts "Token is:    "+access_token.token
-  puts "Secret is:   "+access_token.secret
-
-  user_id = client.user_info['user']['encodedId']
-  puts "Current User is: "+user_id
-
-  config[:oauth].merge!(:token => access_token.token, :secret => access_token.secret, :user_id => user_id)
-
-  # Write the whole oauth token set back to the config file
-  File.open(".fitgem.yml", "w") {|f| f.write(config.to_yaml) }
-end
-
-# ============================================================
-# Add Fitgem API calls on the client object below this line
-
-pp client.activities_on_date 'today'
-
-</pre>
-
+<h3>Step 4: You're Now Ready to Experiment with the API</h3>
 <p>
-In the sample script it will <a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:activities_on_date">fetch all the activities logged 'today'</a> as an example.  You can replace that line with any combination of API calls to the
-<a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client">Fitgem::Client class</a>.
+    In the sample script (test-fitgem.rb:line 59) it will <a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:activities_on_date">fetch all the activities logged 'today'</a>
+    as an example.  You can now freely change-up the code after line 57 of <code>test-fitgem.rb</code> to explore the different logging
+    and query methods available on the fitgem API. Check the
+    <a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client">Fitgem::Client class</a> documentation to
+    see what's available in the API.
 </p>
 
 <p>
 On the day I ran the above script I received the following output:
 </p>
 
-<pre class="prettyprint linenums">{"activities"=>[],
+<pre class="prettyprint linenums lang-ruby">{"activities"=>[],
  "goals"=>
   {"activeScore"=>1000,
    "caloriesOut"=>2911,
