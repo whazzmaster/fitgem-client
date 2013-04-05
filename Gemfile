@@ -37,10 +37,10 @@ end
 
 group :development, :test do
 	gem 'factory_girl_rails'
-	gem "rspec-rails"
-	gem "guard-rspec"
-	gem "webrat"
-	gem "database_cleaner"
+	gem 'rspec-rails'
+	gem 'guard-rspec'
+	gem 'webrat'
+	gem 'database_cleaner'
 	gem 'meta_request', '0.2.1'
 end
 
