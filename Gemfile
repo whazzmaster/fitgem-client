@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 3.2.13'
 gem 'fitgem'
 
 # Authentication/Authorization Support
@@ -18,7 +18,6 @@ gem 'nifty-generators'
 gem 'backbone-on-rails'
 gem 'haml-rails'
 gem 'simple_form'
-gem 'google-code-prettify-rails'
 
 # API Support
 gem 'rabl'
@@ -36,15 +35,16 @@ group :assets do
 end
 
 group :development, :test do
-	gem 'factory_girl_rails'
-	gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'guard-rspec'
   gem 'fuubar'
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
   gem 'rb-fchange', :require => false
   gem 'terminal-notifier-guard'
-	gem 'webrat'
-	gem 'database_cleaner'
-	gem 'meta_request', '0.2.1'
+  gem 'webrat'
+  gem 'database_cleaner'
+  gem 'meta_request', '0.2.1'
 end
 

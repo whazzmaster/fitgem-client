@@ -21,11 +21,9 @@
 //= require twitter/bootstrap/bootstrap-tab
 //= require twitter/bootstrap/bootstrap-transition
 //= require twitter/bootstrap/bootstrap-typeahead
-//= require google-code-prettify-rails/prettify
 //= require fitgem_client
 
 $(document).ready(function(){
-  prettyPrint();
   $("a[rel=tooltip]").tooltip();
 });
 
