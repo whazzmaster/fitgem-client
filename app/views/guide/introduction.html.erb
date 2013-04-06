@@ -36,12 +36,12 @@ The <b>Getting Started</b> section contains details on installing the gem and co
 By the end of this section you should be ready to start looking at how to use the fitgem classes in ruby code.
 </p>
 
-<h3><%= link_to "Using Fitgem", using_fitgem_path %></h3>
+<h3><%= link_to "Playing With the Fitgem API", using_fitgem_path %></h3>
 <p>
 <b>Using Fitgem</b> walks through the conventions used by the gem, and describes how to use the library to read to and write from the Fitbit REST API.  By the end of this section you should be able to write command-line ruby scripts that can read or write data to Fitbit.
 </p>
 
-<h3><%= link_to "Fitbit Resources", fitbit_resources_path %></h3>
+<h3><%= link_to "Accessing Fitbit Resources", fitbit_resources_path %></h3>
 <p>
 The <b>Fitbit Resources</b> section describes the various resources you can read and write through the REST API in more detail, including
 examples for various types of resources
@@ -76,13 +76,9 @@ Throughout the examples there are links to the source code for this site, as wel
 <div class="well">
 <h3>Live Data</h3>
 <p>
-In the examples are several areas where <b>live data</b> from the Fitbit API will appear if you have created an account and linked it
-with a corresponding Fitbit account.  This functionality is part of using this application as a real-life test of the fitgem library,
-and you don't have to create or link accounts to in order to view the guide.
+In the examples are several areas where <b>live data</b> from the Fitbit API will appear if you have created an account and linked it with a corresponding Fitbit account.  This functionality is part of using this application as a real-life test of the fitgem library, and you don't have to create or link accounts to in order to view the guide.
 </p>
-<p>
-If you do <%= link_to "create an account", signup_path %> it is easy to delete it from the <%= link_to "profile page", user_profile_path %>.
-</p>
+<p><%= link_to "Login with Fitbit to view Live Data examples", user_omniauth_authorize_path(:fitbit), class: 'btn btn-primary' %></p>
 </div>
 
 <ul class="pager">
