@@ -10,6 +10,8 @@
 //= require backbone
 //= require handlebars.runtime
 //= require vendor/twitter-bootstrap-2.3.1/bootstrap
+//= require vendor/bootstrap-datepicker
+//= require vendor/moment
 //= require fitgem_client
 
 $(document).ready(function(){

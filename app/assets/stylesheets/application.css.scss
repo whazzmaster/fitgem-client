@@ -4,6 +4,17 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
  *= require 'vendor/twitter-bootstrap-2.3.1/bootstrap'
+ *= require 'vendor/bootstrap-datepicker'
  *= require 'custom'
  *= require 'overrides'
 */
+
+.activity-date-picker {
+  display: inline;
+  vertical-align: 3px;
+}
+
+.inline-activity-datepicker-form {
+  padding-top: 15px;
+  button { margin-top: -9px; }
+}

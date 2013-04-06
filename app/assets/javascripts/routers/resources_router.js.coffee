@@ -1,11 +1,12 @@
 class FitgemClient.Routers.ResourcesRouter extends Backbone.Router
   routes:
-    "" : "show"
+    "": "show"
 
   initialize: (options) ->
     Backbone.emulateHTTP = true
     @user = new FitgemClient.Models.User(options)
     @body_measurements = new FitgemClient.Models.BodyMeasurements()
+    @activities = new FitgemClient.Collections.ActivitiesCollection()
 
   show: ->
     if @user.get("linked")
@@ -23,6 +24,16 @@ class FitgemClient.Routers.ResourcesRouter extends Backbone.Router
           success: =>
             user_view = new FitgemClient.Views.Resources.ShowBodyMeasurementsView(model: @body_measurements)
             $('#fitbit-body-measurements-data').html(user_view.render().el)
+          error: =>
+            view = new FitgemClient.Views.Common.ConnectionErrorView()
+            $(".fitbit-data-view").html(view.render().el)
+
+      if $('#fitbit-activities-data')
+        @activities.setDate(moment().format('YYYY-MM-DD'))
+        @activities.fetch
+          success: =>
+            activities_view = new FitgemClient.Views.Resources.IndexActivitiesView(collection: @activities)
+            $('#fitbit-activities-data').html(activities_view.render().el)
           error: =>
             view = new FitgemClient.Views.Common.ConnectionErrorView()
             $(".fitbit-data-view").html(view.render().el)
