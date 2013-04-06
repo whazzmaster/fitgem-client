@@ -5,4 +5,8 @@ class Fitbit::Data
     @logged_in = user.present?
     @linked = user.present? && user.linked?
   end
+
+  def data_available?
+    @linked
+  end
 end

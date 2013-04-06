@@ -4,7 +4,7 @@ class Fitbit::User < Fitbit::Data
   def initialize(user)
     super(user)
 
-    if @logged_in && @linked
+    if data_available?
       user_info = user.fitbit_data.user_info['user']
 
       # Uncomment to view the data that is returned by the Fitbit service

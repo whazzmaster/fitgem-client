@@ -3,7 +3,6 @@ FitgemClient::Application.routes.draw do
   devise_for :users, controllers: {registrations: "users/registrations", omniauth_callbacks: "omniauth_callbacks"}
   devise_scope :user do
     get '/logout' => 'devise/sessions#destroy'
-    get '/signup' => "users/registrations#new"
   end
 
   get "profile" => 'users/profiles#show', as: :user_profile
@@ -20,8 +19,9 @@ FitgemClient::Application.routes.draw do
 
   # Routes for the api interfaces
   namespace :api do
-    get "user", controller: "users", action: "show"
-    get "body_measurements", controller: "body_measurements", action: "show"
+    get 'user', controller: 'users', action: 'show'
+    get 'body_measurements', controller: 'body_measurements', action: 'show'
+    get 'activities', controller: 'activities', action: 'index'
   end
 
   # Miscellaneous pages
