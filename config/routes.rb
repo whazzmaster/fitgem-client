@@ -22,6 +22,7 @@ FitgemClient::Application.routes.draw do
     get 'user', controller: 'users', action: 'show'
     get 'body_measurements', controller: 'body_measurements', action: 'show'
     get 'activities', controller: 'activities', action: 'index'
+    post 'activity', controller: 'activities', action: 'create'
   end
 
   # Miscellaneous pages

@@ -8,13 +8,16 @@ class Fitbit::Activity < Fitbit::Data
     @activityParentName = activity_data['activityParentName']
     @calories = activity_data['calories']
     @description = activity_data['description']
-    @distance = "#{activity_data['distance']} #{unit_measurement_mappings[:distance]}"
-    @duration = Time.at(activity_data['duration']/1000).utc.strftime("%H:%M:%S")
+    @distance = "#{activity_data['distance']} #{unit_measurement_mappings[:distance]}" if activity_data['distance']
+    @duration = Time.at(activity_data['duration']/1000).utc.strftime("%H:%M:%S") if activity_data['duration']
     @hasStartTime = activity_data['hasStartTime']
     @logId = activity_data['logId']
     @name = activity_data['name']
     @startTime = activity_data['startTime']
     @steps = activity_data['steps']
+
+    # Uncomment to view the data that is returned by the Fitbit service
+    # ActiveRecord::Base.logger.info activity_data
   end
 
   def self.fetch_all_on_date(user, date)
@@ -24,6 +27,12 @@ class Fitbit::Activity < Fitbit::Data
       activity_objects = activities.map {|a| Fitbit::Activity.new(a, user.unit_measurement_mappings) }
     end
     activity_objects
+  end
+
+  def self.log_activity(user, activity)
+    if user.present? && user.linked?
+      user.fitbit_data.log_activity(activity)
+    end
   end
 end
 
