@@ -8,7 +8,7 @@ class Fitbit::BodyMeasurements < Fitbit::Data
       data = user.fitbit_data.body_measurements_on_date('today')['body']
 
       # Uncomment to view the data that is returned by the Fitbit service
-      # ActiveRecord::Base.logger.info data
+      # ActiveRecord::Base.logger.info data         s
 
       ['bicep','calf','chest','forearm','hips','neck','thigh','waist'].each do |type|
         self.send(type+"=", data[type].to_s+" "+user.unit_measurement_mappings[:measurements]) unless data[type] == 0

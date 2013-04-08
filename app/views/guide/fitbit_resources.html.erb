@@ -285,7 +285,7 @@ activities_on_march_third = client.activities_on_date('2011-03-03')
 
 <p>There is much you can distill from the returned data; in addition to the list of logged activities you get access to total distances traveled during activities, total 'active core' (a Fitbit measure of how active you are over the course of the day), and an analysis (via the Fitbit tracker) of how your activities break down across the sedentary-to-highly-active spectrum.</p>
 
-<h3>Activities Example</h3>
+<h3>Fetching Activities Example</h3>
 <p>If you've connected your account with your fitbit account you will see live data displayed below.</p>
 
 <div class="fitbit-data-view" id="fitbit-activities-data">Loading...</div>
@@ -305,6 +305,13 @@ activities_on_march_third = client.activities_on_date('2011-03-03')
   :distanceUnit => Fitgem::ApiDistanceUnit.miles
 })
 </pre>
+
+<h3>Logging Activities Example</h3>
+<p>If you've connected your account with your fitbit account you will see live data displayed below.</p>
+
+<div class="fitbit-data-view" id="fitbit-log-activity-data">
+  Loading...
+</div>
 
 <h3>Deleting Activity Information</h3>
 

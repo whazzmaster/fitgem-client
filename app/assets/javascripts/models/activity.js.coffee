@@ -1,4 +1,6 @@
 class FitgemClient.Models.Activity extends Backbone.Model
+  paramRoot: "activity"
+
   defaults:
     name: ""
     activityId: null
@@ -7,6 +9,12 @@ class FitgemClient.Models.Activity extends Backbone.Model
     distance: null
     duration: null
     steps: null
+
+  url: ->
+    if @isNew()
+      "/api/activity.json"
+    else
+      null
 
 class FitgemClient.Collections.ActivitiesCollection extends Backbone.Collection
   defaults:

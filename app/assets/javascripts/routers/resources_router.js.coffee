@@ -38,6 +38,10 @@ class FitgemClient.Routers.ResourcesRouter extends Backbone.Router
             view = new FitgemClient.Views.Common.ConnectionErrorView()
             $(".fitbit-data-view").html(view.render().el)
 
+      if $('#fitbit-log-activity-data')
+        log_activity_view = new FitgemClient.Views.Resources.CreateActivityView()
+        $('#fitbit-log-activity-data').html(log_activity_view.render().el)
+
     else if @user.get("logged_in")
       view = new FitgemClient.Views.Common.AccountsNotLinkedView()
       $(".fitbit-data-view").html(view.render().el)
