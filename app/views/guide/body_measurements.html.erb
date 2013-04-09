@@ -1,0 +1,108 @@
+<ul class="pager">
+  <li class="previous">
+    <%= link_to "&larr; Fitbit Resources: User Information".html_safe, guide_user_information_path %>
+  </li>
+  <li class="next">
+    <%= link_to "Fitbit Resources: Activities &rarr;".html_safe, guide_activities_path %>
+  </li>
+</ul>
+
+<div class="page-header">
+  <h1>Fitbit Resources: Body Measurements <small>Chapter 4</small></h1>
+</div>
+
+<p>
+  Body measurements include such things as weight, body fat percentage, and BMI. The availability of the body measurements resource is strictly controlled by the privacy settings by the fitbit user, but if they set access to public then they are available through the API. There are two methods dealing with body_measurements:
+<table class="table">
+  <tbody>
+  <tr>
+    <td><code>body_measurements_on_date(date)</code></td>
+    <td>Fetch the body measurements for a specific date</td>
+    <td><a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:body_measurements_on_date"><i class="icon-info-sign"></i> Documentation</a></td>
+  </tr>
+  <tr>
+    <td><code>log_body_measurements(options)</code></td>
+    <td>Save body measurements for a specific date</td>
+    <td><a href="http://rubydoc.info/github/whazzmaster/fitgem/Fitgem/Client:log_body_measurements"><i class="icon-info-sign"></i> Documentation</a></td>
+  </tr>
+  </tbody>
+</table>
+</p>
+
+<div class="alert alert-info">
+  <a class="icon-book"></i>
+    <a href="http://wiki.fitbit.com/display/API/API-Get-Body-Measurements">View the Fitbit reference page for body measurements.</a>
+</div>
+
+<h3>Fetching Body Measurement Information</h3>
+<p>
+  Fetching body measurement data is based on the date you're interested in.  Dates may be supplied as a Date,
+  DateTime, or a String in the format <code>yyyy-MM-dd</code>.  There are two special string values that are also
+  accepted: "today" and "yesterday."
+</p>
+<pre class="prettyprint linenums lang-ruby">body_measurements = client.body_measurements_on_date('today')</pre>
+
+<p>
+  The output:
+</p>
+<pre class="prettyprint linenums lang-ruby">p body_measurements
+{"body"=>
+  {"bicep"=>0,
+   "bmi"=>0,
+   "calf"=>0,
+   "chest"=>0,
+   "fat"=>0,
+   "forearm"=>0,
+   "hips"=>0,
+   "neck"=>0,
+   "thigh"=>0,
+   "waist"=>0,
+   "weight"=>0},
+ "goals"=>{"weight"=>165}}
+</pre>
+
+<h3>Logging Body Measurement Information</h3>
+<p>
+  Saving body measurement information for a specific date involves a minimum of two pieces of information: the date to log for and
+  at least one piece of body measurement information. Dates may be supplied as a Date,
+  DateTime, or a String in the format <code>yyyy-MM-dd</code>.  There are two special string values that are also
+  accepted: "today" and "yesterday."
+</p>
+<pre class="prettyprint linenums lang-ruby">resp = client.log_body_measurements(:date => 'today', :weight => 190)</pre>
+
+<p>
+  When saving body measurement information, you will either get a hash containing an "errors" key whose value is an array
+  of error information, or a hash containing the updated body information.
+</p>
+<pre class="prettyprint linenums lang-ruby">p resp
+{"body"=>
+  {"bicep"=>0,
+   "bmi"=>28.05,
+   "calf"=>0,
+   "chest"=>0,
+   "fat"=>25,
+   "forearm"=>0,
+   "hips"=>0,
+   "neck"=>0,
+   "thigh"=>0,
+   "waist"=>0,
+   "weight"=>190}}
+</pre>
+
+<h3>Body Measurements Example</h3>
+<p>
+  If you have connected your account with your fitbit account you will see live data displayed below.
+</p>
+
+<div class="fitbit-data-view" id="fitbit-body-measurements-data">Loading...</div>
+
+<ul class="pager">
+  <li class="previous">
+    <%= link_to "&larr; Fitbit Resources: User Information".html_safe, guide_user_information_path %>
+  </li>
+  <li class="next">
+    <%= link_to "Fitbit Resources: Activities &rarr;".html_safe, guide_activities_path %>
+  </li>
+</ul>
+
+<script type="text/javascript">$(document).ready(function(){FitgemClient.init({logged_in:<%= user_signed_in? %>,linked:<%= user_signed_in? && current_user.linked? %>});});</script>

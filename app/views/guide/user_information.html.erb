@@ -1,0 +1,75 @@
+<ul class="pager">
+  <li class="previous">
+    <%= link_to "&larr; Playing With the Fitgem API".html_safe, guide_using_fitgem_path %>
+  </li>
+  <li class="next">
+    <%= link_to "Fitbit Resources: Body Measurements &rarr;".html_safe, guide_body_measurements_path %>
+  </li>
+</ul>
+
+<div class="page-header">
+  <h1>Fitbit Resources: User Information <small>Chapter 3</small></h1>
+</div>
+
+<p>
+  The user information interface is used to access whatever profile information that the user has allowed to be viewed publicly.  This includes information such as the user's name, fitbit user id, gender, height, etc.  <strong>Please note</strong> that the user must explicitly allow this info to be shared or else it will not show up in the data returned by the service.
+</p>
+
+<div class="alert alert-info">
+  <i class="icon-book"></i>
+  <a href="http://wiki.fitbit.com/display/API/API-Get-User-Info">View the Fitbit reference page for user information.</a>
+</div>
+
+<h3>Fetching User Information</h3>
+<p>
+  The User Info resource includes information about the user's account, as well as the profile information (city, state, country, nickname).
+  The data is available under the 'user' key in the returned hash.
+</p>
+<pre class="prettyprint linenums">info = client.user_info['user']</pre>
+<p>
+  The output (some data has been removed for obvious reasons):
+</p>
+<pre class="prettyprint linenums lang-ruby">p info
+{"avatar"=>
+  "http://cache.fitbit.com/7DEC9854-1E62-0DFF-C8E7-C932911A9D97_profile_100_square.png",
+ "city"=>"Madison",
+ "country"=>"US",
+ "dateOfBirth"=>"****-**-**",
+ "displayName"=>"whazzmaster",
+ "distanceUnit"=>"en_US",
+ "encodedId"=>"******",
+ "fullName"=>"****** **********",
+ "gender"=>"MALE",
+ "glucoseUnit"=>"en_US",
+ "height"=>69.01574803149606,
+ "heightUnit"=>"en_US",
+ "locale"=>"en_US",
+ "memberSince"=>"****-**-**",
+ "nickname"=>"whazzmaster",
+ "offsetFromUTCMillis"=>-21600000,
+ "state"=>"WI",
+ "strideLengthRunning"=>0,
+ "strideLengthWalking"=>0,
+ "timezone"=>"America/Chicago",
+ "waterUnit"=>"METRIC",
+ "weight"=>***.**,
+ "weightUnit"=>"en_US"}
+</pre>
+
+<h3>User Information Example</h3>
+<p>
+  If you've connected your account with your fitbit account you will see live data displayed below.
+</p>
+
+<div class="fitbit-data-view" id="fitbit-user-data">Loading...</div>
+
+<ul class="pager">
+  <li class="previous">
+    <%= link_to "&larr; Playing With the Fitgem API".html_safe, guide_using_fitgem_path %>
+  </li>
+  <li class="next">
+    <%= link_to "Fitbit Resources: Body Measurements &rarr;".html_safe, guide_body_measurements_path %>
+  </li>
+</ul>
+
+<script type="text/javascript">$(document).ready(function(){FitgemClient.init({logged_in:<%= user_signed_in? %>,linked:<%= user_signed_in? && current_user.linked? %>});});</script>

@@ -3,12 +3,15 @@
     %li= link_to "<i class='icon-home'></i> Home".html_safe, root_path
 
     %li.nav-header Guide
-    %li{ :class => controller.action_name == "introduction" ? "active" : ""}= link_to "Introduction", introduction_path
-    %li{ :class => controller.action_name == "getting_started" ? "active" : ""}= link_to "Getting Started", getting_started_path
-    %li{ :class => controller.action_name == "using_fitgem" ? "active" : ""}= link_to "Playing With the Fitgem API", using_fitgem_path
-    %li{ :class => controller.action_name == "fitbit_resources" ? "active" : ""}= link_to "Accessing Fitbit Resources", fitbit_resources_path
-    -# %li{ :class => controller.action_name == "fitbit_subscriptions" ? "active" : ""}= link_to "Fitbit Subscriptions", fitbit_subscriptions_path
-    -# %li{ :class => controller.action_name == "fitgem_on_rails" ? "active" : ""}= link_to "Fitgem on Rails", fitgem_on_rails_path
+    %li{ :class => controller.action_name == "introduction" ? "active" : ""}= link_to "Introduction", guide_introduction_path
+    -# %li{ :class => controller.action_name == "getting_started" ? "active" : ""}= link_to "Getting Started", getting_started_path
+    %li{ :class => controller.action_name == "using_fitgem" ? "active" : ""}= link_to "Playing With the Fitgem API", guide_using_fitgem_path
+    %li{ class: controller.action_name == 'user_information' ? 'active' : ''}= link_to 'Fitbit Resources: User Information', guide_user_information_path
+    %li{ class: controller.action_name == 'body_measurements' ? 'active' : ''}= link_to 'Fitbit Resources: Body Measurements', guide_body_measurements_path
+    %li{ class: controller.action_name == 'activities' ? 'active' : ''}= link_to 'Fitbit Resources: Activities', guide_activities_path
+    %li{ class: controller.action_name == 'foods' ? 'active' : ''}= link_to 'Fitbit Resources: Foods', guide_foods_path
+    %li{ :class => controller.action_name == 'subscriptions' ? 'active' : ''}= link_to 'Fitbit Data Subscriptions', guide_subscriptions_path
+    %li{ :class => controller.action_name == 'fitgem_on_rails' ? 'active' : ''}= link_to 'Fitgem on Rails', guide_fitgem_on_rails_path
 
     %li.nav-header More Information
     %li= link_to "Fitgem Source", "http://github.com/whazzmaster/fitgem"
