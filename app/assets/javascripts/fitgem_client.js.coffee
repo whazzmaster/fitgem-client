@@ -11,5 +11,10 @@ window.FitgemClient =
   Routers: {}
 
   init: (options) ->
-    @router = new FitgemClient.Routers.ResourcesRouter(options)
+    switch options.routerType
+      when 'user_information' then @router = new FitgemClient.Routers.UserInformationRouter(options)
+      when 'body_measurements' then @router = new FitgemClient.Routers.BodyMeasurementsRouter(options)
+      when 'activities' then @router = new FitgemClient.Routers.ActivitiesRouter(options)
+      when 'foods' then @router = new FitgemClient.Routers.FoodsRouter(options)
+      else alert('Invalid (or no) router specified in FitgemClient contructor.')
     Backbone.history.start()
