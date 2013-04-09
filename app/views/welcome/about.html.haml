@@ -11,7 +11,7 @@
 
 %h3 Technology
 
-%table.table-striped.table-bordered
+%table.table.table-striped.table-bordered
   %thead
     %tr
       %th{:style => "width:20%;"} Site Aspect
@@ -20,7 +20,7 @@
     %tr
       %td Language
       %td
-        %a{:href => "http://rubylang.org"} Ruby 1.9.3
+        %a{:href => "http://rubylang.org"} Ruby 2.0.0
     %tr
       %td Server Framework
       %td
@@ -89,13 +89,6 @@
           %dd
             Alternate form builder that nicely plays with Twitter Bootstrap form requirements.
           %dt
-            %a{:href => "https://github.com/ccocchi/sass-twitter-bootstrap-rails"} sass-twitter-bootstrap-rails
-          %dd
-            Great gem that drops the whole Twitter Bootstrap CSS + JS framework into Rails' Asset Pipeline.  I only found one issue
-            that needed to be patched: the Javascript support files must be listed in
-            = link_to "<i class='icon-search'></i> a particular order".html_safe, "https://github.com/whazzmaster/fitgem-client/blob/master/app/assets/javascripts/application.js#L12-23"
-            in application.js due to dependencies between them that are broken when the asset pipeline includes in alphabetical order.
-          %dt
             %a{:href => "https://github.com/leshill/handlebars_assets"} handlebars_assets
           %dd
             Used to automate the inclusion of handlebars.js via Rails' Asset Pipeline
@@ -103,5 +96,17 @@
             %a{:href => "https://github.com/tkgospodinov/omniauth-fitbit"} omniauth-fitbit
           %dd
             Easy integration of Fitbit OAuth login process with Devise authentication
+          %dt
+            %a{:href => "https://github.com/eternicode/bootstrap-datepicker"} bootstrap-datepicker
+          %dd
+            Add datepicker functionality to text inputs
+          %dt
+            %a{:href => "http://jdewit.github.io/bootstrap-timepicker/"} bootstrap-timepicker
+          %dd
+            Add timepicker functionality to text inputs
+          %dt
+            %a{:href => "http://momentjs.com/"} moment.js
+          %dd
+            Super-easy date formatting for Javascript Date objects
 
 %p If you have a Fitbit account, you can walkthrough the server-side steps on how to authenticate a user with Fitbit and then get data.  It also currently includes a test interface to experiment with how data subscriptions work since the documentation on the process is a little light on the Fitbit developer site.
