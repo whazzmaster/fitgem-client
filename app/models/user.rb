@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
       user.username = auth.info.nickname
       user.oauth_token = auth['credentials']['token']
       user.oauth_secret = auth['credentials']['secret']
+      user.remember_me = true
     end
   end
 
