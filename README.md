@@ -54,7 +54,7 @@ $ rake db:migrate
 
 **Step 5**: Open the application.
 
-Use `rails server` or create a pow configuration for the app, and then open your browser to the appropriate local URL.
+Use `rails server` or create a [pow configuration](http://pow.cx) for the app, and then open your browser to the appropriate local URL.
 You should now be able to view the site, create an account, link it with Fitbit, etc.
 
 ##  We Want Your Contributions!
