@@ -6,6 +6,7 @@ config/database.yml
 config/deploy/
 config/deploy.rb
 .rvmrc
+.powrc
 .ruby-version
 .idea/
 Capfile
