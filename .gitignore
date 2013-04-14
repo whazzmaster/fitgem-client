@@ -11,3 +11,4 @@ config/deploy.rb
 .idea/
 Capfile
 .sass-cache/
+.powenv

@@ -7,4 +7,15 @@ class FitgemClient.Routers.FoodsRouter extends Backbone.Router
     @user = new FitgemClient.Models.User(options)
 
   show: ->
-    alert('Not implemented: Foods Router')
+    if @user.get("linked")
+      if $('#fitbit-food-search')
+        food_search_view = new FitgemClient.Views.Foods.FoodSearchView({})
+        $('#fitbit-food-search').html(food_search_view.render().el)
+
+    else if @user.get("logged_in")
+      view = new FitgemClient.Views.Common.AccountsNotLinkedView()
+      $(".fitbit-data-view").html(view.render().el)
+
+    else
+      view = new FitgemClient.Views.Common.NotLoggedInView()
+      $(".fitbit-data-view").html(view.render().el)

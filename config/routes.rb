@@ -32,6 +32,7 @@ FitgemClient::Application.routes.draw do
     get 'body_measurements', controller: 'body_measurements', action: 'show'
     get 'activities', controller: 'activities', action: 'index'
     post 'activity', controller: 'activities', action: 'create'
+    get 'foods', controller: 'foods', action: 'index'
   end
 
   # Miscellaneous pages

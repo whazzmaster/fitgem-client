@@ -28,6 +28,13 @@
 @food_units = client.foods_units
 </pre>
 
+<h3>Food Search Example</h3>
+<p>
+  If you've connected your account with your fitbit account you will see live data displayed below.
+</p>
+
+<div class="fitbit-data-view" id="fitbit-food-search">Loading...</div>
+
 
 <h3>Retrieving User Foods</h3>
 
@@ -101,3 +108,5 @@
     <%= link_to "Fitbit Data Subscriptions &rarr;".html_safe, guide_subscriptions_path %>
   </li>
 </ul>
+
+<script type="text/javascript">$(document).ready(function(){FitgemClient.init({logged_in:<%= user_signed_in? %>,linked:<%= user_signed_in? && current_user.linked? %>, routerType: 'foods'});});</script>

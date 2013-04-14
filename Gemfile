@@ -30,7 +30,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'jquery-rails'
-  gem 'handlebars_assets'
+  gem 'handlebars_assets', '~> 0.12.0'
 end
 
 group :development, :test do
