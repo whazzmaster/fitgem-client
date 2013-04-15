@@ -1,5 +1,5 @@
 class Fitbit::Food < Fitbit::Data
-  attr_accessor :accessLevel, :brand, :calories, :defaultServingSize, :defaultUnit, :foodId, :locale,
+  attr_accessor :accessLevel, :brand, :calories, :defaultServingSize, :defaultUnit, :id, :locale,
                 :name, :units
 
   def initialize(food_data)

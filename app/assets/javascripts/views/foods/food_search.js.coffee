@@ -24,7 +24,7 @@ class FitgemClient.Views.Foods.FoodSearchView extends Backbone.View
   remove: (model, collection, options) =>
     view_to_remove = null
     for childView in @childViews
-      if childView.model == model
+      if childView.model.name == model.name
         view_to_remove = childView
         break
     @childViews = _.without(@childViews, view_to_remove)
@@ -52,5 +52,7 @@ class FitgemClient.Views.Foods.FoodSearchView extends Backbone.View
     searchTerm = $('#food-search-term').val()
     @collection.setSearchTerm(searchTerm)
     @collection.fetch
+      remove: true
+      update: true
       silent: false
 

@@ -30,9 +30,8 @@ FitgemClient::Application.routes.draw do
   namespace :api do
     get 'user', controller: 'users', action: 'show'
     get 'body_measurements', controller: 'body_measurements', action: 'show'
-    get 'activities', controller: 'activities', action: 'index'
-    post 'activity', controller: 'activities', action: 'create'
-    get 'foods', controller: 'foods', action: 'index'
+    resources :activities, only: [:index, :create]
+    resources :foods, only: [:index]
   end
 
   # Miscellaneous pages

@@ -2,7 +2,6 @@ class FitgemClient.Models.FoodItem extends Backbone.Model
   url: null
 
   defaults:
-    foodId: null
     brand: ''
     calories: 0
     defaultServingSize: 0

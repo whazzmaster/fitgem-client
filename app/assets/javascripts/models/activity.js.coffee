@@ -12,7 +12,7 @@ class FitgemClient.Models.Activity extends Backbone.Model
 
   url: ->
     if @isNew()
-      "/api/activity.json"
+      "/api/activities.json"
     else
       null
 
