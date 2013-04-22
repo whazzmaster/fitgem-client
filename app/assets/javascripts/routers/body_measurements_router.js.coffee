@@ -12,7 +12,7 @@ class FitgemClient.Routers.BodyMeasurementsRouter extends Backbone.Router
       if $('#fitbit-body-measurements-data')
         @body_measurements.fetch
           success: =>
-            user_view = new FitgemClient.Views.Resources.ShowBodyMeasurementsView(model: @body_measurements)
+            user_view = new FitgemClient.Views.Resources.BodyMeasurements.ShowBodyMeasurementsView(model: @body_measurements)
             $('#fitbit-body-measurements-data').html(user_view.render().el)
           error: =>
             view = new FitgemClient.Views.Common.ConnectionErrorView()

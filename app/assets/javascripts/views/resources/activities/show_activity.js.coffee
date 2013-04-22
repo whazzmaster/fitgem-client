@@ -1,6 +1,6 @@
-FitgemClient.Views.Resources ||= {}
+FitgemClient.Views.Resources.Activities ||= {}
 
-class FitgemClient.Views.Resources.ShowActivityView extends Backbone.View
+class FitgemClient.Views.Resources.Activities.ShowActivityView extends Backbone.View
   template: JST['templates/resources/activities/show']
 
   tagName: 'tr'

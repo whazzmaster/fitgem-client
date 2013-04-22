@@ -11,7 +11,7 @@ class FitgemClient.Routers.UserInformationRouter extends Backbone.Router
       if $('#fitbit-user-data')
         @user.fetch
           success: =>
-            user_view = new FitgemClient.Views.Resources.ShowUserView(model: @user)
+            user_view = new FitgemClient.Views.Resources.Users.ShowUserView(model: @user)
             $('#fitbit-user-data').html(user_view.render().el)
           error: =>
             view = new FitgemClient.Views.Common.ConnectionErrorView()

@@ -13,14 +13,14 @@ class FitgemClient.Routers.ActivitiesRouter extends Backbone.Router
         @activities.setDate(moment().format('YYYY-MM-DD'))
         @activities.fetch
           success: =>
-            activities_view = new FitgemClient.Views.Resources.IndexActivitiesView(collection: @activities)
+            activities_view = new FitgemClient.Views.Resources.Activities.IndexActivitiesView(collection: @activities)
             $('#fitbit-activities-data').html(activities_view.render().el)
           error: =>
             view = new FitgemClient.Views.Common.ConnectionErrorView()
             $(".fitbit-data-view").html(view.render().el)
 
       if $('#fitbit-log-activity-data')
-        log_activity_view = new FitgemClient.Views.Resources.CreateActivityView()
+        log_activity_view = new FitgemClient.Views.Resources.Activities.CreateActivityView()
         $('#fitbit-log-activity-data').html(log_activity_view.render().el)
 
     else if @user.get("logged_in")

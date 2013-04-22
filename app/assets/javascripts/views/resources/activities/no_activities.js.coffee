@@ -1,6 +1,6 @@
-FitgemClient.Views.Resources ||= {}
+FitgemClient.Views.Resources.Activities ||= {}
 
-class FitgemClient.Views.Resources.NoActivitiesView extends Backbone.View
+class FitgemClient.Views.Resources.Activities.NoActivitiesView extends Backbone.View
   template: JST['templates/resources/activities/no_activities']
 
   tagName: 'tr'

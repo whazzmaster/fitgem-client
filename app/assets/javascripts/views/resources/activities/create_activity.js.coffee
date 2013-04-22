@@ -1,13 +1,13 @@
-FitgemClient.Views.Resources ||= {}
+FitgemClient.Views.Resources.Activities ||= {}
 
-class FitgemClient.Views.Resources.CreateActivityView extends Backbone.View
+class FitgemClient.Views.Resources.Activities.CreateActivityView extends Backbone.View
   template: JST['templates/resources/activities/create']
 
   tagName: 'div'
   className: 'live-data-form-container'
 
   events:
-    "click #log-activity-btn": "logActivity"
+    'click #log-activity-btn': 'logActivity'
 
   render: ->
     if @model?

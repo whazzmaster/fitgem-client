@@ -1,6 +1,6 @@
-FitgemClient.Views.Foods ||= {}
+FitgemClient.Views.Resources.Foods ||= {}
 
-class FitgemClient.Views.Foods.FoodSearchView extends Backbone.View
+class FitgemClient.Views.Resources.Foods.FoodSearchView extends Backbone.View
   template: JST['templates/resources/foods/search']
   tagName: 'div'
   className: 'live-data-form-container'
@@ -18,7 +18,7 @@ class FitgemClient.Views.Foods.FoodSearchView extends Backbone.View
     return
 
   add: (model, collection, options) =>
-    li = new FitgemClient.Views.Foods.ShowListView({model: model})
+    li = new FitgemClient.Views.Resources.Foods.ShowListView({model: model})
     @childViews.push(li)
 
   remove: (model, collection, options) =>
@@ -44,7 +44,7 @@ class FitgemClient.Views.Foods.FoodSearchView extends Backbone.View
     event.preventDefault()
     foodName = $(event.currentTarget).find('strong').text()
     models = @collection.where({name: foodName})
-    detailView = new FitgemClient.Views.Foods.ShowDetailView({model: models[0]})
+    detailView = new FitgemClient.Views.Resources.Foods.ShowDetailView({model: models[0]})
     $('#selected-food-details').html(detailView.render().el)
 
   submitSearch: (event) ->

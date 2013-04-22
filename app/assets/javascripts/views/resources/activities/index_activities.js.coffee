@@ -1,6 +1,6 @@
-FitgemClient.Views.Resources ||= {}
+FitgemClient.Views.Resources.Activities ||= {}
 
-class FitgemClient.Views.Resources.IndexActivitiesView extends Backbone.View
+class FitgemClient.Views.Resources.Activities.IndexActivitiesView extends Backbone.View
   template: JST['templates/resources/activities/index']
 
   events:
@@ -24,7 +24,7 @@ class FitgemClient.Views.Resources.IndexActivitiesView extends Backbone.View
     @collection.on 'remove', @remove
 
   add: (model) =>
-    child_view = new FitgemClient.Views.Resources.ShowActivityView({ model: model })
+    child_view = new FitgemClient.Views.Resources.Activities.ShowActivityView({ model: model })
     @child_views.push(child_view)
 
     if @rendered

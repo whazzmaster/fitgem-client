@@ -1,6 +1,6 @@
-FitgemClient.Views.Foods ||= {}
+FitgemClient.Views.Resources.Foods ||= {}
 
-class FitgemClient.Views.Foods.ShowListView extends Backbone.View
+class FitgemClient.Views.Resources.Foods.ShowListView extends Backbone.View
   template: JST['templates/resources/foods/show_list']
   tagName: 'li'
 
