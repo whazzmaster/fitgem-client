@@ -4,6 +4,7 @@ class FitgemClient.Views.Resources.CreateActivityView extends Backbone.View
   template: JST['templates/resources/activities/create']
 
   tagName: 'div'
+  className: 'live-data-form-container'
 
   events:
     "click #log-activity-btn": "logActivity"
