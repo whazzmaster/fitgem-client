@@ -27,7 +27,7 @@
     .search-form-and-results {
       float: left;
       width: 33%;
-      min-height: 100px;
+      height: 250px;
       border-right: 1px solid #888;
       form {
         text-align: center;
@@ -37,7 +37,7 @@
       .search-results {
         list-style-type: none;
         margin: 0;
-        max-height: 250px;
+        height: 189px;
         overflow: auto;
         border-top: 1px solid #ddd;
         li {
@@ -48,6 +48,9 @@
           cursor: hand;
           &:hover {
             background-color: #D8EECE;
+          }
+          &:first-child {
+            border-top: 0;
           }
         }
       }
@@ -61,6 +64,9 @@
         dt, dd {
           line-height: 1.5em;
         }
+      }
+      .instructions {
+        color: #aaaaaa;
       }
     }
   }

@@ -50,9 +50,14 @@ class FitgemClient.Views.Resources.Foods.FoodSearchView extends Backbone.View
   submitSearch: (event) ->
     event.preventDefault();
     searchTerm = $('#food-search-term').val()
+    $('#food-search-spinner').css('visibility', 'visible')
     @collection.setSearchTerm(searchTerm)
     @collection.fetch
       remove: true
       update: true
       silent: false
+      success: ->
+        $('#food-search-spinner').css('visibility', 'hidden')
+      error: ->
+        $('#food-search-spinner').css('visibility', 'hidden')
 
