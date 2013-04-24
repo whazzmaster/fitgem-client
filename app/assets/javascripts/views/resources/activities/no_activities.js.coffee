@@ -4,7 +4,7 @@ class FitgemClient.Views.Resources.Activities.NoActivitiesView extends Backbone.
   template: JST['templates/resources/activities/no_activities']
 
   tagName: 'tr'
-  className: 'warning'
+  className: 'fetch-no-results'
 
   render: ->
     date = moment(@model.date)

@@ -1,23 +1,12 @@
-<table class="table table-bordered">
-    <tbody>
-        <tr id="activities-table-header" class="success">
-           <td colspan="2">
-            <div class="inline-activity-datepicker-form">
-                <div class="activity-date-picker">Activities for Date</div>
-                <input type="text" class="datepicker input-small" />
-                <button id="change-activity-date-btn" class="btn btn-success btn-small">Fetch Activities</button>
-            </div>
-           </td>
-        </tr>
-        <!-- Activity rows will be placed here if any were found for the selected day.
-             See app/assets/javascripts/templates/resources/activities/show.jst.hbs for
-             the template used for individual rows. -->
-        <tr id="activities-table-footer" class="success">
-           <td colspan="2">
-            <div class="pull-right">
-                Live User Data from <a href="http://www.fitbit.com">Fitbit.com</a>
-            </div>
-           </td>
-        </tr>
-    </tbody>
-</table>
+<div class="live-data-form">
+  <div class="inline-activity-datepicker-form fetch-form">
+    <div class="activity-date-picker">Activities for Date</div>
+    <input type="text" class="datepicker input-small" />
+    <button id="change-activity-date-btn" class="btn btn-success btn-small">Fetch Activities</button>
+    <img id="activities-fetch-spinner" class="spinner" src="/assets/spinner.gif" style="visibility:hidden;" />
+  </div>
+  <table class="fetch-example">
+    <tbody id="activities-results-container"></tbody>
+  </table>
+</div>
+{{> common/_live_data_footer }}

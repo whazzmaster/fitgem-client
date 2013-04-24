@@ -2,46 +2,33 @@ FitgemClient.Views.Resources.Activities ||= {}
 
 class FitgemClient.Views.Resources.Activities.IndexActivitiesView extends Backbone.View
   template: JST['templates/resources/activities/index']
+  tagName: 'div'
+  className: 'live-data-form-container'
 
   events:
-    "click #change-activity-date-btn": "dateChanged"
+    'click #change-activity-date-btn': 'dateChanged'
 
   initialize: (options) ->
-    @rendered = false
+    @childViews = []
 
-    @child_views = []
     @collection.each(@add)
-
-    # TODO [zjm 2013-04-06]: Unsure why this isn't working, but I'm leaving
-    # the code to try to fix at a later date. In theory I should just be able
-    # to @collection.reset() and then @collection.fetch() and due to the
-    # following lines it should automatically trigger view updates, but since
-    # the @add and @remove methods aren't fired even when the collection contents
-    # are updated this isn't happening. Any Backbone.js experts out there that
-    # can help please submit a pull request or send me a message about this!
-    _.extend(@collection, Backbone.Events)
     @collection.on 'add', @add
     @collection.on 'remove', @remove
+    @collection.on 'sync', @renderList
 
-  add: (model) =>
-    child_view = new FitgemClient.Views.Resources.Activities.ShowActivityView({ model: model })
-    @child_views.push(child_view)
+  add: (model, collection, options) =>
+    childView = new FitgemClient.Views.Resources.Activities.ShowActivityView({ model: model })
+    @childViews.push(childView)
 
-    if @rendered
-      @render()
-
-  remove: (model) =>
+  remove: (model, collection, options) =>
     view_to_remove = null
-    for child_view in @child_views
-      if child_view.model == model
-        view_to_remove = child_view
+    for childView in @childViews
+      if childView.model.name == model.name
+        view_to_remove = childView
         break
-    @child_views = _.without(@child_views, view_to_remove)
+    @childViews = _.without(@childViews, view_to_remove)
 
-    if @rendered
-      @render()
-
-  # If we're rendering without any child_views (created when @add is called)
+  # If we're rendering without any childView (created when @add is called)
   # then we'll create the NoActivitiesView with the selected date and render
   # it into our element. If we did find activities in the collection, and
   # created subviews for them via the @add method, then render each view and
@@ -49,38 +36,37 @@ class FitgemClient.Views.Resources.Activities.IndexActivitiesView extends Backbo
   # the activities are viewed in the order they were delivered from the server.
   # Also, initialize the datepicker field and set the date to the one selected
   # set on the collection.
-  render: ->
+  render: =>
     $(@el).html(@template({}))
     activityDate = @collection.getDate()
     $(@el).find('.datepicker').val(activityDate)
 
-    if @child_views.length == 0
-      view = new FitgemClient.Views.Resources.NoActivitiesView(model: {date: activityDate})
-      $(@el).find("tr#activities-table-footer").before(view.render().el)
-    else
-      for child_view in @child_views
-        $(@el).find("tr#activities-table-footer").before(child_view.render().el)
+    @renderList()
 
     $(@el).find('.datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true})
-    @rendered = true
     return this
+
+  renderList: =>
+    activityDate = @collection.getDate()
+    $(@el).find('#activities-results-container').empty()
+    if @childViews.length == 0
+      view = new FitgemClient.Views.Resources.Activities.NoActivitiesView(model: {date: activityDate})
+      $(@el).find('#activities-results-container').append(view.render().el)
+    else
+      for childView in @childViews
+        $(@el).find('#activities-results-container').append(childView.render().el)
 
   # When the user changes the date via the datepicker in the element then
   # reset the collection, update the date (used in the query to the server),
   # and then do a fetch.
   dateChanged: ->
-    @collection.reset()
+    $('#activities-fetch-spinner').css('visibility','visible')
     @collection.setDate($(@el).find('.datepicker').val())
     @collection.fetch
+      remove: true
+      update: true
+      silent: false
       success: =>
-        # Reset the collection of subviews
-        @child_views = []
-        if @collection.length > 0
-          @collection.each(@add)
-        else
-          # Need to do this to force an update to the 'no activities found'
-          # subview if no activities were returned from the server.
-          @render()
+        $('#activities-fetch-spinner').css('visibility', 'hidden')
       failure: =>
-        @child_views = []
-        @render()
+        $('#activities-fetch-spinner').css('visibility', 'hidden')
