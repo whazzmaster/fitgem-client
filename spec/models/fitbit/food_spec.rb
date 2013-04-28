@@ -38,7 +38,7 @@ describe Fitbit::Food do
         @user.stub(:linked?).and_return(true)
       end
 
-      it 'calls the search method on the fitbit data client' do
+      it 'calls the find_food method on the fitbit data client' do
         @user.fitbit_data.should_receive(:find_food)
         Fitbit::Food.search(@user, 'apple')
       end
@@ -59,6 +59,24 @@ describe Fitbit::Food do
         apple.accessLevel.should eq('PUBLIC')
         apple.name.should eq('Apple')
         apple.id.should eq(81409)
+      end
+    end
+
+    context 'created with a user without a linked account' do
+      before(:each) do
+        @user.stub(:present?).and_return(true)
+        @user.stub(:linked?).and_return(false)
+      end
+
+      it 'does not call the find_food method on the fitbit data client' do
+        @user.should_not_receive(:fitbit_data)
+        Fitbit::Food.search(@user, 'apple')
+      end
+
+      it 'returns and empty array of results' do
+        results = Fitbit::Food.search(@user, 'apple')
+        results.class.should eq(Array)
+        results.count.should eq(0)
       end
     end
   end
