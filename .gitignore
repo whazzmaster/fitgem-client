@@ -8,6 +8,7 @@ config/deploy.rb
 .rvmrc
 .powrc
 .ruby-version
+.ruby-gemset
 .idea/
 Capfile
 .sass-cache/
