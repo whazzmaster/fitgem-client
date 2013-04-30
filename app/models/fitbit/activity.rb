@@ -22,7 +22,7 @@ class Fitbit::Activity < Fitbit::Data
 
   def self.fetch_all_on_date(user, date)
     activity_objects = []
-    if user.data_available?
+    if user.present? && user.linked?
       activities = user.fitbit_data.activities_on_date(date)['activities']
       activity_objects = activities.map {|a| Fitbit::Activity.new(a, user.unit_measurement_mappings) }
     end
@@ -30,7 +30,7 @@ class Fitbit::Activity < Fitbit::Data
   end
 
   def self.log_activity(user, activity)
-    if user.data_available?
+    if user.present? && user.linked?
       user.fitbit_data.log_activity(activity)
     end
   end

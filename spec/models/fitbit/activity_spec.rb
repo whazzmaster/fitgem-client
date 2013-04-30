@@ -52,7 +52,8 @@ describe Fitbit::Activity do
 
     context 'called with a logged-in user' do
       before(:each) do
-        @user.stub(:data_available?).and_return(true)
+        @user.stub(:present?).and_return(true)
+        @user.stub(:linked?).and_return(true)
       end
 
       it 'fetches the data using the Fitbit::Client instance on the user' do
@@ -79,7 +80,8 @@ describe Fitbit::Activity do
 
     context 'called with a non logged-in user' do
       before(:each) do
-        @user.stub(:data_available?).and_return(false)
+        @user.stub(:present?).and_return(true)
+        @user.stub(:linked?).and_return(false)
       end
 
       it 'does not invoke the Fitbit::Client instance on the user' do
@@ -96,11 +98,12 @@ describe Fitbit::Activity do
   describe '#log_activity' do
     before(:each) do
       @user = double('User')
+      @user.stub(:present?).and_return(true)
     end
 
     context 'called with a logged-in user' do
       it 'calls log_activity on the Fitbit::Client instance on the user' do
-        @user.stub(:data_available?).and_return(true)
+        @user.stub(:linked?).and_return(true)
         client = double('Fitgem::Client')
         client.should_receive(:log_activity)
         @user.should_receive(:fitbit_data).and_return(client)
@@ -110,7 +113,7 @@ describe Fitbit::Activity do
 
     context 'called with a non logged-in user' do
       it 'does not call log_activity on the Fitbit::Client instance on the user' do
-        @user.stub(:data_available?).and_return(false)
+        @user.stub(:linked?).and_return(false)
         @user.should_not_receive(:fitbit_data)
         Fitbit::Activity.log_activity(@user, { 'name' => 'Walking' })
       end
