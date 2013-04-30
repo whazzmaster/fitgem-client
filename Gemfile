@@ -23,7 +23,9 @@ gem 'simple_form'
 gem 'rabl'
 
 # Monitoring
-gem 'newrelic_rpm'
+group :production do
+  gem 'newrelic_rpm'
+end
 
 group :assets do
   gem 'sass-rails'
