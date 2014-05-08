@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
 
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
+    current_user = where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.username = auth.info.nickname
@@ -20,6 +20,21 @@ class User < ActiveRecord::Base
       user.oauth_secret = auth['credentials']['secret']
       user.remember_me = true
     end
+
+    # The Fitbit API has changed and subsequent logins via OAuth result in new user token/secret
+    # being generated, which invalidates the previously stored credentials. So now, if we already
+    # had a record for the user we must check whether the credentials have changed and store the
+    # new ones.
+    #
+    # See https://groups.google.com/forum/?hl=en&lnk=gcimh#!topic/fitbit-api/Win6-rrD7rc for more
+    # information.
+    if current_user.oauth_token != auth['credentials']['token'] && current_user.oauth_secret != auth['credentials']['secret']
+      current_user.oauth_token = auth['credentials']['token']
+      current_user.oauth_secret = auth['credentials']['secret']
+      current_user.save
+    end
+
+    current_user
   end
 
   def self.new_with_session(params, session)
