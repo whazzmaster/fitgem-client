@@ -56,7 +56,7 @@ describe Fitbit::Activity do
         @user.stub(:linked?).and_return(true)
       end
 
-      it 'fetches the data using the Fitbit::Client instance on the user' do
+      it 'fetches the data using the FitGem::Client instance on the user' do
         client = double('Fitgem::Client')
         client.should_receive(:activities_on_date).with('today').and_return(@data)
         @user.should_receive(:fitbit_data).and_return(client)
@@ -84,7 +84,7 @@ describe Fitbit::Activity do
         @user.stub(:linked?).and_return(false)
       end
 
-      it 'does not invoke the Fitbit::Client instance on the user' do
+      it 'does not invoke the FitGem::Client instance on the user' do
         @user.should_not_receive(:fitbit_data)
         Fitbit::Activity.fetch_all_on_date(@user, 'today')
       end
@@ -102,7 +102,7 @@ describe Fitbit::Activity do
     end
 
     context 'called with a logged-in user' do
-      it 'calls log_activity on the Fitbit::Client instance on the user' do
+      it 'calls log_activity on the FitGem::Client instance on the user' do
         @user.stub(:linked?).and_return(true)
         client = double('Fitgem::Client')
         client.should_receive(:log_activity)
@@ -112,7 +112,7 @@ describe Fitbit::Activity do
     end
 
     context 'called with a non logged-in user' do
-      it 'does not call log_activity on the Fitbit::Client instance on the user' do
+      it 'does not call log_activity on the FitGem::Client instance on the user' do
         @user.stub(:linked?).and_return(false)
         @user.should_not_receive(:fitbit_data)
         Fitbit::Activity.log_activity(@user, { 'name' => 'Walking' })

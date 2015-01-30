@@ -38,14 +38,14 @@ describe Fitbit::BodyMeasurements do
         @user.stub(:linked?).and_return(true)
       end
 
-      it 'calls the body_measurements method of Fitbit::Client on the user instance' do
-        client = double('Fitbit::Client')
+      it 'calls the body_measurements method of FitGem::Client on the user instance' do
+        client = double('FitGem::Client')
         client.should_receive(:body_measurements_on_date).with('today').and_return(@data)
         @user.should_receive(:fitbit_data).and_return(client)
         Fitbit::BodyMeasurements.new(@user)
       end
 
-      it 'applies the user\'s unit measurements to the values returned by Fitbit::Client' do
+      it 'applies the user\'s unit measurements to the values returned by FitGem::Client' do
         @user.stub_chain(:fitbit_data, :body_measurements_on_date).and_return(@data)
         measurements = Fitbit::BodyMeasurements.new(@user)
 
@@ -64,7 +64,7 @@ describe Fitbit::BodyMeasurements do
     end
 
     context 'called with a non logged-in user' do
-      it 'does not call the body_measurements method of Fitbit::Client on te user instance' do
+      it 'does not call the body_measurements method of FitGem::Client on te user instance' do
         @user.stub(:linked?).and_return(false)
         @user.should_not_receive(:fitbit_data)
         Fitbit::BodyMeasurements.new(@user)
