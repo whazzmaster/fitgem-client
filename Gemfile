@@ -5,7 +5,7 @@ gem 'fitgem'
 
 # Authentication/Authorization Support
 gem 'devise'
-gem 'omniauth-fitbit', :git => 'git://github.com/whazzmaster/omniauth-fitbit.git'
+gem 'omniauth-fitbit'
 
 # Database
 gem 'pg'
