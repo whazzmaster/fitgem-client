@@ -18,10 +18,16 @@ gem 'pg'
 # Utility
 gem 'visual-environments'
 
-# Visualization
+# Frontend
 gem 'backbone-on-rails'
 gem 'haml-rails', '0.8.2'
 gem 'simple_form'
+gem 'foundation-rails'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+gem 'jquery-rails'
+gem 'handlebars_assets', '~> 0.12.0'
 
 # API Support
 gem 'rabl'
@@ -31,12 +37,6 @@ group :production do
   gem 'newrelic_rpm'
   gem 'rails_12factor'
 end
-
-gem 'sass-rails'
-gem 'coffee-rails'
-gem 'uglifier'
-gem 'jquery-rails'
-gem 'handlebars_assets', '~> 0.12.0'
 
 group :development, :test do
   gem 'factory_girl_rails'
