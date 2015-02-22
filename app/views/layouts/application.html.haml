@@ -3,8 +3,9 @@
   %meta{:charset => "utf-8"}
   %title= content_for?(:title) ? yield(:title) : "Fitgem Reference Client"
 
-  %link{:href => 'http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold', :rel => 'stylesheet', :type => 'text/css'}
-  %link{:href => 'http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold', :rel => 'stylesheet', :type => 'text/css'}
+  %link{href: 'http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold', rel: 'stylesheet', type: 'text/css'}
+  %link{href: 'http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold', rel: 'stylesheet', type: 'text/css'}
+  %link{href: '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', rel: 'stylesheet', type: 'text/css' }
   %script{:src => "https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"}
 
   = stylesheet_link_tag :application
