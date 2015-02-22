@@ -1,5 +1,6 @@
 FitgemClient::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  config.eager_load = true
 
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
@@ -19,7 +20,7 @@ FitgemClient::Application.configure do
   config.assets.compile = false
 
   # Generate digests for assets URLs
-  config.assets.digest = true  
+  config.assets.digest = true
 
   # Specifies the header that your server uses for sending files
   config.action_dispatch.x_sendfile_header = "X-Sendfile"

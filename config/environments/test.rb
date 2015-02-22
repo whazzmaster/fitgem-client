@@ -1,5 +1,6 @@
 FitgemClient::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  config.eager_load = false
 
   # The test environment is used exclusively to run your application's
   # test suite.  You never need to work with it otherwise.  Remember that
@@ -35,7 +36,4 @@ FitgemClient::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-
-  # Raise exception on mass assignment protecttion for Active Record models
-  config.active_record.mass_assignment_sanitizer = :strict
 end
