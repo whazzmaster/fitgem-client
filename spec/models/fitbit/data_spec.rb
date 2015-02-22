@@ -8,12 +8,12 @@ describe Fitbit::Data do
 
     it 'returns true when the user is linked to fitbit via oauth' do
       @user.stub(:linked?).and_return(true)
-      Fitbit::Data.new(@user).data_available?.should be_true
+      Fitbit::Data.new(@user).data_available?.should be true
     end
 
     it 'returns false when the user is not linked to fitbit via oauth' do
       @user.stub(:linked?).and_return(false)
-      Fitbit::Data.new(@user).data_available?.should be_false
+      Fitbit::Data.new(@user).data_available?.should be false
     end
 
 
