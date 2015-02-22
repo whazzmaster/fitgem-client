@@ -71,7 +71,8 @@ class User < ActiveRecord::Base
                 :consumer_secret => ENV["FITBIT_CONSUMER_SECRET"],
                 :token => oauth_token,
                 :secret => oauth_secret,
-                :user_id => uid
+                :user_id => uid,
+                :ssl => true
               )
   end
 
