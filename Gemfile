@@ -2,6 +2,9 @@ source 'http://rubygems.org'
 
 ruby '2.1.0'
 
+gem 'unicorn'
+gem 'rack-timeout'
+
 gem 'rails', '~> 4.2.0'
 gem 'fitgem'
 
