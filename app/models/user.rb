@@ -4,21 +4,17 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :provider, :uid,
-    :remember_me, :oauth_token, :oauth_secret
-
   validates :username, presence: true
   validates :email, presence: true, uniqueness: true
 
   def self.from_omniauth(auth)
-    current_user = where(auth.slice(:provider, :uid)).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.username = auth.info.nickname
-      user.oauth_token = auth['credentials']['token']
+    current_user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider     = auth.provider
+      user.uid          = auth.uid
+      user.username     = auth.info.nickname
+      user.oauth_token  = auth['credentials']['token']
       user.oauth_secret = auth['credentials']['secret']
-      user.remember_me = true
+      user.remember_me  = true
     end
 
     # The Fitbit API has changed and subsequent logins via OAuth result in new user token/secret

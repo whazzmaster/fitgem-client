@@ -1,6 +1,9 @@
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
+  # Devise Secret key
+  config.secret_key = '6d2c23a4cceb6864b76c39ed8d3ff0d47cf74b95a24eb0eb37bda87d3e110d3f5aab2defbbd2aa324c1a158240afb41a025f1755324c0f96f62a1aefa497d506'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
   config.mailer_sender = "signup@fitgem-client.com"
