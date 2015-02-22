@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/whazzmaster/omniauth-fitbit.git
-  revision: 95d0156e737b3ef12c50e04165c7eefdc902c520
-  specs:
-    omniauth-fitbit (1.0.0)
-      multi_xml
-      omniauth-oauth (~> 1.0)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -91,7 +83,7 @@ GEM
       execjs (>= 1.2.9)
       sprockets (>= 2.0.3)
       tilt
-    hashie (1.2.0)
+    hashie (3.4.0)
     hike (1.2.2)
     i18n (0.6.1)
     journey (1.0.4)
@@ -108,14 +100,17 @@ GEM
       rails
     mime-types (1.22)
     multi_json (1.7.2)
-    multi_xml (0.5.1)
+    multi_xml (0.5.5)
     newrelic_rpm (3.5.4.34)
     nifty-generators (0.4.6)
     nokogiri (1.5.6)
     oauth (0.4.7)
-    omniauth (1.1.1)
-      hashie (~> 1.2)
-      rack
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-fitbit (1.0.4)
+      multi_xml
+      omniauth-oauth (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -213,7 +208,7 @@ DEPENDENCIES
   meta_request (~> 0.2.1)
   newrelic_rpm
   nifty-generators
-  omniauth-fitbit!
+  omniauth-fitbit
   pg
   rabl
   rails (~> 3.2.13)
