@@ -14,25 +14,25 @@
 %table.table.table-striped.table-bordered
   %thead
     %tr
-      %th{:style => "width:20%;"} Site Aspect
+      %th{:style => "width:30%;"} Site Aspect
       %th Technology Used
   %tbody
     %tr
       %td Language
       %td
-        %a{:href => "http://rubylang.org"} Ruby 2.0.0
+        %a{:href => "http://rubylang.org"} Ruby 2.1.0
     %tr
       %td Server Framework
       %td
-        %a{:href => "http://rubyonrails.org"} Rails 3.2.x
+        %a{:href => "http://rubyonrails.org"} Rails 4.2.x
     %tr
       %td Database
       %td
-        %a{:href => "http://www.postgresql.org/"} Postgres
+        %a{:href => "http://www.postgresql.org/"} PostgreSQL
     %tr
       %td Design/UI Framework
       %td
-        %a{:href => "http://twitter.github.com/bootstrap/"} Twitter Bootstrap
+        %a{:href => "http://foundation.zurb.com/"} Zurb Foundation
     %tr
       %td Javascript MVC Framework
       %td
@@ -52,7 +52,7 @@
       %td
         %a{:href => "http://www.heroku.com"} Heroku
     %tr
-      %td Supporting Gems
+      %td{style: 'vertical-align:top;'} Supporting Gems
       %td
         %dl
           %dt
@@ -60,10 +60,6 @@
           %dd
             The visual-environments gem dynamically inserts a configurable string into your app's title tag in non-production
             environments to easily show which browser tabs show dev versus test or production environments.
-          %dt
-            %a{:href => "https://github.com/ryanb/nifty-generators"} nifty-generators
-          %dd
-            Used for some helpers; will eventually be removed.
           %dt
             %a{:href => "https://github.com/meleyal/backbone-on-rails"} backbone-on-rails
           %dd
@@ -79,11 +75,9 @@
           %dd
             Used to create the JSON responses from the /api controllers called by the Backbone models.
           %dt
-            %a{:href => "https://rubygems.org/gems/google-code-prettify-rails"} google-code-prettify-rails
+            %a{:href => "https://highlightjs.org/"} highlight.js
           %dd
-            Used to do syntax highlighting and line-numbering for the &lt;pre&gt; code blocks.  Using the gem required me to
-            = link_to "<i class='icon-search'></i> patch the CSS".html_safe, "https://github.com/whazzmaster/fitgem-client/blob/master/app/assets/stylesheets/custom.css.scss#L1-6"
-            in order to get the line numbers to show up correctly.
+            Used to do syntax highlighting for the &lt;pre&gt; code blocks.
           %dt
             %a{:href => "https://github.com/plataformatec/simple_form"} simple_form
           %dd
@@ -96,14 +90,6 @@
             %a{:href => "https://github.com/tkgospodinov/omniauth-fitbit"} omniauth-fitbit
           %dd
             Easy integration of Fitbit OAuth login process with Devise authentication
-          %dt
-            %a{:href => "https://github.com/eternicode/bootstrap-datepicker"} bootstrap-datepicker
-          %dd
-            Add datepicker functionality to text inputs
-          %dt
-            %a{:href => "http://jdewit.github.io/bootstrap-timepicker/"} bootstrap-timepicker
-          %dd
-            Add timepicker functionality to text inputs
           %dt
             %a{:href => "http://momentjs.com/"} moment.js
           %dd
