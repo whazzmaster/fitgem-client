@@ -15,11 +15,11 @@ class FitgemClient.Views.Resources.Activities.CreateActivityView extends Backbon
     else
       $(@el).html(@template({}))
     # Setup the timepicker form input
-    $(@el).find("#logStartTime").timepicker
-      minuteStep: 1
-      showMeridian: false
+    #$(@el).find("#logStartTime").timepicker
+    #  minuteStep: 1
+    # showMeridian: false
     # Setup the datepicker form input
-    $(@el).find("#logDate").val(moment().format('YYYY-MM-DD')).datepicker
+    $(@el).find("#logDate").val(moment().format('YYYY-MM-DD')).fdatepicker
       format: "yyyy-mm-dd"
       autoclose: true
       todayBtn: 'linked'

@@ -11,6 +11,7 @@
 //= require backbone
 //= require handlebars.runtime
 //= require vendor/moment
+//= require vendor/foundation-datepicker
 //= require fitgem_client
 
 //$(document).ready(function(){

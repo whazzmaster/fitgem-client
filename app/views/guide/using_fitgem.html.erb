@@ -1,14 +1,14 @@
-<ul class="pager">
-  <li class="previous">
-    <%= link_to "&larr; Introduction".html_safe, guide_introduction_path %>
-  </li>
-  <li class="next">
-    <%= link_to "Fitbit Resources: User Information &rarr;".html_safe, guide_user_information_path %>
-  </li>
-</ul>
+<div class="row navigation-buttons">
+  <div class="small-6 columns go-back">
+    <%= link_to "<i class='fa fa-arrow-left'></i> Introduction".html_safe, guide_introduction_path, class: 'button tiny round' %>
+  </div>
+  <div class="small-6 columns go-forward">
+    <%= link_to "User Information <i class='fa fa-arrow-right'></i>".html_safe, guide_user_information_path, class: 'button tiny round' %>
+  </div>
+</div>
 
 <div class="page-header">
-  <h1>Playing With the Fitgem API <small>Chapter 2</small></h1>
+  <h1>Getting Started <small>Chapter 2</small></h1>
 </div>
 
 <p>
@@ -21,14 +21,14 @@
 <p>
   Create a sandbox to play in and get <code>fitgem</code>.
 </p>
-<pre class="prettyprint linenums lang-bash">$ mkdir fitgem-sandbox
+<pre><code class="bash">$ mkdir fitgem-sandbox
 $ cd fitgem-sandbox
 fitgem-sandbox $ gem install fitgem
 Fetching: oauth-0.4.7.gem (100%)
 Successfully installed oauth-0.4.7
-Fetching: fitgem-0.6.1.gem (100%)
-Successfully installed fitgem-0.6.1
-2 gems installed</pre>
+Fetching: fitgem-0.10.0.gem (100%)
+Successfully installed fitgem-0.10.0
+2 gems installed</code></pre>
 
 <h3>Step 2: Set Up a Config File to Hold OAuth Tokens</h1>
 <p>
@@ -37,7 +37,7 @@ Successfully installed fitgem-0.6.1
     <code>consumer_secret</code> you received from the <a href="https://wiki.fitbit.com/display/API/Fitbit+API">Fitbit API</a>
     site.
 </p>
-<pre class="prettyprint lang-bash">fitgem-sandbox $ curl https://gist.github.com/whazzmaster/5322902/raw/aa4293a9eb288d2096840a05b35a1ecf829defc1/.fitgem.yml > .fitgem.yml</pre>
+<pre><code class="bash">fitgem-sandbox $ curl https://gist.github.com/whazzmaster/5322902/raw/aa4293a9eb288d2096840a05b35a1ecf829defc1/.fitgem.yml > .fitgem.yml</code></pre>
 <script src="https://gist.github.com/whazzmaster/5322902.js?file=.fitgem.yml"></script>
 
 <p>
@@ -49,8 +49,8 @@ Successfully installed fitgem-0.6.1
 <h3>Step 3: Login and Get OAuth Tokens</h3>
 <p>Copy or download the <code>test-fitgem.rb</code> script and enable it for execution.</p>
 
-<pre class="prettyprint">fitgem-sandbox $ curl https://gist.github.com/whazzmaster/5322902/raw/4439e2d577567d280856a2d77cef7b824a851cd1/test-fitgem.rb > test-fitgem.rb
-fitgem-sandbox $ chmod +x test-fitgem.rb</pre>
+<pre><code class="bash">fitgem-sandbox $ curl https://gist.github.com/whazzmaster/5322902/raw/4439e2d577567d280856a2d77cef7b824a851cd1/test-fitgem.rb > test-fitgem.rb
+fitgem-sandbox $ chmod +x test-fitgem.rb</code></pre>
 
 <script src="https://gist.github.com/whazzmaster/5322902.js?file=test-fitgem.rb"></script>
 
@@ -58,7 +58,7 @@ fitgem-sandbox $ chmod +x test-fitgem.rb</pre>
 Now you can call it with:
 </p>
 
-<pre class="prettyprint">fitgem-sandbox $ ./test-fitgem.rb</pre>
+<pre><code class="bash">fitgem-sandbox $ ./test-fitgem.rb</code></pre>
 
 <p>
     The first time you call the script it will output a URL that you need to copy/paste into your browser.
@@ -80,7 +80,7 @@ Now you can call it with:
 On the day I ran the above script I received the following output:
 </p>
 
-<pre class="prettyprint linenums lang-ruby">{"activities"=>[],
+<pre><code class="ruby">{"activities"=>[],
  "goals"=>
   {"activeScore"=>1000,
    "caloriesOut"=>2911,
@@ -107,13 +107,13 @@ On the day I ran the above script I received the following output:
    "sedentaryMinutes"=>1159,
    "steps"=>1803,
    "veryActiveMinutes"=>0}}
-</pre>
+</code></pre>
 
-<ul class="pager">
-  <li class="previous">
-    <%= link_to "&larr; Introduction".html_safe, guide_introduction_path %>
-  </li>
-  <li class="next">
-    <%= link_to "Fitbit Resources: User Information &rarr;".html_safe, guide_user_information_path %>
-  </li>
-</ul>
+<div class="row navigation-buttons">
+  <div class="small-6 columns go-back">
+    <%= link_to "<i class='fa fa-arrow-left'></i> Introduction".html_safe, guide_introduction_path, class: 'button tiny round' %>
+  </div>
+  <div class="small-6 columns go-forward">
+    <%= link_to "Fitbit Resources: User Information <i class='fa fa-arrow-right'></i>".html_safe, guide_user_information_path, class: 'button tiny round' %>
+  </div>
+</div>

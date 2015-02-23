@@ -6,11 +6,12 @@
   %link{href: 'http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold', rel: 'stylesheet', type: 'text/css'}
   %link{href: 'http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold', rel: 'stylesheet', type: 'text/css'}
   %link{href: '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', rel: 'stylesheet', type: 'text/css' }
-  %script{:src => "https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"}
+  %link{href: '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/zenburn.min.css', rel: 'stylesheet', type: 'text/css'}
 
   = stylesheet_link_tag :application
   = javascript_include_tag :application
-  = javascript_include_tag "vendor/modernizr"
+  = javascript_include_tag 'vendor/modernizr'
+  = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js'
   = csrf_meta_tag
   = yield(:head)
 
@@ -39,3 +40,6 @@
       = render 'layouts/footer'
 
   = render 'layouts/analytics'
+
+  :javascript
+    hljs.initHighlightingOnLoad();

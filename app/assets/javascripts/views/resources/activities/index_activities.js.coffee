@@ -43,7 +43,7 @@ class FitgemClient.Views.Resources.Activities.IndexActivitiesView extends Backbo
 
     @renderList()
 
-    $(@el).find('.datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true})
+    $(@el).find('.datepicker').fdatepicker({format: 'yyyy-mm-dd', autoclose: true})
     return this
 
   renderList: =>
