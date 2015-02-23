@@ -10,29 +10,32 @@
 
   = stylesheet_link_tag :application
   = javascript_include_tag :application
+  = javascript_include_tag "vendor/modernizr"
   = csrf_meta_tag
   = yield(:head)
 
 %body
   = render 'layouts/header'
 
-  .container-fluid
-    - if notice
-      .row-fluid
+  .row
+    .small-12.columns
+      - if notice
         #flash.alert.alert-success
           = link_to '&times;'.html_safe, nil, :class => 'close', :data => { :dismiss => 'alert' }
           = notice
-    - elsif alert
-      .row-fluid
+      - elsif alert
         #flash.alert.alert-error
           = link_to '&times;'.html_safe, nil, :class => 'close', :data => { :dismiss => 'alert' }
           = alert
 
-    .row-fluid
-      .span3
-        = render 'layouts/sidebar'
-      .span9
-        = preserve yield
+  .row
+    .small-12.large-4.columns
+      = render 'layouts/sidebar'
+    .small-12.large-8.columns
+      = preserve yield
 
-    = render 'layouts/footer'
-    = render 'layouts/analytics'
+  .site-footer
+    .row
+      = render 'layouts/footer'
+
+  = render 'layouts/analytics'

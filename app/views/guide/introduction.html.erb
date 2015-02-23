@@ -1,8 +1,9 @@
-<ul class="pager">
-  <li class="next">
-    <%= link_to "Playing With the Fitgem API &rarr;".html_safe, guide_using_fitgem_path %>
-  </li>
-</ul>
+<div class="row navigation-buttons">
+  <div class="small-6 columns go-back">&nbsp;</div>
+  <div class="small-6 columns go-forward">
+    <%= link_to "Playing With the Fitgem API <i class='fa fa-arrow-right'></i>".html_safe, guide_using_fitgem_path, class: 'button tiny round' %>
+  </div>
+</div>
 
 <div class="page-header">
   <h1>Introduction <small>Chapter 1</small></h1>
@@ -46,8 +47,9 @@ Throughout the examples there are links to the source code for this site, as wel
 <p><%= link_to "Login with Fitbit to view Live Data examples", user_omniauth_authorize_path(:fitbit), class: 'btn btn-primary' %></p>
 </div>
 
-<ul class="pager">
-  <li class="next">
-    <%= link_to "Playing With the Fitgem API &rarr;".html_safe, guide_using_fitgem_path %>
-  </li>
-</ul>
+<div class="row navigation-buttons">
+  <div class="small-6 columns go-back">&nbsp;</div>
+  <div class="small-6 columns go-forward">
+    <%= link_to "Playing With the Fitgem API <i class='fa fa-arrow-right'></i>".html_safe, guide_using_fitgem_path, class: 'button tiny round' %>
+  </div>
+</div>

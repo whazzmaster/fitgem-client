@@ -1,13 +1,6 @@
-.row-fluid#main-footer
-  .span12
-    .well
-      .copyright{:style => "line-height:32px;"}
-        &copy; 2012-#{Date.today.year} Zachery Moneypenny
-        <a href="http://twitter.com/whazzmaster"><i class="fa fa-twitter"></i></a>
-        <a href="http://github.com/whazzmaster"><i class="fa fa-github"></i></a>
-      .powered-by
-        %a{:href=>"http://www.fitbit.com"}
-          %span{:style => "display:inline-block;vertical-align:middle;"}
-            Powered by
-          %span{:style => "display:inline-block;vertical-align:middle;"}
-            = image_tag('fitbit_logo_dark_100px.png', :border => 0)
+.small-12.medium-6.columns.powered-by
+  %a{:href=>"http://www.fitbit.com"} Powered by Fitbit.com
+.small-12.medium-6.columns.copyright{:style => "line-height:32px;"}
+  &copy; 2012-#{Date.today.year} Zachery Moneypenny
+  <a href="http://twitter.com/whazzmaster"><i class="fa fa-twitter"></i></a>
+  <a href="http://github.com/whazzmaster"><i class="fa fa-github"></i></a>

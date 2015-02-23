@@ -6,16 +6,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require underscore
 //= require backbone
 //= require handlebars.runtime
-//= require vendor/twitter-bootstrap-2.3.1/bootstrap
-//= require vendor/bootstrap-datepicker
-//= require vendor/bootstrap-timepicker
 //= require vendor/moment
 //= require fitgem_client
 
-$(document).ready(function(){
-  $("a[rel=tooltip]").tooltip();
-});
+//$(document).ready(function(){
+//  $("a[rel=tooltip]").tooltip();
+//});
 
+
+$(function(){ $(document).foundation(); });
