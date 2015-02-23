@@ -4,6 +4,9 @@
       %li.name
         %h1
           = link_to 'Fitgem Reference Client', root_path
+      %li.toggle-topbar.menu-icon
+        %a{href: "#"}
+          %span
     %section.top-bar-section
       %ul.right
         - if user_signed_in?
