@@ -1,6 +1,6 @@
 # Fitgem Client Application
 
-A Rails 3.2-based reference application that shows how to use [fitgem](https://github.com/whazzmaster/fitgem)
+A Rails 4.2-based reference application that shows how to use [fitgem](https://github.com/whazzmaster/fitgem)
 to query the [Fitbit API](https://wiki.fitbit.com/display/API/Fitbit+API). **This application is publicly available at
 [fitbitclient.com](http://fitbitclient.com)**.
 
@@ -47,9 +47,7 @@ Once the user is setup, create the database and run the migrations:
 
 ```bash
 $ rake db:create
-...various output...
 $ rake db:migrate
-...various output...
 ```
 
 **Step 5**: Open the application.
